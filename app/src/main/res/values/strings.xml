@@ -1,0 +1,7 @@
+<resources>
+    <string name="title_app_name">lookingMDev</string>
+    <string name="title_search">search</string>
+    <string name="title_saved">saved</string>
+    <string name="title_booking">booking</string>
+    <string name="title_account">account</string>
+</resources>
