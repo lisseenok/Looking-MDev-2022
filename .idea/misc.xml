@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_booking.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1503623188405797" />

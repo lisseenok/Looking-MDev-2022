@@ -19,4 +19,8 @@
         android:id="@+id/navigation_booking"
         android:name="com.example.lookingmdev.ui.booking.BookingFragment"
         tools:layout="@layout/fragment_booking" />
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.example.lookingmdev.ui.account.AccountFragment"
+        tools:layout="@layout/fragment_account" />
 </navigation>

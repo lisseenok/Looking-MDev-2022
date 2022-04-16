@@ -3,6 +3,6 @@
     <string name="title_app_name">lookingMDev</string>
     <string name="title_search">поиск</string>
     <string name="title_saved">сохраненное</string>
-    <string name="title_booking">бронирование</string>
+    <string name="title_booking">бронирования</string>
     <string name="title_account">аккаунт</string>
 </resources>
