@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_free_icon_font_search_3917754"
         android:title="@string/title_search" />
 
     <item
@@ -15,5 +15,11 @@
         android:id="@+id/navigation_booking"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_booking" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/title_booking" />
+
 
 </menu>
