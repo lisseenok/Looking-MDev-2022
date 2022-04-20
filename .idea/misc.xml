@@ -9,13 +9,15 @@
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_free_icon_font_search_3917754.xml" value="0.22407407407407406" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_free_icon_font_shopping_bag_3916639.xml" value="0.22407407407407406" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_free_icon_font_user_3917559.xml" value="0.22407407407407406" />
+        <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_free_icon_font_users_3914353.xml" value="0.23703703703703705" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.22407407407407406" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22407407407407406" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.22407407407407406" />
-        <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_account.xml" value="0.18819655521783182" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_booking.xml" value="0.18819655521783182" />
-        <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_search.xml" value="0.2936344969199179" />
+        <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_saved.xml" value="0.18819655521783182" />
+        <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_search.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19537037037037036" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/free-icon-font-search-3917754_24.xml" value="0.27037037037037037" />

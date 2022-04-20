@@ -10,4 +10,5 @@
     <color name="head">#262626</color>
     <color name="borderSearch">#FEB706</color>
     <color name="search">#171717</color>
+    <color name="appBg">#171717</color>
 </resources>

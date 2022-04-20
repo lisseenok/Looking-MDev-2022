@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_app_name">lookingMDev</string>
-    <string name="title_search">поиск</string>
-    <string name="title_saved">сохраненное</string>
-    <string name="title_booking">бронирования</string>
-    <string name="title_account">аккаунт</string>
+    <string name="title_search">Найти</string>
+    <string name="title_saved">Сохраненное</string>
+    <string name="title_booking">Бронирования</string>
+    <string name="title_account">Аккаунт</string>
+    <string name="city">Укажите город</string>
+    <string name="date">Укажите даты</string>
+    <string name="humans">Укажите количество гостей</string>
+    <string name="searchButton">Найти</string>
 </resources>

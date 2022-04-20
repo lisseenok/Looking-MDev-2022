@@ -4,8 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".ui.search.SearchFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/head"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/App_name"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +35,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <androidx.cardview.widget.CardView
 
@@ -35,7 +57,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:backgroundTint="#5E5E5E"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -48,7 +69,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="1dp"
-                        android:background="@color/search"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -57,7 +77,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
                             android:contentDescription="@string/App_name"
-                            android:src="@drawable/ic_search" />
+                            android:src="@drawable/ic_free_icon_font_search_3917754" />
 
 
                         <TextView
@@ -66,15 +86,13 @@
                             android:layout_height="match_parent"
                             android:gravity="start|center"
                             android:paddingLeft="20dp"
-                            android:text="@string/App_name"
-                            android:textColor="@color/white" />
+                            android:text="@string/city" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="1dp"
-                        android:background="@color/search"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -83,7 +101,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
                             android:contentDescription="@string/App_name"
-                            android:src="@drawable/ic_search" />
+                            android:src="@drawable/ic_free_icon_font_calendar_3917244" />
 
 
                         <TextView
@@ -92,15 +110,13 @@
                             android:layout_height="match_parent"
                             android:gravity="start|center"
                             android:paddingLeft="20dp"
-                            android:text="@string/App_name"
-                            android:textColor="@color/white" />
+                            android:text="@string/date" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="1dp"
-                        android:background="@color/search"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -109,7 +125,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
                             android:contentDescription="@string/App_name"
-                            android:src="@drawable/ic_search" />
+                            android:src="@drawable/ic_free_icon_font_users_3914353" />
 
 
                         <TextView
@@ -118,10 +134,10 @@
                             android:layout_height="match_parent"
                             android:gravity="start|center"
                             android:paddingLeft="20dp"
-                            android:text="@string/App_name"
-                            android:textColor="@color/white" />
+                            android:text="@string/humans" />
 
                     </LinearLayout>
+
 
                     <Button
                         android:id="@+id/button"
@@ -131,8 +147,10 @@
                         android:fontFamily="sans-serif"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:text="Найти"
+                        android:text="@string/searchButton"
                         android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
                         app:cornerRadius="0dp" />
 
 

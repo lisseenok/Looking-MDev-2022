@@ -1,8 +1,13 @@
 <resources>
     <string name="title_app_name">lookingMDev</string>
-    <string name="title_search">search</string>
-    <string name="title_saved">saved</string>
-    <string name="title_booking">booking</string>
-    <string name="title_account">account</string>
-    <string name="App_name" translatable="false">Booking</string>
+    <string name="title_search">Search</string>
+    <string name="title_saved">Saved</string>
+    <string name="title_booking">Bookings</string>
+    <string name="title_account">Account</string>
+    <string name="city">Enter destination</string>
+    <string name="date">Enter dates</string>
+    <string name="humans">Enter guests</string>
+    <string name="searchButton">Search</string>
+    <string name="App_name" translatable="false">Looking</string>
+
 </resources>
