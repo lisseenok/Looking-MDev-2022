@@ -28,11 +28,11 @@ public class AccountFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
-        // TODO: Use the ViewModel
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        mViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
+//        // TODO: Use the ViewModel
+//    }
 
 }

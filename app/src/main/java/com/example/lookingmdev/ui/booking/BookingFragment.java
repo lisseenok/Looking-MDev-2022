@@ -21,8 +21,8 @@ public class BookingFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        bookingViewModel =
-                new ViewModelProvider(this).get(BookingViewModel.class);
+//        bookingViewModel =
+//                new ViewModelProvider(this).get(BookingViewModel.class);
 
         binding = FragmentBookingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

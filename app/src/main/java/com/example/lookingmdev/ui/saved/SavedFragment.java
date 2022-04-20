@@ -23,8 +23,8 @@ public class SavedFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        savedViewModel =
-                new ViewModelProvider(this).get(SavedViewModel.class);
+//        savedViewModel =
+//                new ViewModelProvider(this).get(SavedViewModel.class);
 
         binding = FragmentSavedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
