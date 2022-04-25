@@ -1,5 +1,6 @@
 package com.example.lookingmdev;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -7,6 +8,8 @@ import android.view.WindowManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,6 +20,7 @@ import com.example.lookingmdev.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +39,25 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    @SuppressLint("NonConstantResourceId")
+    public void test1(View view){
+
+        Fragment fragment = null;
+        switch (view.getId()) {
+            case R.id.button:
+                fragment = pageWithHostelsFragment;
+                System.out.println(1);
+                break;
+//            case R.id.button2:
+//                fragment = firstFragment;
+//                break;
+        }
+        // метод позволяет начать транзакцию
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // в самом начале устанавливаем первый фрагмент в фрейм лояут
+        ft.replace(R.id.nav_host_fragment_activity_main, fragment);
+        System.out.println(2);
+        ft.commit();
+    }
 }
