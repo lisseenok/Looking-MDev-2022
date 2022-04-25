@@ -147,6 +147,7 @@
                         android:fontFamily="sans-serif"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
+                        android:onClick="test1"
                         android:text="@string/searchButton"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

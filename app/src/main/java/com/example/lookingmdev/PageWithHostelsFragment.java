@@ -23,7 +23,7 @@ public class PageWithHostelsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.page_with_hostels_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_page_with_hostels, container, false);
     }
 
     @Override
