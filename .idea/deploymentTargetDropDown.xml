@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="deploymentTargetDropDown">
-    <targetSelectedWithDropDown>
-      <Target>
-        <type value="QUICK_BOOT_TARGET" />
-        <deviceKey>
-          <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-<<<<<<< Updated upstream
-            <value value="$USER_HOME$/.android/avd/Pixel_4_API_31.avd" />
-=======
-            <value value="C:\Users\alexb\.android\avd\Pixel_4_API_28.avd" />
->>>>>>> Stashed changes
-          </Key>
-        </deviceKey>
-      </Target>
-    </targetSelectedWithDropDown>
-<<<<<<< Updated upstream
-    <timeTargetWasSelectedWithDropDown value="2022-04-20T19:09:55.191068Z" />
-=======
-    <timeTargetWasSelectedWithDropDown value="2022-04-20T17:51:58.266780500Z" />
->>>>>>> Stashed changes
-  </component>
+    <component name="deploymentTargetDropDown">
+        <targetSelectedWithDropDown>
+            <Target>
+                <type value="QUICK_BOOT_TARGET" />
+                <deviceKey>
+                    <Key>
+                        <type value="VIRTUAL_DEVICE_PATH" />
+                        <value value="$USER_HOME$/.android/avd/Pixel_4_API_31.avd" />
+                    </Key>
+                </deviceKey>
+            </Target>
+        </targetSelectedWithDropDown>
+        <timeTargetWasSelectedWithDropDown value="2022-04-12T13:01:36.977828Z" />
+    </component>
 </project>
