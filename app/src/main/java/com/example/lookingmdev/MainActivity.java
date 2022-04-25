@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        replaceFragment(new SearchFragment());
+        replaceFragment(searchFragment);
 
         binding.navView.setOnItemSelectedListener(item -> {
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("NonConstantResourceId")
-    public void test1(View view){
+    public void changeFragment(View view){
 
         switch (view.getId()) {
             case R.id.search_button:
