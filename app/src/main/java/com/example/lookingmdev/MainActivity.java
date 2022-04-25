@@ -3,22 +3,17 @@ package com.example.lookingmdev;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
+import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
 

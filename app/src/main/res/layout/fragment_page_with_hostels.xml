@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#121212"
 
-    tools:context=".PageWithHostelsFragment">
+    tools:context=".ui.hostels.PageWithHostelsFragment">
 
     <TextView
         android:layout_width="match_parent"

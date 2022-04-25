@@ -1,4 +1,4 @@
-package com.example.lookingmdev;
+package com.example.lookingmdev.ui.hostels;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.lookingmdev.R;
 
 public class PageWithHostelsFragment extends Fragment {
 
