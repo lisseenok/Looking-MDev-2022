@@ -141,14 +141,13 @@
 
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/search_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#0070C2"
                         android:fontFamily="sans-serif"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:onClick="test1"
                         android:text="@string/searchButton"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

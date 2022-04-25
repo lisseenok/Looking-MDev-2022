@@ -39,25 +39,25 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    @SuppressLint("NonConstantResourceId")
-    public void test1(View view){
-
-        Fragment fragment = null;
-        switch (view.getId()) {
-            case R.id.button:
-                fragment = pageWithHostelsFragment;
-                System.out.println(1);
-                break;
-//            case R.id.button2:
-//                fragment = firstFragment;
+//    @SuppressLint("NonConstantResourceId")
+//    public void test1(View view){
+//
+//        Fragment fragment = null;
+//        switch (view.getId()) {
+//            case R.id.button:
+//                fragment = pageWithHostelsFragment;
+//                System.out.println(1);
 //                break;
-        }
-        // метод позволяет начать транзакцию
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // в самом начале устанавливаем первый фрагмент в фрейм лояут
-        ft.replace(R.id.nav_host_fragment_activity_main, fragment);
-        System.out.println(2);
-        ft.commit();
-    }
+////            case R.id.button2:
+////                fragment = firstFragment;
+////                break;
+//        }
+//        // метод позволяет начать транзакцию
+//
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        // в самом начале устанавливаем первый фрагмент в фрейм лояут
+//        ft.replace(R.id.nav_host_fragment_activity_main, fragment);
+//        System.out.println(2);
+//        ft.commit();
+//    }
 }
