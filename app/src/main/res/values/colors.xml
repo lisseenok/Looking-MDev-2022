@@ -11,4 +11,5 @@
     <color name="borderSearch">#FEB706</color>
     <color name="search">#171717</color>
     <color name="appBg">#171717</color>
+    <color name="dark_app_bg">#121212</color>
 </resources>
