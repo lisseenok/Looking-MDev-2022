@@ -13,6 +13,7 @@ public class HostelCard {
         this.rating = rating;
     }
     //
+    //
 
     public String getName() {
         return name;
