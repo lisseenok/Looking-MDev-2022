@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+android:background="#C7C7C7"
     tools:context=".ui.hostels.PageWithHostelsFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hostelsRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
