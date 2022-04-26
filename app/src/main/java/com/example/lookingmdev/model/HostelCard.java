@@ -1,19 +1,27 @@
 package com.example.lookingmdev.model;
 
 public class HostelCard {
-    String name, address, shortDescription, characteristics;
-    int price, rating;
+    String name, address, image, shortDescription, characteristics;
+    int price;
+    double rating;
 
-    public HostelCard(String name, String address, String shortDescription, String characteristics, int price, int rating) {
+    public HostelCard(String name, String address, String image, String shortDescription, String characteristics, int price, double rating) {
         this.name = name;
         this.address = address;
+        this.image = image;
         this.shortDescription = shortDescription;
         this.characteristics = characteristics;
         this.price = price;
         this.rating = rating;
     }
-    //
-    //
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;
@@ -55,7 +63,7 @@ public class HostelCard {
         this.price = price;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
