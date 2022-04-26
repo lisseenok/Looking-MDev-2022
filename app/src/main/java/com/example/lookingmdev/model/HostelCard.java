@@ -12,6 +12,8 @@ public class HostelCard {
         this.price = price;
         this.rating = rating;
     }
+    //
+    //
 
     public String getName() {
         return name;
