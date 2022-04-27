@@ -3,11 +3,13 @@ package com.example.lookingmdev;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.lookingmdev.adapter.HostelCardAdapter;
 import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
+import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
@@ -24,15 +26,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
     private static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
     private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
-
+    public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, date;
 
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
+    FragmentCalendar fragmentCalendar = new FragmentCalendar();
 
 
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
@@ -42,10 +44,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.lookingmdev.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         replaceFragment(searchFragment);
+//        searchFragment.setText("23423");
 
         binding.navView.setOnItemSelectedListener(item -> {
 
@@ -95,17 +100,46 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.search_button:
-                replaceFragment(pageWithHostelsFragment);
+                replaceFragment(pageWithHostelsFragment, "left");
                 searchState += 1;
                 break;
         }
     }
+
+    public void openCalendar(View view) {
+        replaceFragment(fragmentCalendar);
+    }
+    public void closeCalendar(View view) {
+//        System.out.println();
+//        searchFragment.setNewText();
+        replaceFragment(searchFragment);
+    }
+
+
 
 
 
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+//                R.anim.slide_out_left);
+        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void replaceFragment(Fragment fragment, String move) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        switch (move) {
+            case "up":
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up);
+                break;
+            case "left":
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
+                break;
+        }
+
         fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment);
         fragmentTransaction.commit();
     }
