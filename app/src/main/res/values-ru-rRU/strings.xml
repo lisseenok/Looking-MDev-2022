@@ -9,4 +9,24 @@
     <string name="date">Укажите даты</string>
     <string name="humans">Укажите количество гостей</string>
     <string name="searchButton">Найти</string>
+    <string name="sunday">Вс</string>
+    <string name="monday">Пн</string>
+    <string name="tuesday">Вт</string>
+    <string name="wednesday">Ср</string>
+    <string name="thursday">Чт</string>
+    <string name="friday">Пт</string>
+    <string name="saturday">Сб</string>
+    <string name="january">янв</string>
+    <string name="february">фев</string>
+    <string name="march">март</string>
+    <string name="april">апр</string>
+    <string name="may">май</string>
+    <string name="june">июн</string>
+    <string name="july">июл</string>
+    <string name="august">авг</string>
+    <string name="september">сен</string>
+    <string name="october">окт</string>
+    <string name="november">ноя</string>
+    <string name="december">дек</string>
+    <string name="nights">ночей</string>
 </resources>

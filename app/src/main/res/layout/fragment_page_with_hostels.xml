@@ -7,12 +7,52 @@
 android:background="#C7C7C7"
     tools:context=".ui.hostels.PageWithHostelsFragment" >
 
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/head"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/App_name"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/sumHostelsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Найдено 4 варианта"
+        android:gravity="center|start"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:textColor="#6B6B6B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hostelsRecycler"
+        android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sumHostelsText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

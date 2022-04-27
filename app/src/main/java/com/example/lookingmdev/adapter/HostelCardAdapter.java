@@ -48,13 +48,19 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         holder.hostelCardNameText.setText(hostelCards.get(position).getName());
         holder.hostelCardRatting.setText("" + hostelCards.get(position).getRating());
         double rating = hostelCards.get(position).getRating();
-        if (rating > 8) {
+        if (rating > 9) {
+            holder.hostelCardRattingText.setText("Превосходно");
+        } else if (rating > 8.5) {
+            holder.hostelCardRattingText.setText("Потрясающе");
+        } else if (rating > 8) {
             holder.hostelCardRattingText.setText("Очень хорошо");
+        } else if (rating > 7.5) {
+            holder.hostelCardRattingText.setText("Хорошо");
         }
         holder.hostelCardAddressText.setText(hostelCards.get(position).getAddress());
         holder.hostelCardDescriptionText.setText(hostelCards.get(position).getShortDescription());
         holder.hostelCardCharacteristicsText.setText(hostelCards.get(position).getCharacteristics());
-        holder.hostelCardPriceText.setText("" + hostelCards.get(position).getPrice());
+        holder.hostelCardPriceText.setText(hostelCards.get(position).getPrice() + " ₽");
 
 
         // создаем идентификатор  фотографии:
