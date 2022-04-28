@@ -16,6 +16,7 @@ import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentSearchBinding;
 import com.example.lookingmdev.databinding.FragmentSearchBinding;
+import com.example.lookingmdev.ui.methods.Methods;
 
 import java.text.BreakIterator;
 
@@ -24,20 +25,39 @@ public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
     private FragmentSearchBinding binding;
-    static TextView dateText;
+    TextView dateText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 //        searchViewModel =
 //                new ViewModelProvider(this).get(SearchViewModel.class);
+        Methods methods = new Methods();
+        System.out.println(getResources().getString(R.string.weekDays));
+
+        String startWeekDay = methods.convertWeekDay(MainActivity.startWeekDay, getContext());
+        String endWeekDay = methods.convertWeekDay(MainActivity.endWeekDay, getContext());
+        String startMonth = methods.convertMonth(MainActivity.startMonth, getContext());
+        String endMonth = methods.convertMonth(MainActivity.endMonth, getContext());
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         dateText = root.findViewById(R.id.dateText);
+
         if (MainActivity.date == null)
             dateText.setText(getResources().getString(R.string.date));
         else
-            setNewText();
+            if (MainActivity.endDay.equals(""))
+                dateText.setText((MainActivity.startWeekDay + ", " + MainActivity.startDay + " " + MainActivity.startMonth));
+            else
+                dateText.setText((String.format("%s, %s %s—%s, %s %s (%s: %d)",
+                        startWeekDay,
+                        MainActivity.startDay,
+                        startMonth,
+                        endWeekDay,
+                        MainActivity.endDay,
+                        endMonth,
+                        getResources().getString(R.string.nights),
+                        MainActivity.selectedDates.size() - 1)));
 //        final TextView textView = binding.textSearch;
 //        searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -48,10 +68,7 @@ public class SearchFragment extends Fragment {
         return root;
 
     }
-    public void setNewText() {
 
-        dateText.setText(MainActivity.date);
-    }
 
 
     @Override

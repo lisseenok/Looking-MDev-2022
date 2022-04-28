@@ -29,4 +29,5 @@
     <string name="november">ноя</string>
     <string name="december">дек</string>
     <string name="nights">ночей</string>
+    <string name="weekDays">Вс Пн Вт Ср Чт Пт Сб</string>
 </resources>
