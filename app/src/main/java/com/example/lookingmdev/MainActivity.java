@@ -22,14 +22,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
 
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static boolean created = false;
     private static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
     private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, date;
-
+    public static List<Date> selectedDates;
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
@@ -48,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-
-        replaceFragment(searchFragment);
-//        searchFragment.setText("23423");
-
+        if (!created){
+            replaceFragment(searchFragment);
+            created = true;
+        }
         binding.navView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
