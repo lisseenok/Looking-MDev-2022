@@ -43,7 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_booking.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1503623188405797" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/page_with_hostels_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.335" />
       </map>
