@@ -3,24 +3,200 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
-    android:layout_height="340dp"
+    android:layout_height="wrap_content"
+    android:background="?attr/filterPersons"
     android:orientation="vertical"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="80dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="@string/questsText"
-        android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="55dp"
         android:gravity="center"
-        android:text="bottom_sheet_content"
-        android:textColor="@android:color/white" />
+        android:text="@string/questsText"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/filterLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Номера" />
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|end"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <Button
+                    android:id="@+id/minusRoomButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/greyLine"
+                    android:textColor="@color/white"
+                    android:text="—" />
+
+                <TextView
+                    android:id="@+id/numberOfRoomText"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/plusRoomButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/buttonBlue"
+                    android:textColor="@color/white"
+                    android:text="+" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/filterLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Взрослые" />
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|end"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <Button
+                    android:id="@+id/minusHumanButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/greyLine"
+                    android:textColor="@color/white"
+                    android:text="—" />
+
+                <TextView
+                    android:id="@+id/numberOfHumanText"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/plusHumanButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/buttonBlue"
+                    android:textColor="@color/white"
+                    android:text="+" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/filterLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Дети\nОт 0 до 17 лет" />
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|end"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <Button
+                    android:id="@+id/minusKidsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/greyLine"
+                    android:textColor="@color/white"
+                    android:text="—" />
+
+                <TextView
+                    android:id="@+id/numberOfKidsButton"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/plusKidsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/buttonBlue"
+                    android:textColor="@color/white"
+                    android:text="+" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/filterLine" />
+
+    <Button
+
+        android:id="@+id/questsApplyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/buttonBlue"
+        android:paddingVertical="10dp"
+        android:text="@string/buttonFilterQuestsText"
+        app:cornerRadius="2dp"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

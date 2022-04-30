@@ -78,6 +78,7 @@
                             android:src="@drawable/ic_search_black" />
 
                         <EditText
+                            android:background="@null"
                             android:textColorHint="#6B6B6B"
                             android:id="@+id/townText"
                             android:paddingStart="15dp"
@@ -89,7 +90,10 @@
                             android:inputType="textPostalAddress" />
 
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/greyLine" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -111,11 +115,14 @@
                             android:layout_height="match_parent"
                             android:gravity="start|center"
                             android:paddingStart="15dp"
-
+                            android:text="@string/date"
                             android:textSize="15sp"
                             />
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/greyLine" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -142,12 +149,15 @@
 
                     </LinearLayout>
 
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/greyLine" />
                     <Button
                         android:id="@+id/search_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#0070C2"
+                        android:backgroundTint="@color/buttonBlue"
                         android:fontFamily="sans-serif"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"

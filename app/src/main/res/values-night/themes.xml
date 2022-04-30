@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+
+
+
     <style name="Theme.LookingMDev" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
@@ -15,5 +18,11 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+
+
+        <!-- наши цвета -->
+        <item name="filterPersons">@color/filterPersonsDark</item>
+        <item name="filterLine">@color/black</item>
+
     </style>
 </resources>
