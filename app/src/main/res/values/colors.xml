@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="head">#262626</color>
-    <color name="borderSearch">#FEB706</color>
+    <color name="borderSearch">#FFA500</color>
     <color name="dark_app_bg">#121212</color>
     <color name="buttonBlue">#0070C2</color>
 
@@ -17,5 +17,13 @@
     <color name="filterPersonsDark">#242426</color>
     <color name="filterPersonsLight">#EAEAEA</color>
 
+    <color name="filterTextColorLight">#6B6B6B</color>
+    <color name="filterTextColorDark">#9E9E9E</color>
+
+    <color name="toolbarColorLight">#767676</color>
+    <color name="toolbarColorDark">#B9B9B9</color>
+
+    <color name="enteredTextColorLight">#242426</color>
+    <color name="enteredTextColorDark">#EAEAEA</color>
 
 </resources>

@@ -18,9 +18,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
             android:text="@string/App_name"
-            android:textSize="24sp"
+            style="@style/ToolbarText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,22 +77,26 @@
                             android:src="@drawable/ic_search_black" />
 
                         <EditText
-                            android:background="@null"
-                            android:textColorHint="#6B6B6B"
                             android:id="@+id/townText"
+                            android:background="@null"
+                            android:hint="@string/city"
                             android:paddingStart="15dp"
                             android:textSize="15sp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="start|center"
-                            android:hint="@string/city"
+                            android:textColor="?attr/enteredTextColor"
+                            android:fontFamily="sans-serif"
+                            android:textColorHint="?attr/filterTextColor"
                             android:inputType="textPostalAddress" />
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/greyLine" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -109,20 +112,18 @@
                             android:layout_marginStart="10dp"
                             android:contentDescription="@string/App_name"
                             android:src="@drawable/ic_calendar_black" />
+
                         <TextView
                             android:id="@+id/dateText"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="start|center"
-                            android:paddingStart="15dp"
-                            android:text="@string/date"
-                            android:textSize="15sp"
-                            />
+                            style="@style/FiltersTextView"
+                            android:text="@string/date" />
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/greyLine" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -139,11 +140,7 @@
 
                         <TextView
                             android:id="@+id/numberOfVisitors"
-                            android:paddingStart="15dp"
-                            android:textSize="15sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="start|center"
+                            style="@style/FiltersTextView"
                             android:text="@string/humans"
                             tools:ignore="RtlSymmetry" />
 
@@ -153,6 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/greyLine" />
+
                     <Button
                         android:id="@+id/search_button"
                         android:layout_width="match_parent"

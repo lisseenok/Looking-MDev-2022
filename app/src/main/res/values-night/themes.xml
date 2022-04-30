@@ -23,6 +23,11 @@
         <!-- наши цвета -->
         <item name="filterPersons">@color/filterPersonsDark</item>
         <item name="filterLine">@color/black</item>
+        <item name="filterTextColor">@color/filterTextColorDark</item>
+
+        <item name="toolbarTextColor">@color/toolbarColorDark</item>
+
+        <item name="enteredTextColor">@color/enteredTextColorDark</item>
 
     </style>
 </resources>
