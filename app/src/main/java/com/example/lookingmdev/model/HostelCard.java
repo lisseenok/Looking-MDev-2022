@@ -2,10 +2,11 @@ package com.example.lookingmdev.model;
 
 public class HostelCard {
     String name, address, image, shortDescription, characteristics;
-    int price;
+    int price, id;
     double rating;
 
-    public HostelCard(String name, String address, String image, String shortDescription, String characteristics, int price, double rating) {
+    public HostelCard(int id, String name, String address, String image, String shortDescription, String characteristics, int price, double rating) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.image = image;
@@ -13,6 +14,14 @@ public class HostelCard {
         this.characteristics = characteristics;
         this.price = price;
         this.rating = rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImage() {
@@ -68,6 +77,10 @@ public class HostelCard {
     }
 
     public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setRating(double rating) {
         this.rating = rating;
     }
 }

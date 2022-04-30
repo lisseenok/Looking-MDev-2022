@@ -53,7 +53,7 @@ public class SearchFragment extends Fragment {
             dateText.setText(getResources().getString(R.string.date));
         else
             if (MainActivity.endDay.equals(""))
-                dateText.setText((MainActivity.startWeekDay + ", " + MainActivity.startDay + " " + MainActivity.startMonth));
+                dateText.setText((startWeekDay + ", " + MainActivity.startDay + " " + startMonth));
             else
                 dateText.setText((String.format("%s, %s %s—%s, %s %s (%s: %d)",
                         startWeekDay,

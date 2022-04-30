@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCalendar(View view) {
-        replaceFragment(fragmentCalendar);
+        replaceFragment(fragmentCalendar, "left");
     }
 
     public void closeCalendar(View view) {
