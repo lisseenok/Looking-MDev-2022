@@ -29,6 +29,8 @@
     <string name="november">ноя</string>
     <string name="december">дек</string>
     <string name="nights">ночей</string>
+
     <string name="buttonFilterQuestsText">Применить</string>
     <string name="questsText">Укажите количество номеров и гостей</string>
+
 </resources>

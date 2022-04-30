@@ -29,7 +29,9 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     private static boolean created = false;  // запущено ли приложение
+
     private static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
     private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
 
