@@ -6,33 +6,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentSearchBinding;
-import com.example.lookingmdev.databinding.FragmentSearchBinding;
 import com.example.lookingmdev.ui.methods.Methods;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-
-
-import java.text.BreakIterator;
 
 public class SearchFragment extends Fragment {
 
 
     private SearchViewModel searchViewModel;
     private FragmentSearchBinding binding;
+
+    Button plusRoomButton;
+    TextView numberOfRoomText;
+    Button minusRoomButton;
+    Button plusHumanButton;
+    TextView numberOfHumanText;
+    Button minusHumanButton;
+    Button plusKidsButton;
+    TextView numberOfKidsText;
+    Button minusKidsButton;
+
     TextView dateText;
+    TextView numberOfVisitors;
 
     @SuppressLint("DefaultLocale")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,7 +54,13 @@ public class SearchFragment extends Fragment {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        // инициализируем текстовое поле в месте для выбранных дат
         dateText = root.findViewById(R.id.dateText);
+
+        // инициализируем текстовое поле в месте для выбранных комнат и людей
+        numberOfVisitors = root.findViewById(R.id.numberOfVisitors);
+
 
         // выстановление соответствующего текста в поле дат
         if (MainActivity.startDay == null)
@@ -70,6 +80,8 @@ public class SearchFragment extends Fragment {
                         MainActivity.selectedDates.size() - 1)));
         }
 
+
+
         // инициализируем поле, в котором будет лежать XML вылезающего снизу меню
         LinearLayout llBottomSheet = root.findViewById(R.id.bottom_sheet);
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
@@ -77,28 +89,43 @@ public class SearchFragment extends Fragment {
         // скрываем изначально это меню
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
+        // инициализируем кнопки и создаем листенеры для них
+        plusRoomButton = root.findViewById(R.id.plusRoomButton);
+        numberOfRoomText = root.findViewById(R.id.numberOfRoomText);
+        minusRoomButton = root.findViewById(R.id.minusRoomButton);
+
+        plusHumanButton = root.findViewById(R.id.plusHumanButton);
+        numberOfHumanText = root.findViewById(R.id.numberOfHumanText);
+        minusHumanButton = root.findViewById(R.id.minusHumanButton);
+
+        plusKidsButton = root.findViewById(R.id.plusKidsButton);
+        numberOfKidsText = root.findViewById(R.id.numberOfKids);
+        minusKidsButton = root.findViewById(R.id.minusKidsButton);
+
+        // устанавливаем соответствующий текст в поле посетителей
+        setVisitorsText();
+
         // привязываем к текстовому полю с посетителями листенер
         TextView numberOfVisitors = root.findViewById(R.id.numberOfVisitors);
+
         numberOfVisitors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(MainActivity.visitors != null) {
+                    numberOfRoomText.setText(MainActivity.rooms + "");
+                    numberOfHumanText.setText(MainActivity.adults + "");
+                    numberOfKidsText.setText(MainActivity.children + "");
+                }
+
+
+
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
 
-        // инициализируем кнопки и создаем листенеры для них
-        Button plusRoomButton = root.findViewById(R.id.plusRoomButton);
-        TextView numberOfRoomText = root.findViewById(R.id.numberOfRoomText);
-        Button minusRoomButton = root.findViewById(R.id.minusRoomButton);
 
-        Button plusHumanButton = root.findViewById(R.id.plusHumanButton);
-        TextView numberOfHumanText = root.findViewById(R.id.numberOfHumanText);
-        Button minusHumanButton = root.findViewById(R.id.minusHumanButton);
-
-        Button plusKidsButton = root.findViewById(R.id.plusKidsButton);
-        TextView numberOfKidsButton = root.findViewById(R.id.numberOfKidsButton);
-        Button minusKidsButton = root.findViewById(R.id.minusKidsButton);
-
+        // объявляем листенеры для кнопок менюшки снизу
         plusRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,12 +173,13 @@ public class SearchFragment extends Fragment {
                 }
             }
         });
+
         plusKidsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfKidsButton.getText().toString());
+                int number = Integer.parseInt(numberOfKidsText.getText().toString());
                 ++number;
-                numberOfKidsButton.setText("" + number);
+                numberOfKidsText.setText("" + number);
                 if (number >= 1)
                     minusKidsButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
             }
@@ -159,10 +187,10 @@ public class SearchFragment extends Fragment {
         minusKidsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfKidsButton.getText().toString());
+                int number = Integer.parseInt(numberOfKidsText.getText().toString());
                 if (number > 0) {
                     --number;
-                    numberOfKidsButton.setText("" + number);
+                    numberOfKidsText.setText("" + number);
                     if (number == 0)
                         minusKidsButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
 
@@ -170,8 +198,47 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // инициализируем кнопку на меню фильтров людей и комнат
+        Button questsApplyButton = root.findViewById(R.id.questsApplyButton);
+
+        // навешиваем листенер
+        questsApplyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+                // обновляем данные о посетителях
+                MainActivity.rooms = Integer.parseInt(numberOfRoomText.getText().toString());
+                MainActivity.adults = Integer.parseInt(numberOfHumanText.getText().toString());
+                MainActivity.children = Integer.parseInt(numberOfKidsText.getText().toString());
+
+                setVisitorsText();
+
+            }
+        });
+
         return root;
 
+    }
+
+    public void setVisitorsText(){
+        if (MainActivity.rooms != 0) {
+            if (MainActivity.children == 0) {
+                MainActivity.visitors = getResources().getString(R.string.room) + ": " +
+
+                        numberOfRoomText.getText().toString() + " • "
+                        + getResources().getString(R.string.adult) +
+                        ": " + numberOfHumanText.getText().toString() + " • " + getResources().getString(R.string.noChildren);
+
+
+            } else {
+                MainActivity.visitors = getResources().getString(R.string.room) + ": " +
+                        numberOfRoomText.getText().toString() + " • " + getResources().getString(R.string.adult) +
+                        ": " + numberOfHumanText.getText().toString() + " • " + getResources().getString(R.string.child) +
+                        ": " + numberOfKidsText.getText().toString();
+            }
+            numberOfVisitors.setText(MainActivity.visitors);
+        }
     }
 
 

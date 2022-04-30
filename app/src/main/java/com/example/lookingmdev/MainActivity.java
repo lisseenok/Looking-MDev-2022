@@ -3,6 +3,7 @@ package com.example.lookingmdev;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
 import com.example.lookingmdev.model.HostelCard;
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
 
     //TODO create getters/setters
-    public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, date;
+    public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, date, visitors;
+    public static int rooms, adults, children;
     public static List<Date> selectedDates;
 
     SearchFragment searchFragment = new SearchFragment();
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             created = true;
         }
 
+        // здесь обрабатываем нажатие на навигационном баре
         binding.navView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
@@ -93,18 +96,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-//        BottomNavigationView navView = findViewById(R.id.nav_view); // объект панели навигации
-//
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_search, R.id.navigation_saved, R.id.navigation_booking)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
     // метод смены фрагмента на соответствующий в зависимости от кнопки
@@ -113,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.search_button:
+//                if (visitors != null && date != null) {
+//                replaceFragment(pageWithHostelsFragment, "left");
+//                searchState = 1;
+//                }
                 replaceFragment(pageWithHostelsFragment, "left");
                 searchState = 1;
                 break;

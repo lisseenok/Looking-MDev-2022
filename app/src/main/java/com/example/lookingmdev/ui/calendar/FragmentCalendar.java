@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lookingmdev.MainActivity;
@@ -33,6 +34,8 @@ public class FragmentCalendar extends Fragment {
     String endWeekDay;
     String startMonth;
     String endMonth;
+
+
     // объявляем методы
     Methods methods = new Methods();
 
@@ -96,6 +99,7 @@ public class FragmentCalendar extends Fragment {
             public void onDateUnselected(Date date) {
             }
         });
+
         return view;
     }
 

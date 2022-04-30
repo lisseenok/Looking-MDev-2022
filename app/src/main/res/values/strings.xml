@@ -36,6 +36,10 @@
     <string name="filterAdults">Adults</string>
     <string name="filterChildren">Children</string>
     <string name="selectDates">Select dates</string>
+    <string name="room">Rooms</string>
+    <string name="adult">adults</string>
+    <string name="noChildren">No children</string>
+    <string name="child">children</string>
 
 
 </resources>

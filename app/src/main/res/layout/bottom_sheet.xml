@@ -161,7 +161,7 @@
                     android:text="—" />
 
                 <TextView
-                    android:id="@+id/numberOfKidsButton"
+                    android:id="@+id/numberOfKids"
                     android:layout_width="55dp"
                     android:layout_height="match_parent"
                     android:gravity="center"

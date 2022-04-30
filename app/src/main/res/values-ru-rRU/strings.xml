@@ -34,7 +34,11 @@
     <string name="questsText">Укажите количество номеров и гостей</string>
     <string name="filterRooms">Номера</string>
     <string name="filterAdults">Взрослые</string>
-    <string name="filterChildren">Дети\\nОт 0 до 17 лет</string>
+    <string name="filterChildren">Дети\nОт 0 до 17 лет</string>
     <string name="selectDates">Применить</string>
+    <string name="room">Номеров</string>
+    <string name="adult">взрослых</string>
+    <string name="noChildren">без детей</string>
+    <string name="child">детей</string>
 
 </resources>
