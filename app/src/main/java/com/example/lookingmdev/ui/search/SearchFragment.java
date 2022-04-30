@@ -1,9 +1,12 @@
 package com.example.lookingmdev.ui.search;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,9 @@ import com.example.lookingmdev.databinding.FragmentSearchBinding;
 import com.example.lookingmdev.databinding.FragmentSearchBinding;
 import com.example.lookingmdev.ui.methods.Methods;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+
 import java.text.BreakIterator;
 
 public class SearchFragment extends Fragment {
@@ -27,12 +33,12 @@ public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
     TextView dateText;
 
+    @SuppressLint("DefaultLocale")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 //        searchViewModel =
 //                new ViewModelProvider(this).get(SearchViewModel.class);
         Methods methods = new Methods();
-        System.out.println(getResources().getString(R.string.weekDays));
 
         String startWeekDay = methods.convertWeekDay(MainActivity.startWeekDay, getContext());
         String endWeekDay = methods.convertWeekDay(MainActivity.endWeekDay, getContext());
@@ -47,7 +53,7 @@ public class SearchFragment extends Fragment {
             dateText.setText(getResources().getString(R.string.date));
         else
             if (MainActivity.endDay.equals(""))
-                dateText.setText((MainActivity.startWeekDay + ", " + MainActivity.startDay + " " + MainActivity.startMonth));
+                dateText.setText((startWeekDay + ", " + MainActivity.startDay + " " + startMonth));
             else
                 dateText.setText((String.format("%s, %s %s—%s, %s %s (%s: %d)",
                         startWeekDay,
@@ -58,6 +64,21 @@ public class SearchFragment extends Fragment {
                         endMonth,
                         getResources().getString(R.string.nights),
                         MainActivity.selectedDates.size() - 1)));
+
+
+        LinearLayout llBottomSheet = root.findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+
+
+        TextView numberOfVisitors = root.findViewById(R.id.numberOfVisitors);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        numberOfVisitors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
 //        final TextView textView = binding.textSearch;
 //        searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
