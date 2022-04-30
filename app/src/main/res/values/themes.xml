@@ -5,6 +5,9 @@
     <!-- здесь мы пропишем атрибуты для тем -->
     <attr name="filterPersons" format="color|reference" />
     <attr name="filterLine" format="color|reference" />
+    <attr name="filterTextColor" format="color|reference" />
+    <attr name="toolbarTextColor" format="color|reference"/>
+    <attr name="enteredTextColor" format="color|reference"/>
 <!--    <attr name="myFavoriteColor" format="color|reference" />-->
 
     <style name="Theme.LookingMDev" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -28,6 +31,12 @@
         <!-- наши цвета -->
         <item name="filterPersons">@color/filterPersonsLight</item>
         <item name="filterLine">@color/greyLine</item>
+        <item name="filterTextColor">@color/filterTextColorLight</item>
+
+        <item name="toolbarTextColor">@color/toolbarColorLight</item>
+
+        <item name="enteredTextColor">@color/enteredTextColorLight</item>
+
 
     </style>
 </resources>
