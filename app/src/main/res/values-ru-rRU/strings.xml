@@ -32,5 +32,9 @@
 
     <string name="buttonFilterQuestsText">Применить</string>
     <string name="questsText">Укажите количество номеров и гостей</string>
+    <string name="filterRooms">Номера</string>
+    <string name="filterAdults">Взрослые</string>
+    <string name="filterChildren">Дети\\nОт 0 до 17 лет</string>
+    <string name="selectDates">Применить</string>
 
 </resources>

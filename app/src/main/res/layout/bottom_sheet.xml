@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|start"
-                android:text="Номера" />
+                android:text="@string/filterRooms" />
 
             <LinearLayout
                 android:layout_width="130dp"
@@ -90,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|start"
-                android:text="Взрослые" />
+                android:text="@string/filterAdults" />
 
             <LinearLayout
                 android:layout_width="130dp"
@@ -142,7 +142,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|start"
-                android:text="Дети\nОт 0 до 17 лет" />
+                android:text="@string/filterChildren" />
 
             <LinearLayout
                 android:layout_width="130dp"

@@ -53,7 +53,7 @@ public class SearchFragment extends Fragment {
         dateText = root.findViewById(R.id.dateText);
 
         // выстановление соответствующего текста в поле дат
-        if (MainActivity.date == null)
+        if (MainActivity.startDay == null)
             dateText.setText(getResources().getString(R.string.date));
         else{
             if (MainActivity.endDay.equals(""))

@@ -32,6 +32,10 @@
 
     <string name="questsText">Select rooms and quests</string>
     <string name="buttonFilterQuestsText">Apply</string>
+    <string name="filterRooms">Rooms</string>
+    <string name="filterAdults">Adults</string>
+    <string name="filterChildren">Children</string>
+    <string name="selectDates">Select dates</string>
 
 
 </resources>
