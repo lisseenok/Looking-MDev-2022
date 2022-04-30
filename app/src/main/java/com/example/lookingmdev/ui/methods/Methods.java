@@ -2,6 +2,8 @@ package com.example.lookingmdev.ui.methods;
 
 import android.content.Context;
 
+import com.example.lookingmdev.MainActivity;
+
 import com.example.lookingmdev.R;
 
 public class Methods {
@@ -15,6 +17,7 @@ public class Methods {
 //        String local = Locale.getDefault().getLanguage();
 //        System.out.println(local);
 //        this.context = context.getApplicationContext();
+
         this.context = context;
         if (text != null) {
             switch (text) {
