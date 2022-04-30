@@ -102,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.search_button:
                 replaceFragment(pageWithHostelsFragment, "left");
-                searchState += 1;
+                searchState = 1;
                 break;
         }
     }
 
     public void openCalendar(View view) {
-        replaceFragment(fragmentCalendar);
+        replaceFragment(fragmentCalendar, "left");
     }
     public void closeCalendar(View view) {
 //        System.out.println();

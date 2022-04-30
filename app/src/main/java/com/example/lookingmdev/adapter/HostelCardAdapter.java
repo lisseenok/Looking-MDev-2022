@@ -31,7 +31,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         // LayoutInflater Создает экземпляр XML-файла макета в соответствующих объектах View
         // from Получает LayoutInflater из заданного контекста
         // inflate создаем новую иерархию представлений из указанного xml-ресурса
-        System.out.println("111111111111");
         View hostelCardItems = LayoutInflater.from(context).inflate(R.layout.hostel_card_item, parent, false);
 
         // создаем объект HostelCardViewHolder с переданными в него XML элементами
@@ -44,7 +43,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         // holder - дизайн каждого отдельного элемента - это объект класса CourseViewHolder, где лежат все элементы, помещенные в поля
 
         // устанавливаем текст карточке в соответствии с данными текущего объекта из массива объектов
-        System.out.println(12333);
         holder.hostelCardNameText.setText(hostelCards.get(position).getName());
         holder.hostelCardRatting.setText("" + hostelCards.get(position).getRating());
         double rating = hostelCards.get(position).getRating();
@@ -87,7 +85,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
         public HostelCardViewHolder(@NonNull View itemView) {
             super(itemView);
-            System.out.println("111111111111");
 
             hostelCardImage = itemView.findViewById(R.id.hostelCardImage);
             hostelCardNameText = itemView.findViewById(R.id.hostelCardNameText);

@@ -89,7 +89,7 @@ public class FragmentCalendar extends Fragment {
                 calendarText = view.findViewById(R.id.calendarText);
 //                String text = String.format("Найдено: %d вариант", hostelList.size());
                 if (MainActivity.selectedDates.size() == 1){
-                    MainActivity.date = (MainActivity.startWeekDay + ", " + MainActivity.startDay + " " + MainActivity.startMonth);
+                    MainActivity.date = (startWeekDay + ", " + MainActivity.startDay + " " + startMonth);
                     calendarText.setText(MainActivity.date);
                 }
                 else {
