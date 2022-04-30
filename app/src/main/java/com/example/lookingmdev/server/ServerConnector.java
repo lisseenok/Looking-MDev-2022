@@ -19,15 +19,12 @@ public class ServerConnector {
         databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY);
     }
 
-    public static void pushHotelToServer(HostelCard hostelCard){
-        //String id = databaseReference.getKey(); // получаем id от бд
-        //hostelCard.setId(id);
-
+    public static void pushHostelToServer(HostelCard hostelCard){
         // пушим объект в бд
         databaseReference.push().setValue(hostelCard);
     }
 
-    public static void pushHotelsToServer(){
+    public static void pushHostelsToServer(){
         // метод для добавления списка в бд
         ServerConnector.initDatabase();
         List<HostelCard> hostelList = new ArrayList<>();
@@ -37,7 +34,7 @@ public class ServerConnector {
         hostelList.add(new HostelCard("4", "harry's home hotel & apartments", "Моосах · 7 км от центра", "hotel4", "Комплекс harry's home hotel & apartments расположен в городе Мюнхен, в 2,4 км от дворца Нимфенбург. К услугам гостей номера и апартаменты с кондиционером и бесплатный Wi-Fi на всей территории", "2 номера в отеле", 2900, 8.7));
         for (HostelCard hostel:
                 hostelList) {
-            pushHotelToServer(hostel);
+            pushHostelToServer(hostel);
         }
     }
 
