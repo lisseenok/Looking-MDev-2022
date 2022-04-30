@@ -5,6 +5,10 @@ public class HostelCard {
     int price;
     double rating;
 
+    public HostelCard(){
+
+    }
+
     public HostelCard(String id, String name, String address, String image, String shortDescription, String characteristics, int price, double rating) {
         this.id = id;
         this.name = name;

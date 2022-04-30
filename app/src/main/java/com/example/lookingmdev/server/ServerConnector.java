@@ -8,20 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServerConnector {
-    private static DatabaseReference databaseReference; // объявляем переменную с бдшкой
+    // объявляем переменную с бдшкой
+    private static DatabaseReference databaseReference;
+
+    // задаем ключ, который "объединит" все объекты
     private static String HOSTELS_KEY = "Hostels";
 
     public static void initDatabase(){
+        // инициализация бд
         databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY);
     }
 
     public static void pushHotelToServer(HostelCard hostelCard){
         //String id = databaseReference.getKey(); // получаем id от бд
         //hostelCard.setId(id);
+
+        // пушим объект в бд
         databaseReference.push().setValue(hostelCard);
     }
 
     public static void pushHotelsToServer(){
+        // метод для добавления списка в бд
         ServerConnector.initDatabase();
         List<HostelCard> hostelList = new ArrayList<>();
         hostelList.add(new HostelCard("1", "Boutique Hotel Artrium Munchen", "Людвигсфорштадт · 1,4 км от центра", "hotel1", "Двухместный номер \"Комфорт\" с 1 кроватью и видом на сад", "1 номер в отеле", 2655, 8.1));
