@@ -29,6 +29,7 @@
     <string name="november">Nov</string>
     <string name="december">Dec</string>
     <string name="nights">nights</string>
-    <string name="weekDays">Sun Mon Tue Wed Thu Fri Sat</string>
+    <string name="questsText">Select rooms and quests</string>
+    <string name="buttonFilterQuestsText">Apply</string>
 
 </resources>

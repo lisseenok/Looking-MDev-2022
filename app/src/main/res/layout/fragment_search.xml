@@ -132,16 +132,15 @@
                             android:contentDescription="@string/App_name"
                             android:src="@drawable/ic_users_black" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/numberOfVisitors"
                             android:paddingStart="15dp"
                             android:textSize="15sp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="start|center"
-                            android:hint="@string/humans"
-                            android:inputType="textPostalAddress"
-                            tools:ignore="RtlSymmetry,TextFields" />
+                            android:text="@string/humans"
+                            tools:ignore="RtlSymmetry" />
 
                     </LinearLayout>
 
@@ -168,7 +167,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.androidsample.BottomSheetActivity"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <!-- подключение нижнего экрана -->
+        <include layout="@layout/bottom_sheet" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
