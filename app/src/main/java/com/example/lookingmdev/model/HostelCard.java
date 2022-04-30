@@ -22,7 +22,7 @@ public class HostelCard {
     public void setImage(String image) {
         this.image = image;
     }
-
+ 
     public String getName() {
         return name;
     }

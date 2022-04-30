@@ -20,7 +20,9 @@ import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentSearchBinding;
 import com.example.lookingmdev.databinding.FragmentSearchBinding;
 import com.example.lookingmdev.ui.methods.Methods;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 
 import java.text.BreakIterator;
 
@@ -62,6 +64,7 @@ public class SearchFragment extends Fragment {
                         endMonth,
                         getResources().getString(R.string.nights),
                         MainActivity.selectedDates.size() - 1)));
+
 
         LinearLayout llBottomSheet = root.findViewById(R.id.bottom_sheet);
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
