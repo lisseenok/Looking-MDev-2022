@@ -45,6 +45,7 @@
         <entry key="app/src/main/res/drawable/ic_search_black.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_users_white.xml" value="0.17314814814814813" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_booking.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.1" />
