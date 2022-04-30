@@ -3,9 +3,12 @@ package com.example.lookingmdev;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lookingmdev.adapter.HostelCardAdapter;
+import com.example.lookingmdev.databinding.ActivityMainBinding;
 import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
@@ -13,6 +16,7 @@ import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,24 +24,27 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lookingmdev.databinding.ActivityMainBinding;
 
 import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static boolean created = false;
+
+    private static boolean created = false;  // запущено ли приложение
+
     private static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
     private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
+
+    //TODO create getters/setters
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, date;
     public static List<Date> selectedDates;
+
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
+
     FragmentCalendar fragmentCalendar = new FragmentCalendar();
-
-
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
     @SuppressLint("NonConstantResourceId")
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         com.example.lookingmdev.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -53,16 +61,20 @@ public class MainActivity extends AppCompatActivity {
             replaceFragment(searchFragment);
             created = true;
         }
+
         binding.navView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
                 case R.id.navigation_search:
 
+                    // если мы на начальной странице поиска
                     if (searchState == 0) {
                         replaceFragment(searchFragment);
+                    // если открыты отели или страница отеля и мы изначально были на вкладке поиска
                     } else if (selectedPage == 0) {
                         replaceFragment(searchFragment);
-                        searchState -= 1;
+                        searchState = 0;
+                    // открываем страницу с отелями
                     } else {
                         replaceFragment(pageWithHostelsFragment);
                     }
@@ -81,10 +93,13 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(accountFragment);
                     break;
             }
-
-
             return true;
         });
+
+
+
+
+
 
 //        BottomNavigationView navView = findViewById(R.id.nav_view); // объект панели навигации
 //
@@ -96,13 +111,14 @@ public class MainActivity extends AppCompatActivity {
 //        NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    // метод смены фрагмента на соответствующий в зависимости от кнопки
     @SuppressLint("NonConstantResourceId")
     public void changeFragment(View view){
 
         switch (view.getId()) {
             case R.id.search_button:
                 replaceFragment(pageWithHostelsFragment, "left");
-                searchState += 1;
+                searchState = 1;
                 break;
         }
     }
@@ -110,9 +126,8 @@ public class MainActivity extends AppCompatActivity {
     public void openCalendar(View view) {
         replaceFragment(fragmentCalendar);
     }
+
     public void closeCalendar(View view) {
-//        System.out.println();
-//        searchFragment.setNewText();
         replaceFragment(searchFragment);
     }
 
