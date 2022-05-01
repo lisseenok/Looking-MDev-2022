@@ -41,4 +41,7 @@
     <string name="noChildren">без детей</string>
     <string name="child">детей</string>
 
+    <string name="signIn">Войдите в аккаунт, чтобы сохранять отели в избранное и управлять своими поездками.</string>
+    <string name="sign_in">Войти</string>
+
 </resources>
