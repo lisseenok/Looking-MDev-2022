@@ -1,4 +1,4 @@
-package com.example.lookingmdev;
+package com.example.lookingmdev.ui.hostelPage;
 
 import androidx.lifecycle.ViewModel;
 
