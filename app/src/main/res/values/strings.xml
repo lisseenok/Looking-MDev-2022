@@ -47,6 +47,10 @@
     <string name="signWithGoogle">Sign in with Google</string>
     <string name="signWithEmail">Sign in with email</string>
     <string name="singingUp">Signing up</string>
+    <string name="enterEmail">Enter email</string>
+    <string name="enterPassword">Enter password</string>
+    <string name="repeatPassword">Repeat password</string>
+    <string name="createAccountAndSign">Create account and sign in</string>
 
 
 </resources>
