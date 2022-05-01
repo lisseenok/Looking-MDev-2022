@@ -13,24 +13,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <FrameLayout
             android:id="@+id/back_destination_image_button"
-            android:layout_width="wrap_content"
-            android:onClick="changeFragment"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/ic_angle_left"
+            android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_angle_left" />
+        </FrameLayout>
 
         <AutoCompleteTextView
-            android:dropDownVerticalOffset="10dp"
             android:id="@+id/autocomplete_city"
             style="@style/FiltersTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:dropDownVerticalOffset="10dp"
             android:hint="@string/city"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"

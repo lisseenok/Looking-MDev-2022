@@ -96,7 +96,7 @@ public class EmailAuthFragment extends Fragment {
         public void afterTextChanged(Editable s) {
             // те же проверки
             if (emailEditText.getText().toString().length() == 0 ||
-                    passwordEditText.getText().toString().length() == 0) {
+                    passwordEditText.getText().toString().length() < 6) {
                 // причем не даем нажать кнопку если что-то не так
                 signButton.setEnabled(false);
                 signButton.setBackgroundColor(Color.parseColor("#808080"));
