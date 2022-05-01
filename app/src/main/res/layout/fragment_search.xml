@@ -112,7 +112,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
                             android:contentDescription="@string/App_name"
-                            android:src="@drawable/ic_calendar_black" />
+                            android:src="@drawable/ic_calendar" />
 
                         <TextView
                             android:id="@+id/dateText"
@@ -137,7 +137,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
                             android:contentDescription="@string/App_name"
-                            android:src="@drawable/ic_users_black" />
+                            android:src="@drawable/ic_users" />
 
                         <TextView
                             android:id="@+id/numberOfVisitors"
