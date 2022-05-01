@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCalendar(View view) {
-        replaceFragment(fragmentCalendar, "left");
+        replaceFragment(fragmentCalendar, "up");
     }
 
     public void closeCalendar(View view) {
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (move) {
             case "up":
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up);
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
                 break;
             case "left":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
                 break;
             case "down":
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_down);
+                fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.slide_out_down);
                 break;
         }
 

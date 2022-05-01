@@ -61,7 +61,7 @@
         <entry key="app/src/main/res/layout/fragment_authentication.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_creare_account.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_email_auth.xml" value="0.14074074074074075" />
         <entry key="app/src/main/res/layout/fragment_google_auth.xml" value="0.14074074074074075" />
         <entry key="app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.1" />
