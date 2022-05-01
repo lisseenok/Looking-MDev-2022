@@ -42,7 +42,6 @@ public class CreateAccountFragment extends Fragment {
         return new CreateAccountFragment();
     }
 
-    @SuppressLint("DefaultLocale")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +58,8 @@ public class CreateAccountFragment extends Fragment {
         errorTextView = root.findViewById(R.id.flagTextView);
 
         registerButton.setEnabled(false);
-        registerButton.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+        //registerButton.setBackgroundColor((int)R.attr.blockedButtonColor);
+        registerButton.setBackgroundColor(Color.parseColor("#808080"));
 
 
         // ставим слушатель на editTexts (чтобы сразу сообщать об ошибках)
@@ -104,6 +104,7 @@ public class CreateAccountFragment extends Fragment {
                 errorTextView.setText("");
             }
         }
+        @SuppressLint("ResourceAsColor")
         @Override
         public void afterTextChanged(Editable s) {
             // те же проверки
@@ -112,7 +113,7 @@ public class CreateAccountFragment extends Fragment {
                     !passwordEditText.getText().toString().equals(repPasswordEditText.getText().toString())) {
                 // причем не даем нажать кнопку если что-то не так
                 registerButton.setEnabled(false);
-                registerButton.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                registerButton.setBackgroundColor(Color.parseColor("#808080"));
             } else {
                 registerButton.setEnabled(true);
                 registerButton.setBackgroundColor(Color.parseColor("#0070C2"));

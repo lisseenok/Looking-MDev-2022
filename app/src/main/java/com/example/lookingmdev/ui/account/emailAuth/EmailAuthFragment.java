@@ -2,6 +2,7 @@ package com.example.lookingmdev.ui.account.emailAuth;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -57,7 +58,7 @@ public class EmailAuthFragment extends Fragment {
         signButton = root.findViewById(R.id.sign_in_with_email_button);
 
         signButton.setEnabled(false);
-        signButton.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+        signButton.setBackgroundColor(Color.parseColor("#808080"));
 
         emailEditText.addTextChangedListener(watcher);
         passwordEditText.addTextChangedListener(watcher);
@@ -98,7 +99,7 @@ public class EmailAuthFragment extends Fragment {
                     passwordEditText.getText().toString().length() == 0) {
                 // причем не даем нажать кнопку если что-то не так
                 signButton.setEnabled(false);
-                signButton.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                signButton.setBackgroundColor(Color.parseColor("#808080"));
             } else {
                 signButton.setEnabled(true);
                 signButton.setBackgroundColor(Color.parseColor("#0070C2"));

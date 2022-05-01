@@ -206,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.back_create_imageButtonReg:
                 replaceFragment(authenticationFragment, "right");
                 break;
+            case R.id.back_hostels_page_imageButtonReg:
+                replaceFragment(searchFragment, "right");
+                break;
         }
     }
 
