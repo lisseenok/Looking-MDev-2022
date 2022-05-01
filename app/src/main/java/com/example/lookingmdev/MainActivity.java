@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
+import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.account.create.CreateAccountFragment;
@@ -36,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static boolean created = false;  // запущено ли приложение
 
-    private static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
-    private static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
-    private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
+    public static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
+    public static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
+    public static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
 
     //TODO create getters/setters
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, city, date, visitors;
@@ -159,11 +160,16 @@ public class MainActivity extends AppCompatActivity {
                 // если не начальная страница, то уменьшаем индекс открытости страницы на один
                 if (searchState > 0)
                     --searchState;
-                // смотря на какой мы странице относительно индекса - открываем соответствующий фрагмент
+                // смотря на какой мы теперь странице относительно индекса - открываем соответствующий фрагмент
                 switch (searchState){
                     case 0:
-                        replaceFragment(searchFragment);
+                        replaceFragment(searchFragment, "right");
+                        break;
+                    case 1:
+                        replaceFragment(pageWithHostelsFragment, "right");
+                        break;
                 }
+                break;
             case 3:
                 if (accountState > 0) {
                     --accountState;
@@ -174,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         replaceFragment(authenticationFragment, "right");
+                        break;
                 }
         }
 
@@ -183,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public void changeFragment(View view){
 
+        // нажали кнопку найти
         switch (view.getId()) {
             case R.id.search_button:
 //                if (visitors != null && date != null) {
@@ -228,6 +236,10 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(searchFragment, "down");
                 break;
         }
+    }
+
+    public static void openHostelPage(HostelCard hostelCard) {
+
     }
 
     public void openCalendar(View view) {

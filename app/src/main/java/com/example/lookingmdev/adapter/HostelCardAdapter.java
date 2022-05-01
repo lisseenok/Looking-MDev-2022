@@ -1,6 +1,8 @@
 package com.example.lookingmdev.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lookingmdev.HostelPageFragment;
+import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
+import com.google.android.gms.common.util.JsonUtils;
 
 import java.util.List;
 
@@ -38,7 +47,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HostelCardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HostelCardViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // position - итератор по элементам списка
         // holder - дизайн каждого отдельного элемента - это объект класса CourseViewHolder, где лежат все элементы, помещенные в поля
 
@@ -59,6 +68,29 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         holder.hostelCardDescriptionText.setText(hostelCards.get(position).getShortDescription());
         holder.hostelCardCharacteristicsText.setText(hostelCards.get(position).getCharacteristics());
         holder.hostelCardPriceText.setText(hostelCards.get(position).getPrice() + " ₽");
+
+
+        // обрабатываем нажатие на карточку
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // обновляем глобальное значение (на всякий случай)
+                MainActivity.openHostelPage(hostelCards.get(position));
+                HostelCard hostelCard = hostelCards.get(position);
+                MainActivity.searchState = 2;
+//                Bundle bundle = new Bundle();
+
+                // создаем фрагмент с отелем
+                HostelPageFragment hostelPageFragment = new HostelPageFragment(hostelCard);
+                AppCompatActivity activity = (AppCompatActivity) context;
+
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
+                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, hostelPageFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
 
         // создаем идентификатор  фотографии:

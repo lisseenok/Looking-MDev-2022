@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.lookingmdev.MainActivity;
@@ -41,6 +42,7 @@ public class SearchFragment extends Fragment {
     TextView townText;
     TextView dateText;
     TextView numberOfVisitorsText;
+    CardView cardView;
 
 
 
@@ -69,6 +71,10 @@ public class SearchFragment extends Fragment {
         townText = root.findViewById(R.id.townText);
         townLayout = root.findViewById(R.id.townLayout);
 
+        cardView = root.findViewById(R.id.filter_border);
+
+        checkFilterBorder();
+
         // устанавливаем новое значение в поле города
         if (MainActivity.city == null) {
             townText.setText(getResources().getString(R.string.city));
@@ -95,7 +101,8 @@ public class SearchFragment extends Fragment {
         numberOfVisitorsText = root.findViewById(R.id.numberOfVisitors);
 
         // выстановление соответствующего текста в поле дат
-        if (MainActivity.startDay == null)
+        // если в startDay есть хоть что-то и в конечном дне тоже есть данные
+        if (MainActivity.startDay == null || MainActivity.endDay == "")
             dateText.setText(getResources().getString(R.string.date));
         else{
 
@@ -112,18 +119,16 @@ public class SearchFragment extends Fragment {
                     break;
             }
 
-            if (MainActivity.endDay.equals(""))
-                dateText.setText((startWeekDay + ", " + MainActivity.startDay + " " + startMonth));
-            else
-                dateText.setText((String.format("%s, %s %s—%s, %s %s (%s: %d)",
-                        startWeekDay,
-                        MainActivity.startDay,
-                        startMonth,
-                        endWeekDay,
-                        MainActivity.endDay,
-                        endMonth,
-                        getResources().getString(R.string.nights),
-                        MainActivity.selectedDates.size() - 1)));
+
+            dateText.setText((String.format("%s, %s %s—%s, %s %s (%s: %d)",
+                    startWeekDay,
+                    MainActivity.startDay,
+                    startMonth,
+                    endWeekDay,
+                    MainActivity.endDay,
+                    endMonth,
+                    getResources().getString(R.string.nights),
+                    MainActivity.selectedDates.size() - 1)));
         }
 
 
@@ -259,6 +264,8 @@ public class SearchFragment extends Fragment {
                 MainActivity.adults = Integer.parseInt(numberOfHumanText.getText().toString());
                 MainActivity.children = Integer.parseInt(numberOfKidsText.getText().toString());
 
+                checkFilterBorder();
+
                 setVisitorsText();
 
             }
@@ -266,6 +273,25 @@ public class SearchFragment extends Fragment {
 
         return root;
 
+    }
+
+    public void checkFilterBorder() {
+        if (MainActivity.city != null && MainActivity.startDay != null && MainActivity.endDay != "" && MainActivity.rooms != 0) {
+            // в эту переменную мы кладем значение текущей темы для отрисовки текста в фильтрах соответствующего цвета
+            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+            switch (currentNightMode) {
+                case Configuration.UI_MODE_NIGHT_NO:
+                    // ночная тема не активна, используется светлая тема
+                    cardView.setCardBackgroundColor(getResources().getColor(R.color.enteredTextColorLight));
+                    break;
+                case Configuration.UI_MODE_NIGHT_YES:
+                    System.out.println("работает");
+                    // ночная тема активна, и она используется
+                    cardView.setCardBackgroundColor(getResources().getColor(R.color.white));
+                    break;
+            }
+        }
     }
 
     // установка текста в поле посетителей в фильтрах

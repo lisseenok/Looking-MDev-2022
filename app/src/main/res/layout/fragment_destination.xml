@@ -42,11 +42,12 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="0dp"
+        android:layout_height="55dp"
         android:onClick="closeDestination"
-        android:layout_height="wrap_content"
-        app:cornerRadius="2dp"
         android:text="@string/buttonFilterQuestsText"
+        app:cornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
