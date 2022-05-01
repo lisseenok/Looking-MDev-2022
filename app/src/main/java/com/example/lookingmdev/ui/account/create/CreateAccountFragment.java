@@ -23,11 +23,10 @@ import com.example.lookingmdev.databinding.FragmentCreateAccountBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateAccountFragment extends Fragment {
 
-    private CreareAccountViewModel mViewModel;
+    private CreateAccountViewModel mViewModel;
     private FragmentCreateAccountBinding binding;
 
     // editTexts с почтой и двумя паролями
@@ -43,7 +42,6 @@ public class CreateAccountFragment extends Fragment {
         return new CreateAccountFragment();
     }
 
-    @SuppressLint("DefaultLocale")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +56,10 @@ public class CreateAccountFragment extends Fragment {
 
         registerButton = root.findViewById(R.id.create_account_and_sign_button);
         errorTextView = root.findViewById(R.id.flagTextView);
+
+        registerButton.setEnabled(false);
+        //registerButton.setBackgroundColor((int)R.attr.blockedButtonColor);
+        registerButton.setBackgroundColor(Color.parseColor("#808080"));
 
 
         // ставим слушатель на editTexts (чтобы сразу сообщать об ошибках)
@@ -102,16 +104,17 @@ public class CreateAccountFragment extends Fragment {
                 errorTextView.setText("");
             }
         }
+        @SuppressLint("ResourceAsColor")
         @Override
         public void afterTextChanged(Editable s) {
             // те же проверки
             if (emailEditText.getText().toString().length() == 0 ||
                     passwordEditText.getText().toString().length() == 0 || repPasswordEditText.getText().toString().length() == 0 ||
                     !passwordEditText.getText().toString().equals(repPasswordEditText.getText().toString())) {
-                registerButton.setEnabled(false);
-                registerButton.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-            } else {
                 // причем не даем нажать кнопку если что-то не так
+                registerButton.setEnabled(false);
+                registerButton.setBackgroundColor(Color.parseColor("#808080"));
+            } else {
                 registerButton.setEnabled(true);
                 registerButton.setBackgroundColor(Color.parseColor("#0070C2"));
             }

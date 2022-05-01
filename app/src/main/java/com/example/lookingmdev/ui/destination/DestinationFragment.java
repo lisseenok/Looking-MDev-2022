@@ -49,7 +49,6 @@ public class DestinationFragment extends Fragment {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getActivity(), R.layout.simple_list_item, cities);
         textView.setAdapter(adapter);
-        System.out.println(123123);
         textView.setText("");
         // при нажатии на подсказку
         textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

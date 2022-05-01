@@ -184,8 +184,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(pageWithHostelsFragment, "left");
                 searchState = 1;
                 break;
-            case R.id.sign_in_button:
 
+            case R.id.sign_in_button:
                 replaceFragment(authenticationFragment, "up");
                 accountState = 1;
                 break;
@@ -194,18 +194,20 @@ public class MainActivity extends AppCompatActivity {
                 accountState = 0;
                 break;
             case R.id.sign_with_google_button:
-                replaceFragment(googleAuthFragment, "left");
+                replaceFragment(new GoogleAuthFragment(), "left");
                 break;
             case R.id.sign_with_email_button:
-                replaceFragment(emailAuthFragment, "left");
+                replaceFragment(new EmailAuthFragment(), "left");
                 break;
             case R.id.create_account_button:
-                replaceFragment(createAccountFragment, "left");
+                replaceFragment(new CreateAccountFragment(), "left");
                 break;
             case R.id.back_email_imageButton:
             case R.id.back_create_imageButtonReg:
                 replaceFragment(authenticationFragment, "right");
-
+                break;
+            case R.id.back_hostels_page_imageButtonReg:
+                replaceFragment(searchFragment, "right");
                 break;
         }
     }
@@ -241,9 +243,6 @@ public class MainActivity extends AppCompatActivity {
         switch (move) {
             case "up":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
-                break;
-            case "down":
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_down);
                 break;
             case "left":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
