@@ -43,5 +43,14 @@
 
     <string name="signIn">Войдите в аккаунт, чтобы сохранять отели в избранное и управлять своими поездками.</string>
     <string name="sign_in">Войти</string>
+    <string name="createAccount">Создать аккаунт</string>
+    <string name="signWithGoogle">Войти с помощью Google</string>
+    <string name="signWithEmail">Войти с помощью email</string>
+    <string name="singingUp">Регистрация</string>
+    <string name="singingIn">Авторизация</string>
+    <string name="enterEmail">Введите email</string>
+    <string name="enterPassword">Введите пароль</string>
+    <string name="repeatPassword">Повторите пароль</string>
+    <string name="createAccountAndSign">Создать аккаунт и войти</string>
 
 </resources>
