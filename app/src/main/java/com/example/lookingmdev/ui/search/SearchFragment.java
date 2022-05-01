@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class SearchFragment extends Fragment {
     TextView numberOfKidsText;
     Button minusKidsButton;
 
+    LinearLayout townLayout;
+    TextView townText;
     TextView dateText;
     TextView numberOfVisitorsText;
 
@@ -62,6 +65,29 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // инициализируем текстовое поле ввода города
+        townText = root.findViewById(R.id.townText);
+        townLayout = root.findViewById(R.id.townLayout);
+
+        // устанавливаем новое значение в поле города
+        if (MainActivity.city == null) {
+            townText.setText(getResources().getString(R.string.city));
+        } else {
+            //  проверка на темную/светулю тему (выставляем соответствующий цвет вписанному тексту в поле
+            // TODO make new method
+            switch (currentNightMode) {
+                case Configuration.UI_MODE_NIGHT_NO:
+                    // ночная тема не активна, используется светлая тема
+                    townText.setTextColor(getResources().getColor(R.color.enteredTextColorLight));
+                    break;
+                case Configuration.UI_MODE_NIGHT_YES:
+                    // ночная тема активна, и она используется
+                    townText.setTextColor(getResources().getColor(R.color.enteredTextColorDark));
+                    break;
+            }
+            townText.setText(MainActivity.city);
+        }
+
         // инициализируем текстовое поле в месте для выбранных дат
         dateText = root.findViewById(R.id.dateText);
 
@@ -74,6 +100,7 @@ public class SearchFragment extends Fragment {
         else{
 
             //  проверка на темную/светулю тему (выставляем соответствующий цвет вписанному тексту в поле
+            // TODO make new method
             switch (currentNightMode) {
                 case Configuration.UI_MODE_NIGHT_NO:
                     // ночная тема не активна, используется светлая тема
@@ -108,6 +135,10 @@ public class SearchFragment extends Fragment {
         // скрываем изначально это меню
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
+
+
+
+
         // инициализируем кнопки и создаем листенеры для них
         plusRoomButton = root.findViewById(R.id.plusRoomButton);
         numberOfRoomText = root.findViewById(R.id.numberOfRoomText);
@@ -129,7 +160,7 @@ public class SearchFragment extends Fragment {
         numberOfVisitors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                methods.hideSoftKeyboard(getActivity());
                 if(MainActivity.visitors != null) {
                     numberOfRoomText.setText(MainActivity.rooms + "");
                     numberOfHumanText.setText(MainActivity.adults + "");
@@ -237,6 +268,7 @@ public class SearchFragment extends Fragment {
 
     }
 
+    // установка текста в поле посетителей в фильтрах
     public void setVisitorsText(){
         // если открываем меню снизу не первый раз
         if (MainActivity.rooms != 0) {
@@ -245,6 +277,7 @@ public class SearchFragment extends Fragment {
             int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
             //  проверка на темную/светулю тему (выставляем соответствующий цвет вписанному тексту в поле
+            // TODO make new method
             switch (currentNightMode) {
                 case Configuration.UI_MODE_NIGHT_NO:
                     // ночная тема не активна, используется светлая тема

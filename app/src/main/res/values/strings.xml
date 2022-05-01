@@ -44,5 +44,16 @@
     <string name="signIn">Sign in to save hotels as favorites and manage your trips.</string>
     <string name="sign_in">Sign in</string>
 
+    <string-array name="countries_array">
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Antarctica</item>
+    </string-array>
+
 
 </resources>

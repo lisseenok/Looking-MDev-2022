@@ -64,9 +64,10 @@
 
 
                     <LinearLayout
+                        android:id="@+id/townLayout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
+                        android:onClick="openDestination"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -77,19 +78,10 @@
                             android:contentDescription="@string/App_name"
                             android:src="@drawable/ic_search_filter" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/townText"
-                            android:background="@null"
-                            android:hint="@string/city"
-                            android:paddingStart="15dp"
-                            android:textSize="15sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="start|center"
-                            android:textColor="?attr/enteredTextColor"
-                            android:fontFamily="sans-serif"
-                            android:textColorHint="?attr/filterTextColor"
-                            android:inputType="textPostalAddress" />
+                            style="@style/FiltersTextView"
+                            android:text="@string/city"/>
 
                     </LinearLayout>
 
@@ -101,7 +93,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
                         android:onClick="openCalendar"
                         android:orientation="horizontal"
                         tools:ignore="UsingOnClickInXml">
@@ -128,7 +119,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
                         android:orientation="horizontal">
 
                         <ImageView
