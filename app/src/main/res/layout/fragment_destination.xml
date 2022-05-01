@@ -35,6 +35,7 @@
             style="@style/FiltersTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:dropDownWidth="250dp"
             android:background="@null"
             android:dropDownVerticalOffset="10dp"
             android:hint="@string/city"
