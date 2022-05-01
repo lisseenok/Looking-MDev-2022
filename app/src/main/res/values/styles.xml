@@ -19,4 +19,31 @@
 <!--        <item name="android:textColorHint">?attr/filterTextColor</item>-->
         <item name="fontFamily">sans-serif</item>
     </style>
+
+    <!--        style for auth buttons-->
+    <style name="AuthButtons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+
+    </style>
+
+    <!--        style for singing out editTexts-->
+    <style name="SingOutEditTexts">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColorHint">?attr/filterTextColor</item>
+        <item name="android:textColor">?attr/enteredTextColor</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+
+    </style>
 </resources>

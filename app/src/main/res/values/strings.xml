@@ -43,6 +43,15 @@
 
     <string name="signIn">Sign in to save hotels as favorites and manage your trips.</string>
     <string name="sign_in">Sign in</string>
+    <string name="createAccount">Create your account</string>
+    <string name="signWithGoogle">Sign in with Google</string>
+    <string name="signWithEmail">Sign in with email</string>
+    <string name="singingUp">Signing up</string>
+    <string name="singingIn">Signing in</string>
+    <string name="enterEmail">Enter email</string>
+    <string name="enterPassword">Enter password</string>
+    <string name="repeatPassword">Repeat password</string>
+    <string name="createAccountAndSign">Create account and sign in</string>
 
 
 </resources>
