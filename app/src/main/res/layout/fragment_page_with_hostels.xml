@@ -58,7 +58,7 @@
         android:id="@+id/sumHostelsText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Найдено 4 варианта"
+        android:text="@string/hotelsFound"
         android:gravity="center|start"
         android:layout_marginTop="5dp"
         android:layout_marginHorizontal="5dp"

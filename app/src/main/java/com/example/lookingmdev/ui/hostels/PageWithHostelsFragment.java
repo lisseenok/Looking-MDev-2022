@@ -67,27 +67,17 @@ public class PageWithHostelsFragment extends Fragment {
     private void setAmountOfHostels(View view) {
         sumHostelsText = view.findViewById(R.id.sumHostelsText);
 
-        String text = String.format("Найдено: %d вариант", amountOfHostels);
-        if (hostelList.size() == 1) {
-            text += "";
-        } else if (hostelList.size() <= 4) {
-            text += "а";
-        } else if (hostelList.size() <= 20) {
-            text += "ов";
-        } else if (hostelList.size() % 10 >= 2 && hostelList.size() % 10 <= 4) {
-            text += "а";
-        } else if (hostelList.size() % 10 >= 5 || hostelList.size() % 10 == 0) {
-            text += "ов";
-        }
+        String text = String.format("%s %d", getResources().getString(R.string.hotelsFound), amountOfHostels);
         sumHostelsText.setText(text);
     }
 
     private void getHostelsFromServer(View view){
-        amountOfHostels = 0;
+
         // создаем слушатель базы данных
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                amountOfHostels = 0;
                 // приходят данные (в объекте snapshot)
 
                 // проверка пустой ли список отелей

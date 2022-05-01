@@ -52,5 +52,6 @@
     <string name="enterPassword">Введите пароль</string>
     <string name="repeatPassword">Повторите пароль</string>
     <string name="createAccountAndSign">Создать аккаунт и войти</string>
+    <string name="hotelsFound">Найдено отелей:</string>
 
 </resources>
