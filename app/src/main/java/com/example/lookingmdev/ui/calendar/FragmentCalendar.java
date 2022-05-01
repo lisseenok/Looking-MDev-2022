@@ -62,7 +62,7 @@ public class FragmentCalendar extends Fragment {
         // проинициализировали календарь
         // если в глобальной статическом массиве есть уже выбранные даты, то создаем коллекцию
         // и добавляем в нее первый и последний элементы массива дат
-        if (MainActivity.selectedDates == null) {
+        if (MainActivity.endDay == null) {
         calendar.init(pastYear.getTime(), nextYear.getTime()) //
                 .inMode(CalendarPickerView.SelectionMode.RANGE)
                 .withSelectedDate(new Date());
@@ -107,11 +107,10 @@ public class FragmentCalendar extends Fragment {
     public void updateCalendarText(){
 
         // если переменные вообще заполнены (не первый запуск)
-        if (MainActivity.selectedDates != null) {
+        if (MainActivity.endDay != null) {
 
             if (MainActivity.selectedDates.size() == 1){
-                MainActivity.date = (startWeekDay + ", " + MainActivity.startDay + " " + startMonth);
-                calendarText.setText(MainActivity.date);
+                calendarText.setText(getContext().getResources().getString(R.string.date));
             }
             else {
                 MainActivity.date = (startWeekDay + ", " + MainActivity.startDay +

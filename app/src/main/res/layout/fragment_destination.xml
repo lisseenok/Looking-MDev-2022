@@ -6,28 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ui.destination.DestinationFragment">
 
-    <AutoCompleteTextView
-
-        android:layout_marginTop="15dp"
-        android:textSize="16sp"
-        style="@style/FiltersTextView"
-        android:id="@+id/autocomplete_city"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/city"
-        android:background="@null"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_destination_image_button"
+            android:layout_width="wrap_content"
+            android:onClick="changeFragment"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_angle_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <AutoCompleteTextView
+            android:dropDownVerticalOffset="10dp"
+            android:id="@+id/autocomplete_city"
+            style="@style/FiltersTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/city"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_destination_image_button"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="0dp"
+        android:layout_height="55dp"
         android:onClick="closeDestination"
-        android:layout_height="wrap_content"
-        app:cornerRadius="2dp"
         android:text="@string/buttonFilterQuestsText"
+        app:cornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

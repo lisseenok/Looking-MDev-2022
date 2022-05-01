@@ -34,6 +34,7 @@ public class DestinationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
 
@@ -43,19 +44,21 @@ public class DestinationFragment extends Fragment {
 
         // Get a reference to the AutoCompleteTextView in the layout
         AutoCompleteTextView textView = view.findViewById(R.id.autocomplete_city);
+
         // Get the string array
         String[] cities = getResources().getStringArray(R.array.countries_array);
+
         // Create the adapter and set it to the AutoCompleteTextView
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getActivity(), R.layout.simple_list_item, cities);
+
         textView.setAdapter(adapter);
-        textView.setText("");
+
         // при нажатии на подсказку
         textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 MainActivity.city = textView.getText().toString();
-                System.out.println(MainActivity.city);
                 hideSoftKeyboard(getActivity());
 
                 switch (currentNightMode) {

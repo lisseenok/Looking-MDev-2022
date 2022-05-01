@@ -113,6 +113,7 @@ public class PageWithHostelsFragment extends Fragment {
 
             }
         };
+
         // добавляем в нашу бд слушатель
         databaseReference.addValueEventListener(valueEventListener);
     }

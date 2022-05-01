@@ -6,14 +6,11 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
+import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.account.create.CreateAccountFragment;
@@ -40,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static boolean created = false;  // запущено ли приложение
 
-    private static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
-    private static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
-    private static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
+    public static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
+    public static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
+    public static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
 
     //TODO create getters/setters
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, city, date, visitors;
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
 
-    DestinationFragment destinationFragment = new DestinationFragment();
+
     FragmentCalendar fragmentCalendar = new FragmentCalendar();
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
@@ -154,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // обработка нажатия системной кнопки назад
+    @Override
     public void onBackPressed() {
         // смотря какая страница открыта на навигационном баре
         switch (selectedPage) {
@@ -162,10 +160,27 @@ public class MainActivity extends AppCompatActivity {
                 // если не начальная страница, то уменьшаем индекс открытости страницы на один
                 if (searchState > 0)
                     --searchState;
-                // смотря на какой мы странице относительно индекса - открываем соответствующий фрагмент
+                // смотря на какой мы теперь странице относительно индекса - открываем соответствующий фрагмент
                 switch (searchState){
                     case 0:
-                        replaceFragment(searchFragment);
+                        replaceFragment(searchFragment, "right");
+                        break;
+                    case 1:
+                        replaceFragment(pageWithHostelsFragment, "right");
+                        break;
+                }
+                break;
+            case 3:
+                if (accountState > 0) {
+                    --accountState;
+                }
+                switch (accountState) {
+                    case 0:
+                        replaceFragment(accountFragment, "down");
+                        break;
+                    case 1:
+                        replaceFragment(authenticationFragment, "right");
+                        break;
                 }
         }
 
@@ -175,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public void changeFragment(View view){
 
+        // нажали кнопку найти
         switch (view.getId()) {
             case R.id.search_button:
 //                if (visitors != null && date != null) {
@@ -185,31 +201,55 @@ public class MainActivity extends AppCompatActivity {
                 searchState = 1;
                 break;
 
+            // нажали кнопку войти
             case R.id.sign_in_button:
                 replaceFragment(authenticationFragment, "up");
                 accountState = 1;
                 break;
+            // вышли с фрагмента выбора авторизации
             case R.id.close_auth_imageButton:
                 replaceFragment(accountFragment, "down");
                 accountState = 0;
                 break;
+            // авторизация через гугл
             case R.id.sign_with_google_button:
+
+                accountState = 2;
                 replaceFragment(new GoogleAuthFragment(), "left");
+
                 break;
+            // авторизация через email
             case R.id.sign_with_email_button:
+
+                accountState = 2;
                 replaceFragment(new EmailAuthFragment(), "left");
+
                 break;
+            // нажали создать аккаунт
             case R.id.create_account_button:
+                accountState = 2;
                 replaceFragment(new CreateAccountFragment(), "left");
                 break;
+            // нажали назад в авторизации через email/google
             case R.id.back_email_imageButton:
             case R.id.back_create_imageButtonReg:
+                accountState = 1;
                 replaceFragment(authenticationFragment, "right");
                 break;
+
+            // нажали назад на фрагменте выбора города
+            case R.id.back_destination_image_button:
+                replaceFragment(searchFragment, "down");
+            //TODO state
             case R.id.back_hostels_page_imageButtonReg:
                 replaceFragment(searchFragment, "right");
+
                 break;
         }
+    }
+
+    public static void openHostelPage(HostelCard hostelCard) {
+
     }
 
     public void openCalendar(View view) {
@@ -222,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openDestination(View view) {
-        replaceFragment(destinationFragment, "up");
+        replaceFragment(new DestinationFragment(), "up");
     }
 
     public void closeDestination(View view) {
