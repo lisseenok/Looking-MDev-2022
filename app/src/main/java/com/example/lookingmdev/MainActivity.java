@@ -115,7 +115,10 @@ public class MainActivity extends AppCompatActivity {
                 searchState = 1;
                 break;
             case R.id.sign_in_button:
-                replaceFragment(authenticationFragment);
+                replaceFragment(authenticationFragment, "left");
+                break;
+            case R.id.back_imageButton:
+                replaceFragment(accountFragment, "right");
                 break;
         }
     }
@@ -150,6 +153,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "left":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
+                break;
+            case "right":
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
                 break;
         }
 

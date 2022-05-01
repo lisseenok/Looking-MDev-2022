@@ -28,15 +28,17 @@
         <ImageButton
             android:id="@+id/back_imageButton"
             style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView"
             app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.583"
-            app:srcCompat="@drawable/ic_cross" />
+            app:srcCompat="@drawable/ic_angle_left" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
