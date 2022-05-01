@@ -46,6 +46,7 @@
     <string name="createAccount">Create your account</string>
     <string name="signWithGoogle">Sign in with Google</string>
     <string name="signWithEmail">Sign in with email</string>
+    <string name="singingUp">Signing up</string>
 
 
 </resources>

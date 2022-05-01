@@ -46,5 +46,6 @@
     <string name="createAccount">Создать аккаунт</string>
     <string name="signWithGoogle">Войти с помощью Google</string>
     <string name="signWithEmail">Войти с помощью email</string>
+    <string name="singingUp">Регистрация</string>
 
 </resources>

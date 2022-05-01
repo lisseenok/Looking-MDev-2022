@@ -58,11 +58,15 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_authentication.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_authentication.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/fragment_creare_account.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_email_auth.xml" value="0.14074074074074075" />
+        <entry key="app/src/main/res/layout/fragment_google_auth.xml" value="0.14074074074074075" />
         <entry key="app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1503623188405797" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="app/src/main/res/layout/page_with_hostels_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.335" />
       </map>

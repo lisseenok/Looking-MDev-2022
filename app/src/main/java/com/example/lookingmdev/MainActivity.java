@@ -7,6 +7,9 @@ import android.view.View;
 import com.example.lookingmdev.databinding.ActivityMainBinding;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
+import com.example.lookingmdev.ui.account.create.CreateAccountFragment;
+import com.example.lookingmdev.ui.account.emailAuth.EmailAuthFragment;
+import com.example.lookingmdev.ui.account.googleAuth.GoogleAuthFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
@@ -43,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
     AuthenticationFragment authenticationFragment = new AuthenticationFragment();
+    GoogleAuthFragment googleAuthFragment = new GoogleAuthFragment();
+    EmailAuthFragment emailAuthFragment = new EmailAuthFragment();
+    CreateAccountFragment createAccountFragment = new CreateAccountFragment();
 
     @SuppressLint("NonConstantResourceId")
 
@@ -111,10 +117,22 @@ public class MainActivity extends AppCompatActivity {
                 searchState = 1;
                 break;
             case R.id.sign_in_button:
-                replaceFragment(authenticationFragment, "left");
+                replaceFragment(authenticationFragment, "up");
                 break;
-            case R.id.back_imageButton:
-                replaceFragment(accountFragment, "right");
+            case R.id.close_auth_imageButton:
+                replaceFragment(accountFragment, "down");
+                break;
+            case R.id.sign_with_google_button:
+                replaceFragment(googleAuthFragment);
+                break;
+            case R.id.sign_with_email_button:
+                replaceFragment(emailAuthFragment);
+                break;
+            case R.id.create_account_button:
+                replaceFragment(createAccountFragment, "left");
+                break;
+            case R.id.back_create_imageButton:
+                replaceFragment(authenticationFragment, "right");
                 break;
         }
     }
@@ -152,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "right":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
+                break;
+            case "down":
+                fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_down);
                 break;
         }
 
