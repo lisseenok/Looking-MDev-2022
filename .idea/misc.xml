@@ -19,27 +19,28 @@
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_saved.xml" value="0.18819655521783182" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/layout/fragment_search.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Looking-MDev-2022/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19537037037037036" />
-        <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/drawable/ic_cross.xml" value="0.3861111111111111" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/activity_main.xml" value="0.2006340579710145" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/bottom_sheet.xml" value="0.21875" />
+
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_authentication.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_create_account.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_destination.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_hostel_page.xml" value="0.20425724637681159" />
+
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_search.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/hostel_card_item.xml" value="0.33" />
-        <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/simple_list_item.xml" value="0.18819655521783182" />
-        <entry key="..\:/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.1634963768115942" />
         <entry key="..\:/StudentWork/Android/LookingMDev-2022/app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.264" />
         <entry key="..\:/StudentWork/Android/LookingMDev-2022/app/src/main/res/layout/hostel_card_item.xml" value="0.1334853090172239" />
         <entry key="app/src/main/res/drawable-v24/ic_app.xml" value="7.0" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/calendar_white.xml" value="0.2037037037037037" />
         <entry key="app/src/main/res/drawable/free-icon-font-search-3917754_24.xml" value="0.27037037037037037" />
+        <entry key="app/src/main/res/drawable/ic_angle_left.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_calendar_black.xml" value="0.22962962962962963" />
         <entry key="app/src/main/res/drawable/ic_calendar_white.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic_cross.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/ic_free_icon_font_calendar_3917244.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_free_icon_font_heart_3916579.xml" value="0.3260416666666667" />
@@ -55,6 +56,7 @@
         <entry key="app/src/main/res/drawable/ic_search_black.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_search_filter.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_search_white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_sign_in.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_users_black.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_users_white.xml" value="0.17314814814814813" />
         <entry key="app/src/main/res/drawable/ic_vectorpaint.xml" value="0.1" />
@@ -62,10 +64,19 @@
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_booking.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.1" />
+
+        <entry key="app/src/main/res/layout/fragment_creare_account.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_destination.xml" value="0.14722222222222223" />
+        <entry key="app/src/main/res/layout/fragment_email_auth.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_google_auth.xml" value="0.14074074074074075" />
+        <entry key="app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1503623188405797" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/hostel_card_item.xml" value="0.335" />
+
         <entry key="app/src/main/res/layout/page_with_hostels_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/simple_list_item.xml" value="0.14722222222222223" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.335" />
       </map>
     </option>
@@ -75,5 +86,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.45" />
+      </ProjectState>
+    </option>
   </component>
 </project>

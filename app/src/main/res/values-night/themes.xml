@@ -29,5 +29,13 @@
 
         <item name="enteredTextColor">@color/enteredTextColorDark</item>
 
+        <item name="backgroundHostelsColor">@color/backgroundHostelsColorDark</item>
+
+        <item name="hostelCardBackgroundColor">@color/hostelCardBackgroundColorDark</item>
+
+        <item name="blockedButtonColor">@color/blockedButtonColorDark</item>
+
+
+
     </style>
 </resources>

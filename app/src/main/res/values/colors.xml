@@ -26,4 +26,13 @@
     <color name="enteredTextColorLight">#242426</color>
     <color name="enteredTextColorDark">#EAEAEA</color>
 
+    <color name="backgroundHostelsColorLight">#DCDCDC</color>
+    <color name="backgroundHostelsColorDark">#121212</color>
+
+    <color name="hostelCardBackgroundColorLight">#FFFFFFFF</color>
+    <color name="hostelCardBackgroundColorDark">#FF000000</color>
+
+    <color name="blockedButtonColorLight">#A9A9A9</color>
+    <color name="blockedButtonColorDark">#696969</color>
+
 </resources>

@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(pageWithHostelsFragment, "left");
                 searchState = 1;
                 break;
+
             // нажали кнопку войти
             case R.id.sign_in_button:
                 replaceFragment(authenticationFragment, "up");
@@ -212,18 +213,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
             // авторизация через гугл
             case R.id.sign_with_google_button:
+
                 accountState = 2;
-                replaceFragment(googleAuthFragment, "left");
+                replaceFragment(new GoogleAuthFragment(), "left");
+
                 break;
             // авторизация через email
             case R.id.sign_with_email_button:
+
                 accountState = 2;
-                replaceFragment(emailAuthFragment, "left");
+                replaceFragment(new EmailAuthFragment(), "left");
+
                 break;
             // нажали создать аккаунт
             case R.id.create_account_button:
                 accountState = 2;
-                replaceFragment(createAccountFragment, "left");
+                replaceFragment(new CreateAccountFragment(), "left");
                 break;
             // нажали назад в авторизации через email/google
             case R.id.back_email_imageButton:
@@ -231,9 +236,14 @@ public class MainActivity extends AppCompatActivity {
                 accountState = 1;
                 replaceFragment(authenticationFragment, "right");
                 break;
+
             // нажали назад на фрагменте выбора города
             case R.id.back_destination_image_button:
                 replaceFragment(searchFragment, "down");
+            //TODO state
+            case R.id.back_hostels_page_imageButtonReg:
+                replaceFragment(searchFragment, "right");
+
                 break;
         }
     }

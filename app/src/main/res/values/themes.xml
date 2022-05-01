@@ -8,6 +8,9 @@
     <attr name="filterTextColor" format="color|reference" />
     <attr name="toolbarTextColor" format="color|reference"/>
     <attr name="enteredTextColor" format="color|reference"/>
+    <attr name="backgroundHostelsColor" format="color|reference"/>
+    <attr name="hostelCardBackgroundColor" format="color|reference"/>
+    <attr name="blockedButtonColor" format="color|reference"/>
 <!--    <attr name="myFavoriteColor" format="color|reference" />-->
 
     <style name="Theme.LookingMDev" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -36,6 +39,12 @@
         <item name="toolbarTextColor">@color/toolbarColorLight</item>
 
         <item name="enteredTextColor">@color/enteredTextColorLight</item>
+
+        <item name="backgroundHostelsColor">@color/backgroundHostelsColorLight</item>
+
+        <item name="hostelCardBackgroundColor">@color/hostelCardBackgroundColorLight</item>
+
+        <item name="blockedButtonColor">@color/blockedButtonColorLight</item>
 
 
     </style>

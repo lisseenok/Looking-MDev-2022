@@ -94,6 +94,7 @@
         android:backgroundTint="@color/buttonBlue"
         android:fontFamily="sans-serif"
         android:text="@string/createAccountAndSign"
+        android:textColor="@color/white"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

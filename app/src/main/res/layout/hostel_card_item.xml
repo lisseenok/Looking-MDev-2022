@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="?attr/hostelCardBackgroundColor"
             android:baselineAligned="false">
 
             <FrameLayout
@@ -57,7 +58,7 @@
                         android:fontFamily="sans-serif-black"
                         android:gravity="center|left"
                         android:text="Boutique Hotel Artrium Munchen"
-                        android:textColor="@color/black"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -89,7 +90,7 @@
                         android:layout_marginStart="10dp"
                         android:gravity="center"
                         android:text="Очень хорошо"
-                        android:textColor="@color/black" />
+                        android:textColor="?attr/colorPrimary" />
                 </LinearLayout>
 
                 <TextView
@@ -99,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|left"
                     android:text="Людвигсфорштадт · 1,4 км от центра"
-                    android:textColor="@color/black" />
+                    android:textColor="?attr/colorPrimary" />
 
                 <TextView
                     android:id="@+id/hostelCardDescriptionText"
@@ -108,7 +109,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center|right"
                     android:text='Двухместный номер "Комфорт" с 1 кроватью и видом на сад'
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -118,7 +119,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center|right"
                     android:text="1 номер в отеле"
-                    android:textColor="@color/black" />
+                    android:textColor="?attr/colorPrimary" />
 
                 <TextView
                     android:id="@+id/hostelCardPriceText"
@@ -127,7 +128,7 @@
                     android:fontFamily="sans-serif-black"
                     android:gravity="center|right"
                     android:text="2655 р"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="16sp" />
 
 
