@@ -43,6 +43,9 @@
 
     <string name="signIn">Sign in to save hotels as favorites and manage your trips.</string>
     <string name="sign_in">Sign in</string>
+    <string name="createAccount">Create your account</string>
+    <string name="signWithGoogle">Sign in with Google</string>
+    <string name="signWithEmail">Sign in with email</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.lookingmdev.ui.auth;
+package com.example.lookingmdev.ui.account.auth;
 
 import androidx.lifecycle.ViewModelProvider;
 

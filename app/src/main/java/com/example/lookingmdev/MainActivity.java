@@ -3,13 +3,10 @@ package com.example.lookingmdev;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
-import com.example.lookingmdev.model.HostelCard;
-import com.example.lookingmdev.server.ServerConnector;
 import com.example.lookingmdev.ui.account.AccountFragment;
-import com.example.lookingmdev.ui.auth.AuthenticationFragment;
+import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
@@ -22,7 +19,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
