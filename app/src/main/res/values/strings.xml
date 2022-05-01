@@ -41,5 +41,8 @@
     <string name="noChildren">No children</string>
     <string name="child">children</string>
 
+    <string name="signIn">Sign in to save hotels as favorites and manage your trips.</string>
+    <string name="sign_in">Sign in</string>
+
 
 </resources>
