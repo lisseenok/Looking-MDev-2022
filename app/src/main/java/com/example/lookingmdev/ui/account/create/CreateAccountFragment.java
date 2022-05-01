@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentCreateAccountBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,10 +35,8 @@ public class CreateAccountFragment extends Fragment {
     // кнопка регистрации
     private Button registerButton;
     // textView где показываются сообщения об ошибках (пароли не совпадают)
-    private TextView textView;
+    private TextView errorTextView;
 
-    // переменная, в которой лежат "инструменты авторизации бд"
-    private FirebaseAuth firebaseAuth;
 
 
     public static CreateAccountFragment newInstance() {
@@ -53,15 +52,13 @@ public class CreateAccountFragment extends Fragment {
         View root = binding.getRoot();
 
         // находим все элементы по id
-        emailEditText = root.findViewById(R.id.editTextEmailAddress);
-        passwordEditText = root.findViewById(R.id.editTextPassword);
-        repPasswordEditText = root.findViewById(R.id.editTextRepeatPassword);
+        emailEditText = root.findViewById(R.id.editTextEmailAddressReg);
+        passwordEditText = root.findViewById(R.id.editTextPasswordReg);
+        repPasswordEditText = root.findViewById(R.id.editTextRepeatPasswordReg);
 
         registerButton = root.findViewById(R.id.create_account_and_sign_button);
-        textView = root.findViewById(R.id.flagTextView);
+        errorTextView = root.findViewById(R.id.flagTextView);
 
-        // инициализируем бд
-        firebaseAuth = FirebaseAuth.getInstance();
 
         // ставим слушатель на editTexts (чтобы сразу сообщать об ошибках)
         emailEditText.addTextChangedListener(watcher);
@@ -73,7 +70,7 @@ public class CreateAccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // создаем пользователя по почте и паролю
-                firebaseAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                MainActivity.firebaseAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
@@ -100,9 +97,9 @@ public class CreateAccountFragment extends Fragment {
             if ((!passwordEditText.getText().toString().equals(repPasswordEditText.getText().toString()))
                     && passwordEditText.getText().toString().length() != 0
                     && repPasswordEditText.getText().toString().length() != 0) {
-                textView.setText("Пароли не совпадают");
+                errorTextView.setText("Пароли не совпадают");
             } else {
-                textView.setText("");
+                errorTextView.setText("");
             }
         }
         @Override

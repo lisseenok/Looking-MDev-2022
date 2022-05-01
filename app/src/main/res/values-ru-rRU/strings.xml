@@ -47,6 +47,7 @@
     <string name="signWithGoogle">Войти с помощью Google</string>
     <string name="signWithEmail">Войти с помощью email</string>
     <string name="singingUp">Регистрация</string>
+    <string name="singingIn">Авторизация</string>
     <string name="enterEmail">Введите email</string>
     <string name="enterPassword">Введите пароль</string>
     <string name="repeatPassword">Повторите пароль</string>

@@ -15,6 +15,7 @@ import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     public static int rooms, adults, children;
     public static List<Date> selectedDates;
 
+    // переменная, в которой лежат "инструменты авторизации бд"
+    public static FirebaseAuth firebaseAuth;
+
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
@@ -58,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
         com.example.lookingmdev.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // инициализируем бд
+        firebaseAuth = FirebaseAuth.getInstance();
 
 
         if (!created){
@@ -123,15 +130,16 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(accountFragment, "down");
                 break;
             case R.id.sign_with_google_button:
-                replaceFragment(googleAuthFragment);
+                replaceFragment(googleAuthFragment, "left");
                 break;
             case R.id.sign_with_email_button:
-                replaceFragment(emailAuthFragment);
+                replaceFragment(emailAuthFragment, "left");
                 break;
             case R.id.create_account_button:
                 replaceFragment(createAccountFragment, "left");
                 break;
-            case R.id.back_create_imageButton:
+            case R.id.back_email_imageButton:
+            case R.id.back_create_imageButtonReg:
                 replaceFragment(authenticationFragment, "right");
                 break;
         }
