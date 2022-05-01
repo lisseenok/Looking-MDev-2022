@@ -9,6 +9,7 @@ import com.example.lookingmdev.databinding.ActivityMainBinding;
 import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.server.ServerConnector;
 import com.example.lookingmdev.ui.account.AccountFragment;
+import com.example.lookingmdev.ui.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentCalendar fragmentCalendar = new FragmentCalendar();
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
+
+    AuthenticationFragment authenticationFragment = new AuthenticationFragment();
 
     @SuppressLint("NonConstantResourceId")
 
@@ -110,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
 //                }
                 replaceFragment(pageWithHostelsFragment, "left");
                 searchState = 1;
+                break;
+            case R.id.sign_in_button:
+                replaceFragment(authenticationFragment);
                 break;
         }
     }
