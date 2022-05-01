@@ -31,14 +31,12 @@
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:layout_marginStart="15dp"
             android:backgroundTint="?attr/colorOnBackground"
             android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.583"
             app:srcCompat="@drawable/ic_cross" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,25 +58,26 @@
         android:id="@+id/sign_with_google_button"
 
         style="@style/AuthButtons"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="120dp"
 
         android:onClick="changeFragment"
         android:text="@string/signWithGoogle"
-        app:layout_constraintStart_toStartOf="@+id/create_account_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_account_button" />
 
     <Button
         android:id="@+id/sign_with_email_button"
 
         style="@style/AuthButtons"
-        android:onClick="changeFragment"
+        android:layout_marginTop="10dp"
 
+        android:onClick="changeFragment"
         android:text="@string/signWithEmail"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_with_google_button"
-        app:layout_constraintVertical_bias="0.046"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="9dp" />
+        tools:ignore="MissingConstraints" />
 
     <View
         android:layout_width="match_parent"

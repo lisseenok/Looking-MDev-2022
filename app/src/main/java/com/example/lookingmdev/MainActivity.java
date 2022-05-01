@@ -6,11 +6,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
 
-    DestinationFragment destinationFragment = new DestinationFragment();
+
     FragmentCalendar fragmentCalendar = new FragmentCalendar();
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
@@ -154,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // обработка нажатия системной кнопки назад
+    @Override
     public void onBackPressed() {
         // смотря какая страница открыта на навигационном баре
         switch (selectedPage) {
@@ -166,6 +163,17 @@ public class MainActivity extends AppCompatActivity {
                 switch (searchState){
                     case 0:
                         replaceFragment(searchFragment);
+                }
+            case 3:
+                if (accountState > 0) {
+                    --accountState;
+                }
+                switch (accountState) {
+                    case 0:
+                        replaceFragment(accountFragment, "down");
+                        break;
+                    case 1:
+                        replaceFragment(authenticationFragment, "right");
                 }
         }
 
@@ -184,28 +192,40 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(pageWithHostelsFragment, "left");
                 searchState = 1;
                 break;
+            // нажали кнопку войти
             case R.id.sign_in_button:
-
                 replaceFragment(authenticationFragment, "up");
                 accountState = 1;
                 break;
+            // вышли с фрагмента выбора авторизации
             case R.id.close_auth_imageButton:
                 replaceFragment(accountFragment, "down");
                 accountState = 0;
                 break;
+            // авторизация через гугл
             case R.id.sign_with_google_button:
+                accountState = 2;
                 replaceFragment(googleAuthFragment, "left");
                 break;
+            // авторизация через email
             case R.id.sign_with_email_button:
+                accountState = 2;
                 replaceFragment(emailAuthFragment, "left");
                 break;
+            // нажали создать аккаунт
             case R.id.create_account_button:
+                accountState = 2;
                 replaceFragment(createAccountFragment, "left");
                 break;
+            // нажали назад в авторизации через email/google
             case R.id.back_email_imageButton:
             case R.id.back_create_imageButtonReg:
+                accountState = 1;
                 replaceFragment(authenticationFragment, "right");
-
+                break;
+            // нажали назад на фрагменте выбора города
+            case R.id.back_destination_image_button:
+                replaceFragment(searchFragment, "down");
                 break;
         }
     }
@@ -220,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openDestination(View view) {
-        replaceFragment(destinationFragment, "up");
+        replaceFragment(new DestinationFragment(), "up");
     }
 
     public void closeDestination(View view) {
@@ -241,9 +261,6 @@ public class MainActivity extends AppCompatActivity {
         switch (move) {
             case "up":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
-                break;
-            case "down":
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_down);
                 break;
             case "left":
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);

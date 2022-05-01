@@ -31,14 +31,12 @@
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginStart="15dp"
             android:backgroundTint="?attr/colorOnBackground"
             android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.583"
             app:srcCompat="@drawable/ic_angle_left" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -69,11 +67,10 @@
         android:id="@+id/editTextPasswordReg"
         style="@style/SingOutEditTexts"
         android:layout_marginTop="40dp"
-        android:hint="@string/enterPassword"
         android:ems="10"
+        android:hint="@string/enterPassword"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddressReg"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressReg" />
 
@@ -106,14 +103,13 @@
 
     <TextView
         android:id="@+id/flagTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/color_red"
-        app:layout_constraintBottom_toTopOf="@+id/create_account_and_sign_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPasswordReg"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPasswordReg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
