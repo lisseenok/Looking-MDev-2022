@@ -1,6 +1,8 @@
 package com.example.lookingmdev.ui.methods;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.lookingmdev.MainActivity;
 
@@ -9,7 +11,14 @@ import com.example.lookingmdev.R;
 public class Methods {
     Context context;
 
-
+    public void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        try {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("NullPointerException" + nullPointerException);
+        }
+    }
 
     public String convertWeekDay(String text, Context context) {
 
