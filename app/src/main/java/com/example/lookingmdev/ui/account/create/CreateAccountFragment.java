@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentCreateAccountBinding;
+import com.example.lookingmdev.ui.account.AccountFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,6 +39,8 @@ public class CreateAccountFragment extends Fragment {
     // textView где показываются сообщения об ошибках (пароли не совпадают)
     private TextView errorTextView;
 
+    // переменная с домашним фрагментом аккаунта (переходим сюда при удачной регистрации)
+    private AccountFragment accountFragment;
 
 
     public static CreateAccountFragment newInstance() {
@@ -77,6 +82,13 @@ public class CreateAccountFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(root.getContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show();
+                            // флаг авторизации - true
+                            MainActivity.isAuth = true;
+                            // делаем переход на домашний фрагмент аккаунта (newInstance() - возвращаем просто новый экземпляр класса)
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, accountFragment.newInstance());
+                            fragmentTransaction.commit();
                         } else {
                             Toast.makeText(root.getContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show();
                         }

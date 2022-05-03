@@ -24,6 +24,7 @@ import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     // переменная, в которой лежат "инструменты авторизации бд"
     public static FirebaseAuth firebaseAuth;
+    // авторизован ли пользователь (да - true, нет - false)
+    public static boolean isAuth;
 
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
@@ -60,9 +63,11 @@ public class MainActivity extends AppCompatActivity {
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
     AuthenticationFragment authenticationFragment = new AuthenticationFragment();
-    GoogleAuthFragment googleAuthFragment = new GoogleAuthFragment();
-    EmailAuthFragment emailAuthFragment = new EmailAuthFragment();
-    CreateAccountFragment createAccountFragment = new CreateAccountFragment();
+    /** эти фрагменты пока не нужны
+     * GoogleAuthFragment googleAuthFragment = new GoogleAuthFragment();
+     * EmailAuthFragment emailAuthFragment = new EmailAuthFragment();
+     * CreateAccountFragment createAccountFragment = new CreateAccountFragment();
+     **/
 
     @SuppressLint("NonConstantResourceId")
 
@@ -76,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
 
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
+
+        // получаем ответ, авторизован ли пользователь
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        // firebaseUser = null когда пользователь не авторизован
+        if (firebaseUser == null) isAuth = false;
+        else isAuth = true;
 
 
         if (!created){
@@ -132,7 +144,10 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case 1:
                             case 2: // тут я решил все равно открывать фрагмент авторизации даже если вышли на фрагменте создать/войти
-                                replaceFragment(authenticationFragment);
+                                // открываем фрагмент авторизации только если не авторизованы
+                                if (!isAuth) replaceFragment(authenticationFragment);
+                                // а иначе открываем наш аккаунт
+                                else replaceFragment(accountFragment);
                                 break;
                         }
                     }
