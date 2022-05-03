@@ -44,6 +44,8 @@ public class AccountFragment extends Fragment {
                     MainActivity.firebaseAuth.signOut();
                     // меняем флаг
                     MainActivity.isAuth = false;
+                    // меняем стейт аккаунта
+                    MainActivity.accountState = 0;
                     // и меняем фрагмент на фрагмент авторизации
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
