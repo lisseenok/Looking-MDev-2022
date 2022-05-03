@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.account.AccountFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ваш аккаунт тут" />
+
 
     <Button
         android:id="@+id/sign_out_button"

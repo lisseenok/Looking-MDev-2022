@@ -54,7 +54,7 @@ public class AccountFragment extends Fragment {
                 }
             });
 
-        } else{
+        } else {
             // а если при запуске приложения мы не авторизованы то просто отрисовываем фрагмент авторизации
             view = inflater.inflate(R.layout.fragment_account, container, false);
         }
