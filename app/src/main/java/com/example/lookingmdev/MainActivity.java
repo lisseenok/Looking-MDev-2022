@@ -39,7 +39,25 @@ public class MainActivity extends AppCompatActivity {
 
     private static boolean created = false;  // запущено ли приложение
 
+    /**
+     * searchState:
+     * <ul>
+     *     <li>0 - начальная страница</li>
+     *     <li>1 - страница с отелями</li>
+     *     <li>2 - страница выбранного отеля</li>
+     *     <li>-1 - страница ввода города/даты</li>
+     * </ul>
+     **/
     public static int searchState = 0; // отвечает за состояние вкладки поиска (их будет около трех)
+
+    /**
+     * accountState:
+     * <ul>
+     *     <li>0 - начальная страница</li>
+     *     <li>1 - страница с предложением авторизации/зарегистрироваться</li>
+     *     <li>2 - страница создания аккаунта/авторизации через email/google</li>
+     * </ul>
+     **/
     public static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
     public static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
 
@@ -108,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         // если переходим на вкладку поиска с другой вкладки, то открываем тот фрагмент, который был открыт последним в поиске
                         switch (searchState) {
                             case 0:
+                            case -1:
                                 replaceFragment(searchFragment);
                                 break;
                             case 1:
@@ -142,12 +161,14 @@ public class MainActivity extends AppCompatActivity {
                             case 0:
                                 replaceFragment(accountFragment);
                                 break;
+                            // TODO check this
                             case 1:
                             case 2: // тут я решил все равно открывать фрагмент авторизации даже если вышли на фрагменте создать/войти
                                 // открываем фрагмент авторизации только если не авторизованы
                                 if (!isAuth) replaceFragment(authenticationFragment);
                                 // а иначе открываем наш аккаунт
                                 else replaceFragment(accountFragment);
+                                accountState = 1;
                                 break;
                         }
                     }
@@ -156,14 +177,12 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
-
     }
 
     // если проиходит какое-либо прикосновение к экрану, ты мы скрываем клавиатуру
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // hideSoftKeyboard(this);
+        hideSoftKeyboard(this);
         return false;
     }
 
@@ -188,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
                     --searchState;
                 // смотря на какой мы теперь странице относительно индекса - открываем соответствующий фрагмент
                 switch (searchState){
+                    case -1:
+                        replaceFragment(searchFragment, "down");
                     case 0:
                         replaceFragment(searchFragment, "right");
                         break;
@@ -216,8 +237,31 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public void changeFragment(View view){
 
-        // нажали кнопку найти
         switch (view.getId()) {
+
+            // нажали на выбор дат
+            case R.id.datesLayout:
+                replaceFragment(fragmentCalendar, "up");
+                searchState = -1;
+                break;
+
+            // нажали на кнопку ПРИМЕНИТЬ в выборе города или
+            // нажали назад на фрагменте выбора города или
+            // нажали применить в фраменте календаря
+
+            case R.id.applyButtonDestination:
+            case R.id.back_destination_image_button:
+            case R.id.calendarButton:
+                replaceFragment(searchFragment, "down");
+                searchState = 0;
+                break;
+
+            // открыли фрагмент выбора города
+            case R.id.townLayout:
+                replaceFragment(new DestinationFragment(), "up");
+                searchState = -1;
+                break;
+            // нажали кнопку найти
             case R.id.search_button:
 //                if (visitors != null && date != null) {
 //                replaceFragment(pageWithHostelsFragment, "left");
@@ -232,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(authenticationFragment, "up");
                 accountState = 1;
                 break;
+
             // вышли с фрагмента выбора авторизации
             case R.id.close_auth_imageButton:
                 replaceFragment(accountFragment, "down");
@@ -263,37 +308,16 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(authenticationFragment, "right");
                 break;
 
-            // нажали назад на фрагменте выбора города
-            case R.id.back_destination_image_button:
-                replaceFragment(searchFragment, "down");
+
+
             //TODO state
             case R.id.back_hostels_page_imageButtonReg:
                 replaceFragment(searchFragment, "right");
-
                 break;
         }
     }
 
-    public static void openHostelPage(HostelCard hostelCard) {
 
-    }
-
-    public void openCalendar(View view) {
-
-        replaceFragment(fragmentCalendar, "up");
-    }
-
-    public void closeCalendar(View view) {
-        replaceFragment(searchFragment, "down");
-    }
-
-    public void openDestination(View view) {
-        replaceFragment(new DestinationFragment(), "up");
-    }
-
-    public void closeDestination(View view) {
-        replaceFragment(searchFragment, "down");
-    }
 
 
     public void replaceFragment(Fragment fragment) {

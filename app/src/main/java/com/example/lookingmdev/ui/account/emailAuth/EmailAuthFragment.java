@@ -87,6 +87,7 @@ public class EmailAuthFragment extends Fragment {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, accountFragment.newInstance());
+                            MainActivity.accountState = 0;
                             fragmentTransaction.commit();
                         }
                         else{

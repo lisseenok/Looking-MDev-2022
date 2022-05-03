@@ -47,10 +47,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/applyButtonDestination"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:onClick="closeDestination"
+        android:onClick="changeFragment"
         android:text="@string/buttonFilterQuestsText"
         app:cornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"

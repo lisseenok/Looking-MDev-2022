@@ -11,6 +11,7 @@
     <attr name="backgroundHostelsColor" format="color|reference"/>
     <attr name="hostelCardBackgroundColor" format="color|reference"/>
     <attr name="blockedButtonColor" format="color|reference"/>
+    <attr name="backgroundCalendarColor" format="color|reference"/>
 <!--    <attr name="myFavoriteColor" format="color|reference" />-->
 
     <style name="Theme.LookingMDev" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -45,6 +46,8 @@
         <item name="hostelCardBackgroundColor">@color/hostelCardBackgroundColorLight</item>
 
         <item name="blockedButtonColor">@color/blockedButtonColorLight</item>
+
+        <item name="backgroundCalendarColor">@color/backgroundCalendarColorLight</item>
 
 
     </style>

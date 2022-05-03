@@ -72,7 +72,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             @Override
             public void onClick(View v) {
                 // обновляем глобальное значение (на всякий случай)
-                MainActivity.openHostelPage(hostelCards.get(position));
                 HostelCard hostelCard = hostelCards.get(position);
                 MainActivity.searchState = 2;
 //                Bundle bundle = new Bundle();

@@ -32,7 +32,7 @@ public class AccountFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         // если при запуске приложения уже мы авторизованы
-        if (MainActivity.isAuth){
+        if (MainActivity.isAuth) {
             // отрисовываем интерфейс fragment_auth_account - это xml самого аккаунта авторизованного пользователя
             view = inflater.inflate(R.layout.fragment_auth_account, container, false);
             // находим кнопочку выхода из аккаунта
@@ -51,7 +51,7 @@ public class AccountFragment extends Fragment {
                     // меняем флаг
                     MainActivity.isAuth = false;
                     // меняем стейт аккаунта
-                    MainActivity.accountState = 0;
+//                    MainActivity.accountState = 0;
                     // и меняем фрагмент на фрагмент авторизации
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
