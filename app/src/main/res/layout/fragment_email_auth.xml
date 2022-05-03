@@ -17,7 +17,10 @@
 
         <TextView
             android:id="@+id/textView"
-            style="@style/ToolbarText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="?attr/toolbarTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/singingIn"
