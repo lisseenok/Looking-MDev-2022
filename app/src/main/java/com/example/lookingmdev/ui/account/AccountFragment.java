@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
@@ -36,6 +37,8 @@ public class AccountFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_auth_account, container, false);
             // находим кнопочку выхода из аккаунта
             Button signOutButton = view.findViewById(R.id.sign_out_button);
+            TextView emailTextView = view.findViewById(R.id.email_textview);
+            emailTextView.setText(MainActivity.firebaseAuth.getCurrentUser().getEmail());
             // слушаем ее
             signOutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
