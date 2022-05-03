@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, city, date, visitors;
     public static int rooms, adults, children;
     public static List<Date> selectedDates;
+    public static HostelCard hostelCard;
 
     // переменная, в которой лежат "инструменты авторизации бд"
     public static FirebaseAuth firebaseAuth;
@@ -239,6 +240,12 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()) {
 
+            // нажали на кнопку назад на странице отеля
+            case R.id.backFromHostelPage:
+                replaceFragment(pageWithHostelsFragment, "right");
+                searchState = 1;
+                break;
+
             // нажали на выбор дат
             case R.id.datesLayout:
                 replaceFragment(fragmentCalendar, "up");
@@ -308,11 +315,10 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(authenticationFragment, "right");
                 break;
 
-
-
-            //TODO state
-            case R.id.back_hostels_page_imageButtonReg:
+            // нажали назад на странице отелей
+            case R.id.backFromPageWithHostels:
                 replaceFragment(searchFragment, "right");
+                searchState = 0;
                 break;
         }
     }

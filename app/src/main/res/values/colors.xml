@@ -38,5 +38,13 @@
     <color name="backgroundCalendarColorLight">#FFFFFF</color>
     <color name="backgroundCalendarColorDark">#121212</color>
 
+    <color name="backgroundHostelPageColorLight">#DCDCDC</color>
+    <color name="backgroundHostelPageColorDark">#000000</color>
+
+    <color name="backgroundHostelPageBlockColorLight">#FFFFFF</color>
+    <color name="backgroundHostelPageBlockColorDark">#121212</color>
+
+
+
 
 </resources>

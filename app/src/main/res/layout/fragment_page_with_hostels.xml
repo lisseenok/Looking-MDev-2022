@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/hostelTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -37,21 +37,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/back_hostels_page_imageButtonReg"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:backgroundTint="?attr/backgroundHostelsColor"
+        <FrameLayout
+            android:id="@+id/backFromPageWithHostels"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
             android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.583"
-            app:srcCompat="@drawable/ic_angle_left" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_angle_left" />
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
