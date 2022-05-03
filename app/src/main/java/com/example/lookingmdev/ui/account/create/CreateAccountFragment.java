@@ -84,10 +84,12 @@ public class CreateAccountFragment extends Fragment {
                             Toast.makeText(root.getContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show();
                             // флаг авторизации - true
                             MainActivity.isAuth = true;
+
                             // делаем переход на домашний фрагмент аккаунта (newInstance() - возвращаем просто новый экземпляр класса)
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, accountFragment.newInstance());
+                            MainActivity.accountState = 0;
                             fragmentTransaction.commit();
                         } else {
                             Toast.makeText(root.getContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show();

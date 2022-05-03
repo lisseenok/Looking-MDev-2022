@@ -35,6 +35,8 @@
 
         <item name="blockedButtonColor">@color/blockedButtonColorDark</item>
 
+        <item name="backgroundCalendarColor">@color/backgroundCalendarColorDark</item>
+
 
 
     </style>
