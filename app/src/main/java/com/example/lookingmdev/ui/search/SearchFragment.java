@@ -166,7 +166,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 methods.hideSoftKeyboard(getActivity());
-                if(MainActivity.visitors != null) {
+                if(MainActivity.rooms != 0) {
                     numberOfRoomText.setText(MainActivity.rooms + "");
                     numberOfHumanText.setText(MainActivity.adults + "");
                     numberOfKidsText.setText(MainActivity.children + "");

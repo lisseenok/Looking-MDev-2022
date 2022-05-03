@@ -1176,5 +1176,9 @@
         <item>Ясный</item>
         <item>Яхрома</item>
     </string-array>
+    <string name="checkIn">Check-in</string>
+    <string name="checkOut">Check-out</string>
+    <string name="roomsAndQuests">Rooms and quests</string>
+    <string name="description">Description</string>
 
 </resources>

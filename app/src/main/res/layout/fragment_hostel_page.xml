@@ -1,13 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/backgroundHostelPageColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.hostelPage.HostelPageFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:background="?attr/backgroundHostelPageBlockColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:id="@+id/backFromHostelPage"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="15dp"
+                android:onClick="changeFragment"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_angle_left" />
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/hostelTitle"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/App_name"
+                android:textColor="?attr/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:background="?attr/backgroundHostelPageBlockColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/hostelImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/hotel1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:id="@+id/hostelName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-black"
+
+                            android:text="@string/App_name"
+                            android:textColor="?attr/colorPrimary"
+                            android:textSize="25sp"
+                            android:layout_marginRight="15dp"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#013588"
+                            app:cardCornerRadius="5dp">
+
+                            <TextView
+                                android:id="@+id/hostelRatting"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="8.1"
+                                android:textColor="@color/white" />
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:background="?attr/backgroundHostelPageBlockColor"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-black"
+                                android:text="@string/checkIn"
+                                android:textSize="16sp"
+                                android:textColor="?attr/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/hostelStartDate"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Пт, 20 май"
+                                android:textSize="16sp"
+
+                                android:textColor="?attr/colorPrimary" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-black"
+                                android:text="@string/checkOut"
+                                android:textSize="16sp"
+
+                                android:textColor="?attr/colorPrimary" />
+                            <TextView
+                                android:id="@+id/hostelEndDate"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Вс, 29 май"
+                                android:textSize="16sp"
+                                android:textColor="?attr/colorPrimary" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorPrimary"
+                        android:text="@string/roomsAndQuests" />
+
+                    <TextView
+                        android:id="@+id/hostelQuests"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorPrimary"
+                        android:text="1 номер 2 взрослых Без детей" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:background="?attr/backgroundHostelPageBlockColor"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/hostelAddress"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_gravity="center|start"
+                        android:textColor="?attr/colorPrimary"
+                        android:text="Адрес: какой-то там адрес блеа" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:background="?attr/backgroundHostelPageBlockColor"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:fontFamily="sans-serif-black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorPrimary"
+                        android:text="@string/description" />
+
+                    <TextView
+                        android:id="@+id/hostelFullDescription"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorPrimary"
+                        android:text="Комплекс апартаментов с обслуживанием Timehouse расположен в Мюнхене, в 2,4 км от Музея BMW и в 2,5 км от выставочного центра BMW Welt. К услугам гостей апартаменты с бесплатным Wi-Fi, гостиным уголком и полностью оборудованной кухней.
+
+Все звукоизолированные апартаменты оснащены кондиционером и телевизором с плоским экраном и спутниковыми каналами. В распоряжении гостей посудомоечная машина, духовка, тостер, кофемашина и чайник.
+
+В апартаментах есть терраса. Гости могут отдохнуть в общем лаундже.
+
+Английский сад находится в 4 км от апартаментов с обслуживанием Timehouse, а художественный музей Кундераль — в 4,3 км. Расстояние до аэропорта Мюнхена составляет 33 км.
+
+Парам особенно нравится расположение — они оценили проживание в этом районе для поездки вдвоем на 8,9." />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

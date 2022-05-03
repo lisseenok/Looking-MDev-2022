@@ -72,12 +72,12 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             @Override
             public void onClick(View v) {
                 // обновляем глобальное значение (на всякий случай)
-                HostelCard hostelCard = hostelCards.get(position);
+                MainActivity.hostelCard = hostelCards.get(position);
                 MainActivity.searchState = 2;
 //                Bundle bundle = new Bundle();
 
                 // создаем фрагмент с отелем
-                MainActivity.hostelPageFragment = new HostelPageFragment(hostelCard);
+                MainActivity.hostelPageFragment = new HostelPageFragment();
 
                 AppCompatActivity activity = (AppCompatActivity) context;
 
