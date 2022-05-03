@@ -37,6 +37,10 @@
 
         <item name="backgroundCalendarColor">@color/backgroundCalendarColorDark</item>
 
+        <item name="backgroundHostelPageColor">@color/backgroundHostelPageColorDark</item>
+
+        <item name="backgroundHostelPageBlockColor">@color/backgroundHostelPageBlockColorDark</item>
+
 
 
     </style>

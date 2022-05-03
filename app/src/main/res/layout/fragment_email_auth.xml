@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/hostelTitle"
             android:textSize="20sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif"
@@ -37,7 +37,7 @@
             android:backgroundTint="?attr/colorOnBackground"
             android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/hostelTitle"
             app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
