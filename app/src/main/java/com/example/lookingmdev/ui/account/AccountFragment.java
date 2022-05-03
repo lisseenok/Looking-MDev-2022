@@ -37,7 +37,10 @@ public class AccountFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_auth_account, container, false);
             // находим кнопочку выхода из аккаунта
             Button signOutButton = view.findViewById(R.id.sign_out_button);
+
+            // находим textview для почты
             TextView emailTextView = view.findViewById(R.id.email_textview);
+            // ставим в него почту текущего пользователя
             emailTextView.setText(MainActivity.firebaseAuth.getCurrentUser().getEmail());
             // слушаем ее
             signOutButton.setOnClickListener(new View.OnClickListener() {
