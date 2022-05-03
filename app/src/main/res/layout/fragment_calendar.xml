@@ -28,7 +28,13 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp"
-            android:scrollbarStyle="outsideOverlay">
+            android:scrollbarStyle="outsideOverlay"
+
+            android:background="?attr/backgroundCalendarColor"
+            app:tsquare_dayTextColor="?attr/colorPrimary"
+            app:tsquare_dividerColor="#00000000"
+            app:tsquare_headerTextColor="?attr/colorPrimary"
+            app:tsquare_titleTextColor="?attr/colorPrimary">
 
         </com.savvi.rangedatepicker.CalendarPickerView>
 
@@ -42,7 +48,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/greyLine" />
         <TextView
             android:id="@+id/calendarText"
             android:layout_width="match_parent"
@@ -53,7 +62,7 @@
         <Button
             android:id="@+id/calendarButton"
             android:textColor="@color/white"
-            android:onClick="closeCalendar"
+            android:onClick="changeFragment"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="@color/buttonBlue"

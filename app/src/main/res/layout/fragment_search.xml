@@ -67,7 +67,7 @@
                         android:id="@+id/townLayout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:onClick="openDestination"
+                        android:onClick="changeFragment"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -91,9 +91,10 @@
                         android:background="@color/greyLine" />
 
                     <LinearLayout
+                        android:id="@+id/datesLayout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:onClick="openCalendar"
+                        android:onClick="changeFragment"
                         android:orientation="horizontal"
                         tools:ignore="UsingOnClickInXml">
 
