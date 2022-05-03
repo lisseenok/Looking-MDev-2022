@@ -19,10 +19,12 @@ import com.example.lookingmdev.ui.account.googleAuth.GoogleAuthFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.destination.DestinationFragment;
+import com.example.lookingmdev.ui.hostelPage.HostelPageFragment;
 import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -48,20 +50,24 @@ public class MainActivity extends AppCompatActivity {
 
     // переменная, в которой лежат "инструменты авторизации бд"
     public static FirebaseAuth firebaseAuth;
+    // авторизован ли пользователь (да - true, нет - false)
+    public static boolean isAuth;
 
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
-
+    public static HostelPageFragment hostelPageFragment;
 
     FragmentCalendar fragmentCalendar = new FragmentCalendar();
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
     AuthenticationFragment authenticationFragment = new AuthenticationFragment();
-    GoogleAuthFragment googleAuthFragment = new GoogleAuthFragment();
-    EmailAuthFragment emailAuthFragment = new EmailAuthFragment();
-    CreateAccountFragment createAccountFragment = new CreateAccountFragment();
+    /** эти фрагменты пока не нужны
+     * GoogleAuthFragment googleAuthFragment = new GoogleAuthFragment();
+     * EmailAuthFragment emailAuthFragment = new EmailAuthFragment();
+     * CreateAccountFragment createAccountFragment = new CreateAccountFragment();
+     **/
 
     @SuppressLint("NonConstantResourceId")
 
@@ -76,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
 
+        // получаем ответ, авторизован ли пользователь
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        // firebaseUser = null когда пользователь не авторизован
+        if (firebaseUser == null) isAuth = false;
+        else isAuth = true;
+
 
         if (!created){
             replaceFragment(searchFragment);
@@ -87,17 +100,23 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_search:
-
-                    // если мы на начальной странице поиска
-                    if (searchState == 0) {
-                        replaceFragment(searchFragment);
-                    // если открыты отели или страница отеля и мы изначально были на вкладке поиска
-                    } else if (selectedPage == 0) {
+                    // если мы на странице поиска, то возвращаемся на начальную
+                    if (selectedPage == 0) {
                         replaceFragment(searchFragment);
                         searchState = 0;
-                    // открываем страницу с отелями
                     } else {
-                        replaceFragment(pageWithHostelsFragment);
+                        // если переходим на вкладку поиска с другой вкладки, то открываем тот фрагмент, который был открыт последним в поиске
+                        switch (searchState) {
+                            case 0:
+                                replaceFragment(searchFragment);
+                                break;
+                            case 1:
+                                replaceFragment(pageWithHostelsFragment);
+                                break;
+                            case 2:
+                                replaceFragment(hostelPageFragment);
+                                break;
+                        }
                     }
                     selectedPage = 0;
                     break;
@@ -113,18 +132,25 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.navigation_account:
-                    // если мы на начальной странице аккаунта были
-                    if (accountState == 0)
-                        replaceFragment(accountFragment);
-                    // если открыта вкладка авторизации и мы изначально были на вкладке аккаунта
-                    else if (selectedPage == 3) {
+                    // если мы на странице аккаунта, то возвращаемся на начальную
+                    if (selectedPage == 3) {
                         replaceFragment(accountFragment);
                         accountState = 0;
-                    // открываем страницу с отелями
                     } else {
-                        replaceFragment(authenticationFragment);
+                        // если переходим на вкладку аккаунта с другой вкладки, то открываем тот фрагмент, который был открыт последним в поиске
+                        switch (accountState) {
+                            case 0:
+                                replaceFragment(accountFragment);
+                                break;
+                            case 1:
+                            case 2: // тут я решил все равно открывать фрагмент авторизации даже если вышли на фрагменте создать/войти
+                                // открываем фрагмент авторизации только если не авторизованы
+                                if (!isAuth) replaceFragment(authenticationFragment);
+                                // а иначе открываем наш аккаунт
+                                else replaceFragment(accountFragment);
+                                break;
+                        }
                     }
-
                     selectedPage = 3;
                     break;
             }
@@ -137,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     // если проиходит какое-либо прикосновение к экрану, ты мы скрываем клавиатуру
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        hideSoftKeyboard(this);
+        // hideSoftKeyboard(this);
         return false;
     }
 
@@ -211,25 +237,25 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(accountFragment, "down");
                 accountState = 0;
                 break;
+
             // авторизация через гугл
             case R.id.sign_with_google_button:
-
                 accountState = 2;
                 replaceFragment(new GoogleAuthFragment(), "left");
-
                 break;
+
             // авторизация через email
             case R.id.sign_with_email_button:
-
                 accountState = 2;
                 replaceFragment(new EmailAuthFragment(), "left");
-
                 break;
+
             // нажали создать аккаунт
             case R.id.create_account_button:
                 accountState = 2;
                 replaceFragment(new CreateAccountFragment(), "left");
                 break;
+
             // нажали назад в авторизации через email/google
             case R.id.back_email_imageButton:
             case R.id.back_create_imageButtonReg:

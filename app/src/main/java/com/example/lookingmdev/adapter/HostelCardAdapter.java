@@ -78,13 +78,14 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 //                Bundle bundle = new Bundle();
 
                 // создаем фрагмент с отелем
-                HostelPageFragment hostelPageFragment = new HostelPageFragment(hostelCard);
+                MainActivity.hostelPageFragment = new HostelPageFragment(hostelCard);
+
                 AppCompatActivity activity = (AppCompatActivity) context;
 
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left);
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, hostelPageFragment);
+                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.hostelPageFragment);
                 fragmentTransaction.commit();
             }
         });

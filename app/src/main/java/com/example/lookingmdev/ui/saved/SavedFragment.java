@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.lookingmdev.MainActivity;
+import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentBookingBinding;
 import com.example.lookingmdev.databinding.FragmentSavedBinding;
 import com.example.lookingmdev.databinding.FragmentSavedBinding;
@@ -23,19 +25,15 @@ public class SavedFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        savedViewModel =
-//                new ViewModelProvider(this).get(SavedViewModel.class);
 
         binding = FragmentSavedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        final TextView textView = binding.textSaved;
-//        savedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        TextView textView = root.findViewById(R.id.text_saved);
+
+        if (MainActivity.isAuth) textView.setText("Здесь будут ваши любимые отели");
+        else textView.setText("Вам необходимо войти в аккаунт <3");
+
         return root;
     }
 

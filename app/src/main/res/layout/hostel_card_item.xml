@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:gravity="center|right"
+                    android:gravity="center|left"
                     android:text='Двухместный номер "Комфорт" с 1 кроватью и видом на сад'
                     android:textColor="?attr/colorPrimary"
                     android:textSize="14sp" />
@@ -117,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:gravity="center|right"
+                    android:gravity="center|left"
                     android:text="1 номер в отеле"
                     android:textColor="?attr/colorPrimary" />
 
