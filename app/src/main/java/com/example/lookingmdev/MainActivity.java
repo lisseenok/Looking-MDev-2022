@@ -307,10 +307,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             // авторизация через гугл
+            /*
             case R.id.sign_with_google_button:
                 accountState = 2;
                 replaceFragment(new GoogleAuthFragment(), "left");
                 break;
+             */
 
             // авторизация через email
             case R.id.sign_with_email_button:
