@@ -26,6 +26,8 @@ import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -70,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
     public static List<Date> selectedDates;
     public static HostelCard hostelCard;
 
+    // бд и ключ
+    public static DatabaseReference databaseReference;
+    public static String HOSTELS_KEY = "Hostels";
+
     // переменная, в которой лежат "инструменты авторизации бд"
     public static FirebaseAuth firebaseAuth;
     // авторизован ли пользователь (да - true, нет - false)
@@ -98,13 +104,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        ServerConnector serverConnector = new ServerConnector();
-        serverConnector.pushHostelsToServer();
 
         // хз че за биндинг, еще не разбирался
         com.example.lookingmdev.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // инициализируем бд
+        databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY);
+
+        ServerConnector serverConnector = new ServerConnector();
+        serverConnector.pushHostelsToServer();
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
 
