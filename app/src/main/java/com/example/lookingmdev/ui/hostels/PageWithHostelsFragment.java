@@ -1,5 +1,7 @@
 package com.example.lookingmdev.ui.hostels;
 
+import static com.example.lookingmdev.MainActivity.databaseReference;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.adapter.HostelCardAdapter;
 import com.example.lookingmdev.model.HostelCard;
@@ -35,8 +38,6 @@ public class PageWithHostelsFragment extends Fragment {
     private RecyclerView hostelsRecycler;
     private HostelCardAdapter hostelCardAdapter;
 
-    private static DatabaseReference databaseReference;
-    private static String HOSTELS_KEY = "Hostels";
     private List<HostelCard> hostelList = new ArrayList<>();
     private int amountOfHostels = 0;
 
@@ -51,8 +52,6 @@ public class PageWithHostelsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY); // проинициализировали бд
 
 
         View view = inflater.inflate(R.layout.fragment_page_with_hostels, container, false);

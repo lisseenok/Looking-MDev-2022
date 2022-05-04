@@ -9,14 +9,13 @@ public class HostelCard {
     String hostelName, city, address, image, shortDescription, fullDescription;
     int price;
     double rating;
-    HashMap<Date, Integer> listOfBookingDates;
+    HashMap<String, Integer> listOfBookingDates;
     int amountOfHostelRooms;
 
     public HostelCard() {
-
     }
 
-    public HostelCard(String hostelName, String city, String address, String image, String shortDescription, String fullDescription, int amountOfHostelRooms, int price, double rating, HashMap<Date, Integer> listOfBookingDates) {
+    public HostelCard(String hostelName, String city, String address, String image, String shortDescription, String fullDescription, int amountOfHostelRooms, int price, double rating, HashMap<String, Integer> listOfBookingDates) {
         this.hostelName = hostelName;
         this.city = city;
         this.address = address;
@@ -93,11 +92,11 @@ public class HostelCard {
         this.rating = rating;
     }
 
-    public HashMap<Date, Integer> getListOfBookingDates() {
+    public HashMap<String, Integer> getListOfBookingDates() {
         return listOfBookingDates;
     }
 
-    public void setListOfBookingDates(HashMap<Date, Integer> listOfBookingDates) {
+    public void setListOfBookingDates(HashMap<String, Integer> listOfBookingDates) {
         this.listOfBookingDates = listOfBookingDates;
     }
 
