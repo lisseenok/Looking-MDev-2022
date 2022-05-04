@@ -103,7 +103,7 @@
                     android:textColor="?attr/colorPrimary" />
 
                 <TextView
-                    android:id="@+id/hostelCardDescriptionText"
+                    android:id="@+id/hostelCardShortDescriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"

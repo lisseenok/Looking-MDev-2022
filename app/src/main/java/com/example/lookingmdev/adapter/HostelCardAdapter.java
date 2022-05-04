@@ -61,9 +61,9 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         } else if (rating > 7.5) {
             holder.hostelCardRattingText.setText("Хорошо");
         }
-        holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + " " + hostelCards.get(position).getAddress()));
-        holder.hostelCardDescriptionText.setText(hostelCards.get(position).getShortDescription());
-        holder.hostelCardAmountOfHostelRoomsText.setText((hostelCards.get(position).getAmountOfHostelRooms() + " номеров в отеле"));
+        holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + ", " + hostelCards.get(position).getAddress()));
+        holder.hostelCardShortDescriptionText.setText(hostelCards.get(position).getShortDescription());
+        holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
 
@@ -75,7 +75,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
                 MainActivity.hostelCard = hostelCards.get(position);
                 MainActivity.searchState = 2;
 //                Bundle bundle = new Bundle();
-
+                System.out.println(MainActivity.hostelCard.getListOfBookingDates());
                 // создаем фрагмент с отелем
                 MainActivity.hostelPageFragment = new HostelPageFragment();
 
@@ -108,7 +108,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
         ImageView hostelCardImage;
         TextView hostelCardNameText, hostelCardRatting, hostelCardRattingText, hostelCardAddressText,
-                hostelCardDescriptionText, hostelCardAmountOfHostelRoomsText, hostelCardPriceText;
+                hostelCardShortDescriptionText, hostelCardAmountOfHostelRoomsText, hostelCardPriceText;
 
 
 
@@ -120,7 +120,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             hostelCardRatting = itemView.findViewById(R.id.hostelCardRatting);
             hostelCardRattingText = itemView.findViewById(R.id.hostelCardRattingText);
             hostelCardAddressText = itemView.findViewById(R.id.hostelCardAddressText);
-            hostelCardDescriptionText = itemView.findViewById(R.id.hostelCardDescriptionText);
+            hostelCardShortDescriptionText = itemView.findViewById(R.id.hostelCardShortDescriptionText);
             hostelCardAmountOfHostelRoomsText = itemView.findViewById(R.id.hostelCardAmountOfHostelRoomsText);
             hostelCardPriceText = itemView.findViewById(R.id.hostelCardPriceText);
 
