@@ -55,12 +55,14 @@ public class HostelPageFragment extends Fragment {
         TextView hostelAddress = view.findViewById(R.id.hostelAddress);
         TextView hostelFullDescription = view.findViewById(R.id.hostelFullDescription);
 
+
         int image = getContext().getResources().getIdentifier(hostelCard.getImage(), "drawable", getContext().getPackageName());
         hostelImage.setImageResource(image);
 
         // устанавливаем поля
         hostelName.setText(hostelCard.getHostelName());
         hostelTitle.setText(hostelCard.getHostelName());
+        hostelFullDescription.setText(hostelCard.getFullDescription());
         hostelRatting.setText((String.valueOf(hostelCard.getRating())));
         hostelStartDate.setText(String.format("%s, %s %s", startWeekDay, MainActivity.startDay, startMonth));
         hostelEndDate.setText(String.format("%s, %s %s", endWeekDay, MainActivity.endDay, endMonth));
@@ -77,7 +79,7 @@ public class HostelPageFragment extends Fragment {
                     ": " + MainActivity.children;
         }
         hostelQuests.setText(MainActivity.visitors);
-        hostelAddress.setText(MainActivity.city);
+        hostelAddress.setText((hostelCard.getCity() + ", " + hostelCard.getAddress()));
 
 
         return view;

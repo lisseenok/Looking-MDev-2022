@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
         // инициализируем бд
         databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY);
 
-        ServerConnector serverConnector = new ServerConnector();
-        serverConnector.pushHostelsToServer();
+//        ServerConnector serverConnector = new ServerConnector();
+//        serverConnector.pushHostelsToServer();
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
 

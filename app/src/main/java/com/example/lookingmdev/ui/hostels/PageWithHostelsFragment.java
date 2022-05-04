@@ -58,6 +58,8 @@ public class PageWithHostelsFragment extends Fragment {
 
         getHostelsFromServer(view);
 
+        // устанавливаем в самом начале
+        setAmountOfHostels(view);
 
         setHostelsRecycler(hostelList, view);
         return view;
@@ -84,13 +86,17 @@ public class PageWithHostelsFragment extends Fragment {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
-
+                    // сортировка по городам
+                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city)) {
                     // добавляем только если объект есть (вдруг ошибки в бд)
-                    assert hostelCard != null;
+//                    assert hostelCard != null;
                     hostelList.add(hostelCard);
                     amountOfHostels += 1;
+                    }
                 }
-                setAmountOfHostels(view);
+                // нужна проверка, если вдруг данные поменяются на сервере, то у нас не должно крашиться приложение, если мы на другой странице
+                if (MainActivity.searchState == 1)
+                    setAmountOfHostels(view);
 
                 // сообщаем адаптеру, что данные поменялись
                 hostelCardAdapter.notifyDataSetChanged();
