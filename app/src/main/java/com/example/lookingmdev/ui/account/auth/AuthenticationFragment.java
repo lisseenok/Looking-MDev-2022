@@ -1,7 +1,10 @@
 package com.example.lookingmdev.ui.account.auth;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +14,41 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
+import com.example.lookingmdev.databinding.FragmentAuthenticationBinding;
+import com.example.lookingmdev.databinding.FragmentEmailAuthBinding;
+import com.example.lookingmdev.databinding.FragmentGoogleAuthBinding;
+import com.example.lookingmdev.ui.account.AccountFragment;
+import com.google.android.gms.auth.api.identity.SignInCredential;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class AuthenticationFragment extends Fragment {
 
     private AuthenticationViewModel mViewModel;
+    private FragmentAuthenticationBinding binding;
+
+    private Button createAccountButton;
+    private Button signWithGoogleButton;
+    private Button signWithEmailButton;
+
+    GoogleSignInOptions googleSignInOptions;
+    GoogleSignInClient googleSignInClient;
+
+    // переменная с домашним фрагментом аккаунта (переходим сюда при удачной авторизации)
+    private AccountFragment accountFragment;
 
     public static AuthenticationFragment newInstance() {
         return new AuthenticationFragment();
@@ -25,14 +57,16 @@ public class AuthenticationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_authentication, container, false);
+        binding = FragmentAuthenticationBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        createAccountButton = root.findViewById(R.id.create_account_button);
+        signWithGoogleButton = root.findViewById(R.id.sign_with_google_button);
+        signWithEmailButton = root.findViewById(R.id.sign_with_email_button);
+
+
+        return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AuthenticationViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }
