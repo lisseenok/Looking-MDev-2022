@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lookingmdev.R;
+import com.example.lookingmdev.databinding.FragmentGoogleAuthBinding;
 
 public class GoogleAuthFragment extends Fragment {
 
     private GoogleAuthViewModel mViewModel;
+    private FragmentGoogleAuthBinding binding;
 
     public static GoogleAuthFragment newInstance() {
         return new GoogleAuthFragment();
