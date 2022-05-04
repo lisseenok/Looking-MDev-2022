@@ -59,8 +59,8 @@ public class HostelPageFragment extends Fragment {
         hostelImage.setImageResource(image);
 
         // устанавливаем поля
-        hostelName.setText(hostelCard.getName());
-        hostelTitle.setText(hostelCard.getName());
+        hostelName.setText(hostelCard.getHostelName());
+        hostelTitle.setText(hostelCard.getHostelName());
         hostelRatting.setText((String.valueOf(hostelCard.getRating())));
         hostelStartDate.setText(String.format("%s, %s %s", startWeekDay, MainActivity.startDay, startMonth));
         hostelEndDate.setText(String.format("%s, %s %s", endWeekDay, MainActivity.endDay, endMonth));

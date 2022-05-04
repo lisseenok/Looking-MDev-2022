@@ -49,7 +49,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         // holder - дизайн каждого отдельного элемента - это объект класса CourseViewHolder, где лежат все элементы, помещенные в поля
 
         // устанавливаем текст карточке в соответствии с данными текущего объекта из массива объектов
-        holder.hostelCardNameText.setText(hostelCards.get(position).getName());
+        holder.hostelCardNameText.setText(hostelCards.get(position).getHostelName());
         holder.hostelCardRatting.setText("" + hostelCards.get(position).getRating());
         double rating = hostelCards.get(position).getRating();
         if (rating > 9) {
@@ -61,10 +61,10 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         } else if (rating > 7.5) {
             holder.hostelCardRattingText.setText("Хорошо");
         }
-        holder.hostelCardAddressText.setText(hostelCards.get(position).getAddress());
+        holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + " " + hostelCards.get(position).getAddress()));
         holder.hostelCardDescriptionText.setText(hostelCards.get(position).getShortDescription());
-        holder.hostelCardCharacteristicsText.setText(hostelCards.get(position).getCharacteristics());
-        holder.hostelCardPriceText.setText(hostelCards.get(position).getPrice() + " ₽");
+        holder.hostelCardAmountOfHostelRoomsText.setText((hostelCards.get(position).getAmountOfHostelRooms() + " номеров в отеле"));
+        holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
 
         // обрабатываем нажатие на карточку
@@ -108,7 +108,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
         ImageView hostelCardImage;
         TextView hostelCardNameText, hostelCardRatting, hostelCardRattingText, hostelCardAddressText,
-                hostelCardDescriptionText, hostelCardCharacteristicsText, hostelCardPriceText;
+                hostelCardDescriptionText, hostelCardAmountOfHostelRoomsText, hostelCardPriceText;
 
 
 
@@ -121,7 +121,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             hostelCardRattingText = itemView.findViewById(R.id.hostelCardRattingText);
             hostelCardAddressText = itemView.findViewById(R.id.hostelCardAddressText);
             hostelCardDescriptionText = itemView.findViewById(R.id.hostelCardDescriptionText);
-            hostelCardCharacteristicsText = itemView.findViewById(R.id.hostelCardCharacteristicsText);
+            hostelCardAmountOfHostelRoomsText = itemView.findViewById(R.id.hostelCardAmountOfHostelRoomsText);
             hostelCardPriceText = itemView.findViewById(R.id.hostelCardPriceText);
 
         }

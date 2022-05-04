@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
 import com.example.lookingmdev.model.HostelCard;
+import com.example.lookingmdev.server.ServerConnector;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.account.create.CreateAccountFragment;
@@ -36,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private static boolean created = false;  // запущено ли приложение
 
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO create getters/setters
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, city, date, visitors;
+
     public static int rooms, adults, children;
     public static List<Date> selectedDates;
     public static HostelCard hostelCard;
@@ -93,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        ServerConnector serverConnector = new ServerConnector();
+        serverConnector.pushHostelsToServer();
 
         // хз че за биндинг, еще не разбирался
         com.example.lookingmdev.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());

@@ -1,47 +1,48 @@
 package com.example.lookingmdev.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
 public class HostelCard {
-    String id, name, address, image, shortDescription, characteristics;
+    String hostelName, city, address, image, shortDescription, fullDescription;
     int price;
     double rating;
+    HashMap<Date, Integer> listOfBookingDates;
+    int amountOfHostelRooms;
 
-    public HostelCard(){
+    public HostelCard() {
 
     }
 
-    public HostelCard(String id, String name, String address, String image, String shortDescription, String characteristics, int price, double rating) {
-        this.id = id;
-        this.name = name;
+    public HostelCard(String hostelName, String city, String address, String image, String shortDescription, String fullDescription, int amountOfHostelRooms, int price, double rating, HashMap<Date, Integer> listOfBookingDates) {
+        this.hostelName = hostelName;
+        this.city = city;
         this.address = address;
         this.image = image;
         this.shortDescription = shortDescription;
-        this.characteristics = characteristics;
+        this.fullDescription = fullDescription;
+        this.amountOfHostelRooms = amountOfHostelRooms;
         this.price = price;
         this.rating = rating;
+        this.listOfBookingDates = listOfBookingDates;
     }
 
-    public String getId() {
-        return id;
+    public String getHostelName() {
+        return hostelName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setHostelName(String hostelName) {
+        this.hostelName = hostelName;
     }
 
-    public String getImage() {
-        return image;
+    public String getCity() {
+        return city;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
- 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getAddress() {
@@ -52,6 +53,14 @@ public class HostelCard {
         this.address = address;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getShortDescription() {
         return shortDescription;
     }
@@ -60,12 +69,12 @@ public class HostelCard {
         this.shortDescription = shortDescription;
     }
 
-    public String getCharacteristics() {
-        return characteristics;
+    public String getFullDescription() {
+        return fullDescription;
     }
 
-    public void setCharacteristics(String characteristics) {
-        this.characteristics = characteristics;
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
     }
 
     public int getPrice() {
@@ -83,4 +92,21 @@ public class HostelCard {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    public HashMap<Date, Integer> getListOfBookingDates() {
+        return listOfBookingDates;
+    }
+
+    public void setListOfBookingDates(HashMap<Date, Integer> listOfBookingDates) {
+        this.listOfBookingDates = listOfBookingDates;
+    }
+
+    public int getAmountOfHostelRooms() {
+        return amountOfHostelRooms;
+    }
+
+    public void setAmountOfHostelRooms(int amountOfHostelRooms) {
+        this.amountOfHostelRooms = amountOfHostelRooms;
+    }
 }
+
