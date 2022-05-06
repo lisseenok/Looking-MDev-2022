@@ -90,8 +90,8 @@ public class PageWithHostelsFragment extends Fragment {
                     if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city)) {
                     // добавляем только если объект есть (вдруг ошибки в бд)
 //                    assert hostelCard != null;
-                    hostelList.add(hostelCard);
-                    amountOfHostels += 1;
+                        hostelList.add(hostelCard);
+                        amountOfHostels += 1;
                     }
                 }
                 // нужна проверка, если вдруг данные поменяются на сервере, то у нас не должно крашиться приложение, если мы на другой странице
