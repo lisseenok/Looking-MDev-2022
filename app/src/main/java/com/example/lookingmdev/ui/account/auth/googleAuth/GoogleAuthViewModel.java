@@ -1,4 +1,4 @@
-package com.example.lookingmdev.ui.account.googleAuth;
+package com.example.lookingmdev.ui.account.auth.googleAuth;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,10 +1,8 @@
-package com.example.lookingmdev.ui.account.emailAuth;
+package com.example.lookingmdev.ui.account.auth.emailAuth;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -19,18 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
-import com.example.lookingmdev.databinding.FragmentCreateAccountBinding;
 import com.example.lookingmdev.databinding.FragmentEmailAuthBinding;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class EmailAuthFragment extends Fragment {
 

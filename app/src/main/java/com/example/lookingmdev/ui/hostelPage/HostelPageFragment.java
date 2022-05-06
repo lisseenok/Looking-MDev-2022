@@ -2,6 +2,7 @@ package com.example.lookingmdev.ui.hostelPage;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.methods.Methods;
+
+import java.util.Date;
 
 public class HostelPageFragment extends Fragment {
     private HostelPageViewModel mViewModel;
@@ -59,7 +63,7 @@ public class HostelPageFragment extends Fragment {
         int image = getContext().getResources().getIdentifier(hostelCard.getImage(), "drawable", getContext().getPackageName());
         hostelImage.setImageResource(image);
 
-        // устанавливаем поля
+        // устанавливаем текстовые значения поля
         hostelName.setText(hostelCard.getHostelName());
         hostelTitle.setText(hostelCard.getHostelName());
         hostelFullDescription.setText(hostelCard.getFullDescription());
@@ -80,6 +84,22 @@ public class HostelPageFragment extends Fragment {
         }
         hostelQuests.setText(MainActivity.visitors);
         hostelAddress.setText((hostelCard.getCity() + ", " + hostelCard.getAddress()));
+
+        // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
+        // TODO integrate this code to filter block in pageWithHostels
+        for (Date selectedDate : MainActivity.selectedDates) {
+            @SuppressLint("DefaultLocale")
+            String key = String.format("%d %d %d",
+                    (selectedDate.getYear() + 1900),
+                    (selectedDate.getMonth() + 1),
+                    (selectedDate.getDate()));
+//            System.out.println((MainActivity.hostelCard.getListOfBookingDates().containsKey(key) + " " + key));
+            if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key) && MainActivity.hostelCard.getListOfBookingDates().get(key) == 0) {
+
+                Toast.makeText(view.getContext(), "Данный отель не может предоставить жилье на данный период", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
 
 
         return view;

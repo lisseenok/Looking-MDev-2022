@@ -1,4 +1,4 @@
-package com.example.lookingmdev.ui.account.create;
+package com.example.lookingmdev.ui.account.auth.create;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

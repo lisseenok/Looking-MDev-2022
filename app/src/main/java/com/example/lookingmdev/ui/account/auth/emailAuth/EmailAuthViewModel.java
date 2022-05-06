@@ -1,4 +1,4 @@
-package com.example.lookingmdev.ui.account.emailAuth;
+package com.example.lookingmdev.ui.account.auth.emailAuth;
 
 import androidx.lifecycle.ViewModel;
 
