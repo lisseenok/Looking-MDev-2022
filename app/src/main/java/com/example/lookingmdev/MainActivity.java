@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         // получаем ответ, авторизован ли пользователь
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
+
         // firebaseUser = null когда пользователь не авторизован
         if (firebaseUser == null) isAuth = false;
         else isAuth = true;
@@ -178,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                             case 0:
                                 replaceFragment(accountFragment);
                                 break;
-                            // TODO check this
                             case 1:
                             case 2: // тут я решил все равно открывать фрагмент авторизации даже если вышли на фрагменте создать/войти
                                 // открываем фрагмент авторизации только если не авторизованы

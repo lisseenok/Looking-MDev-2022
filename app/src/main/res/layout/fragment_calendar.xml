@@ -30,11 +30,15 @@
             android:paddingBottom="16dp"
             android:scrollbarStyle="outsideOverlay"
 
+
             android:background="?attr/backgroundCalendarColor"
             app:tsquare_dayTextColor="?attr/colorPrimary"
             app:tsquare_dividerColor="#00000000"
             app:tsquare_headerTextColor="?attr/colorPrimary"
-            app:tsquare_titleTextColor="?attr/colorPrimary">
+            app:tsquare_titleTextColor="?attr/colorPrimary"
+            android:forceHasOverlappingRendering="false">
+
+
 
         </com.savvi.rangedatepicker.CalendarPickerView>
 
