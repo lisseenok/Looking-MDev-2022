@@ -80,6 +80,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="8.1"
+
                             android:textColor="@color/white" />
                     </androidx.cardview.widget.CardView>
 
@@ -88,9 +89,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
-                        android:gravity="center"
+                        android:gravity="center|start"
+                        android:layout_weight="1"
                         android:text="Очень хорошо"
                         android:textColor="?attr/colorPrimary" />
+
+                    <ImageView
+                        android:id="@+id/iconHeart"
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:srcCompat="@drawable/ic_heart_border" />
                 </LinearLayout>
 
                 <TextView
@@ -99,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|left"
-                    android:text="Людвигсфорштадт · 1,4 км от центра"
+                    android:text="Людвигсфорштадт, пионерская 18"
                     android:textColor="?attr/colorPrimary" />
 
                 <TextView

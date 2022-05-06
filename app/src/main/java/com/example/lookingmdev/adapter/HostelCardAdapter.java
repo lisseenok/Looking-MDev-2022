@@ -66,6 +66,12 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
+        holder.iconHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Нажали на сердечко");
+            }
+        });
 
         // обрабатываем нажатие на карточку
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +112,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
     public static final class HostelCardViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView hostelCardImage;
+        ImageView hostelCardImage, iconHeart;
         TextView hostelCardNameText, hostelCardRatting, hostelCardRattingText, hostelCardAddressText,
                 hostelCardShortDescriptionText, hostelCardAmountOfHostelRoomsText, hostelCardPriceText;
 
@@ -115,6 +121,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         public HostelCardViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            iconHeart = itemView.findViewById(R.id.iconHeart);
             hostelCardImage = itemView.findViewById(R.id.hostelCardImage);
             hostelCardNameText = itemView.findViewById(R.id.hostelCardNameText);
             hostelCardRatting = itemView.findViewById(R.id.hostelCardRatting);
