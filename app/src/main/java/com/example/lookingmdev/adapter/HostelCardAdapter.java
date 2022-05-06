@@ -81,7 +81,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
                 MainActivity.hostelCard = hostelCards.get(position);
                 MainActivity.searchState = 2;
 //                Bundle bundle = new Bundle();
-                System.out.println(MainActivity.hostelCard.getListOfBookingDates());
                 // создаем фрагмент с отелем
                 MainActivity.hostelPageFragment = new HostelPageFragment();
 

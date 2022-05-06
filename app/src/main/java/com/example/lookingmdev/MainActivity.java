@@ -11,12 +11,10 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
 import com.example.lookingmdev.model.HostelCard;
-import com.example.lookingmdev.server.ServerConnector;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
-import com.example.lookingmdev.ui.account.create.CreateAccountFragment;
-import com.example.lookingmdev.ui.account.emailAuth.EmailAuthFragment;
-import com.example.lookingmdev.ui.account.googleAuth.GoogleAuthFragment;
+import com.example.lookingmdev.ui.account.auth.create.CreateAccountFragment;
+import com.example.lookingmdev.ui.account.auth.emailAuth.EmailAuthFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.destination.DestinationFragment;
