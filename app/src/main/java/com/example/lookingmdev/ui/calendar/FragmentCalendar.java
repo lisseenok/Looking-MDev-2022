@@ -51,9 +51,9 @@ public class FragmentCalendar extends Fragment {
 
         // инициализация календаря, я особо тут не вдавался в подробности
         Calendar pastYear = Calendar.getInstance();
-        pastYear.add(Calendar.YEAR, -1);
+        pastYear.add(Calendar.YEAR, 0);
         Calendar nextYear = Calendar.getInstance();
-        nextYear.add(Calendar.DATE,30 * 8);  // знаю, что тут задается количество месяцев наперед
+        nextYear.add(Calendar.MONTH, 8);  // знаю, что тут задается количество месяцев наперед
 
 
         // нашли календарь в фрагменте
@@ -64,8 +64,7 @@ public class FragmentCalendar extends Fragment {
         // и добавляем в нее первый и последний элементы массива дат
         if (MainActivity.endDay == null) {
         calendar.init(pastYear.getTime(), nextYear.getTime()) //
-                .inMode(CalendarPickerView.SelectionMode.RANGE)
-                .withSelectedDate(new Date());
+                .inMode(CalendarPickerView.SelectionMode.RANGE);
         calendar.setTypeface(Typeface.SANS_SERIF);
         } else {
             Collection<Date> collection = new ArrayList<>();
