@@ -21,7 +21,6 @@ import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.databinding.FragmentAuthenticationBinding;
 import com.example.lookingmdev.databinding.FragmentEmailAuthBinding;
-import com.example.lookingmdev.databinding.FragmentGoogleAuthBinding;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -41,7 +40,7 @@ public class AuthenticationFragment extends Fragment {
     private FragmentAuthenticationBinding binding;
 
     private Button createAccountButton;
-    private Button signWithGoogleButton;
+    private Button signWithPhone;
     private Button signWithEmailButton;
 
     GoogleSignInOptions googleSignInOptions;
@@ -61,7 +60,7 @@ public class AuthenticationFragment extends Fragment {
         View root = binding.getRoot();
 
         createAccountButton = root.findViewById(R.id.create_account_button);
-        signWithGoogleButton = root.findViewById(R.id.sign_with_google_button);
+        signWithPhone = root.findViewById(R.id.sign_with_phone_button);
         signWithEmailButton = root.findViewById(R.id.sign_with_email_button);
 
 

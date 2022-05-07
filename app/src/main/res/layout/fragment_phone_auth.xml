@@ -17,76 +17,72 @@
 
         <TextView
             android:id="@+id/hostelTitle"
-            style="@style/ToolbarText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textColor="?attr/toolbarTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/App_name"
+            android:text="@string/singingIn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/close_auth_imageButton"
+            android:id="@+id/back_email_imageButton"
             style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="15dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:backgroundTint="?attr/colorOnBackground"
             android:onClick="changeFragment"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/hostelTitle"
+            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_cross" />
+            app:layout_constraintVertical_bias="0.583"
+            app:srcCompat="@drawable/ic_angle_left" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/create_account_button"
 
-        style="@style/AuthButtons"
-        android:layout_marginTop="84dp"
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/greyLine"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        tools:layout_editor_absoluteX="0dp" />
 
-        android:onClick="changeFragment"
-        android:text="@string/createAccount"
+    <EditText
+        android:id="@+id/editTextPhone"
+        style="@style/SingOutEditTexts"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="@string/enterPhone"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
-    <Button
-        android:id="@+id/sign_with_phone_button"
-
-        style="@style/AuthButtons"
-        android:layout_marginTop="120dp"
-
-        android:onClick="changeFragment"
-        android:text="@string/signWithPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_account_button" />
 
     <Button
-        android:id="@+id/sign_with_email_button"
-
-        style="@style/AuthButtons"
-        android:layout_marginTop="10dp"
-
-        android:onClick="changeFragment"
-        android:text="@string/signWithEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_with_phone_button"
-        tools:ignore="MissingConstraints" />
-
-    <View
+        android:id="@+id/sign_in_with_phone_button"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="0dp"
-        android:background="@color/greyLine"
-        app:layout_constraintBottom_toTopOf="@+id/create_account_button"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/buttonBlue"
+        android:fontFamily="sans-serif"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
