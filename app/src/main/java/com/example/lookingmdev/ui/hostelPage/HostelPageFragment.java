@@ -1,6 +1,7 @@
 package com.example.lookingmdev.ui.hostelPage;
 
 import static com.example.lookingmdev.MainActivity.databaseReference;
+import static com.example.lookingmdev.MainActivity.isAuth;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -103,52 +104,57 @@ public class HostelPageFragment extends Fragment {
         hostelApplyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
-                // TODO integrate this code to filter block in pageWithHostels
-                // проверяем подходит ли все еще отель для бронирования (проверка на случай, если данные уже обновились)
+                if (MainActivity.isAuth) {
+                    // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
+                    // проверяем подходит ли все еще отель для бронирования (проверка на случай, если данные уже обновились)
 
-                for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
-                    @SuppressLint("DefaultLocale")
-                    String key = String.format("%d %d %d - %d %d %d",
-                            (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
-                            (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
-                             MainActivity.selectedDates.get(i - 1).getDate(),
-                            (MainActivity.selectedDates.get(i).getYear() + 1900),
-                            (MainActivity.selectedDates.get(i).getMonth() + 1),
-                             MainActivity.selectedDates.get(i).getDate());
+                    for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+                        @SuppressLint("DefaultLocale")
+                        String key = String.format("%d %d %d - %d %d %d",
+                                (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                                (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                                 MainActivity.selectedDates.get(i - 1).getDate(),
+                                (MainActivity.selectedDates.get(i).getYear() + 1900),
+                                (MainActivity.selectedDates.get(i).getMonth() + 1),
+                                 MainActivity.selectedDates.get(i).getDate());
 
-                    if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key) && MainActivity.hostelCard.getListOfBookingDates().get(key) == 0) {
-                        Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
-                        hostelApplyButton.setEnabled(false);
-                        hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
-                        return;
+                        if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key) && MainActivity.hostelCard.getListOfBookingDates().get(key) == 0) {
+                            Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
+                            hostelApplyButton.setEnabled(false);
+                            hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
+                            return;
+                        }
                     }
-                }
 
 
-                // тут уже обновляем значение локального словаря и пушаем его в конце в фб
-                for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
-                    @SuppressLint("DefaultLocale")
-                    String key = String.format("%d %d %d - %d %d %d",
-                            (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
-                            (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
-                            MainActivity.selectedDates.get(i - 1).getDate(),
-                            (MainActivity.selectedDates.get(i).getYear() + 1900),
-                            (MainActivity.selectedDates.get(i).getMonth() + 1),
-                            MainActivity.selectedDates.get(i).getDate());
+                    // тут уже обновляем значение локального словаря и пушаем его в конце в фб
+                    for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+                        @SuppressLint("DefaultLocale")
+                        String key = String.format("%d %d %d - %d %d %d",
+                                (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                                (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                                MainActivity.selectedDates.get(i - 1).getDate(),
+                                (MainActivity.selectedDates.get(i).getYear() + 1900),
+                                (MainActivity.selectedDates.get(i).getMonth() + 1),
+                                MainActivity.selectedDates.get(i).getDate());
 
-                    // если такая дата уже есть, то (она точно больше нуля - проверка выше)
-                    if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key)) {
-                        MainActivity.hostelCard.getListOfBookingDates().put(key, MainActivity.hostelCard.getListOfBookingDates().get(key) - 1);
+                        // если такая дата уже есть, то (она точно больше нуля - проверка выше)
+                        if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key)) {
+                            MainActivity.hostelCard.getListOfBookingDates().put(key, MainActivity.hostelCard.getListOfBookingDates().get(key) - 1);
+                        }
+                        // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
+                        else {
+                            MainActivity.hostelCard.getListOfBookingDates().put(key, MainActivity.hostelCard.getAmountOfHostelRooms() - 1);
+                        }
+                        System.out.println(MainActivity.hostelCard.getListOfBookingDates());
+
                     }
-                    // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
-                    else {
-                        MainActivity.hostelCard.getListOfBookingDates().put(key, MainActivity.hostelCard.getAmountOfHostelRooms() - 1);
-                    }
-                    System.out.println(MainActivity.hostelCard.getListOfBookingDates());
+                    Toast.makeText(view.getContext(), "Успешно забранировано, в ближайшее время с вами свяжется представитель отеля", Toast.LENGTH_LONG).show();
+                    databaseReference.child(MainActivity.hostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.hostelCard.getListOfBookingDates());
 
-                }
-                databaseReference.child(MainActivity.hostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.hostelCard.getListOfBookingDates());
+                } else
+                    Toast.makeText(view.getContext(), "Сначала необходимо войти в свой аккаунт", Toast.LENGTH_SHORT).show();
+
             }
         });
 
