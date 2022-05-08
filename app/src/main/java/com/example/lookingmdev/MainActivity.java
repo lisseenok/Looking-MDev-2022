@@ -15,6 +15,7 @@ import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.account.auth.create.CreateAccountFragment;
+import com.example.lookingmdev.ui.account.auth.editAccount.EditAccountFragment;
 import com.example.lookingmdev.ui.account.auth.emailAuth.EmailAuthFragment;
 import com.example.lookingmdev.ui.account.auth.phoneAuth.PhoneAuthFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
@@ -362,6 +363,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.back_create_imageButtonReg:
                 accountState = 1;
                 replaceFragment(authenticationFragment, "right");
+                break;
+
+            case R.id.edit_account_button:
+                //accountState = ?
+                replaceFragment(new EditAccountFragment(), "up");
+                break;
+
+            // нажали назад на странице редактирования аккаунта
+            case R.id.back_editing_imageButton:
+                accountState = 0;
+                replaceFragment(accountFragment, "down");
                 break;
 
             // нажали назад на странице отелей
