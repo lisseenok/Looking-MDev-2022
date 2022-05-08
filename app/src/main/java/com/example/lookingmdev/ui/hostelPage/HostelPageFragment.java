@@ -3,6 +3,7 @@ package com.example.lookingmdev.ui.hostelPage;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +23,10 @@ import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.methods.Methods;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class HostelPageFragment extends Fragment {
     private HostelPageViewModel mViewModel;
@@ -58,7 +63,7 @@ public class HostelPageFragment extends Fragment {
         TextView hostelQuests = view.findViewById(R.id.hostelQuests);
         TextView hostelAddress = view.findViewById(R.id.hostelAddress);
         TextView hostelFullDescription = view.findViewById(R.id.hostelFullDescription);
-
+        Button hostelApplyButton = view.findViewById(R.id.hostelApplyButton);
 
         int image = getContext().getResources().getIdentifier(hostelCard.getImage(), "drawable", getContext().getPackageName());
         hostelImage.setImageResource(image);
@@ -85,6 +90,7 @@ public class HostelPageFragment extends Fragment {
         hostelQuests.setText(MainActivity.visitors);
         hostelAddress.setText((hostelCard.getCity() + ", " + hostelCard.getAddress()));
 
+<<<<<<< Updated upstream
         // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
         // TODO integrate this code to filter block in pageWithHostels
         for (Date selectedDate : MainActivity.selectedDates) {
@@ -101,6 +107,65 @@ public class HostelPageFragment extends Fragment {
             }
         }
 
+=======
+
+
+
+        //databaseReference.child("-N1FTh65-DwsrqJk8ETb").child("address").setValue("23");
+>>>>>>> Stashed changes
+
+        // навешиваем слушатель кнопки забронировать
+        hostelApplyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
+                // TODO integrate this code to filter block in pageWithHostels
+                // проверяем подходит ли все еще отель для бронирования (проверка на случай, если данные уже обновились)
+
+                for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+                    @SuppressLint("DefaultLocale")
+                    String key = String.format("%d %d %d - %d %d %d",
+                            (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                            (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                             MainActivity.selectedDates.get(i - 1).getDate(),
+                            (MainActivity.selectedDates.get(i).getYear() + 1900),
+                            (MainActivity.selectedDates.get(i).getMonth() + 1),
+                             MainActivity.selectedDates.get(i).getDate());
+
+                    if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key) && MainActivity.hostelCard.getListOfBookingDates().get(key) == 0) {
+                        Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
+                        hostelApplyButton.setEnabled(false);
+                        hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
+                        return;
+                    }
+                }
+
+
+                // тут уже обновляем значение локального словаря и пушаем его в конце в фб
+                for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+                    @SuppressLint("DefaultLocale")
+                    String key = String.format("%d %d %d - %d %d %d",
+                            (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                            (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                            MainActivity.selectedDates.get(i - 1).getDate(),
+                            (MainActivity.selectedDates.get(i).getYear() + 1900),
+                            (MainActivity.selectedDates.get(i).getMonth() + 1),
+                            MainActivity.selectedDates.get(i).getDate());
+
+                    // если такая дата уже есть, то (она точно больше нуля - проверка выше)
+                    if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key)) {
+                        MainActivity.hostelCard.getListOfBookingDates().put(key, MainActivity.hostelCard.getListOfBookingDates().get(key) - 1);
+                    }
+                    // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
+                    else {
+                        MainActivity.hostelCard.getListOfBookingDates().put(key, MainActivity.hostelCard.getAmountOfHostelRooms() - 1);
+                    }
+                    System.out.println(MainActivity.hostelCard.getListOfBookingDates());
+
+                }
+                databaseReference.child(MainActivity.hostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.hostelCard.getListOfBookingDates());
+            }
+        });
 
         return view;
     }

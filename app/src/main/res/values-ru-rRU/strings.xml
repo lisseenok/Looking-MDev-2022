@@ -62,5 +62,6 @@
     <string name="checkOut">Регистрация выезда</string>
     <string name="roomsAndQuests">Число номеров и гостей</string>
     <string name="description">Описание</string>
+    <string name="reserve">Забронировать</string>
 
 </resources>

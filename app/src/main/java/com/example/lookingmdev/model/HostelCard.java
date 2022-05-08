@@ -10,7 +10,8 @@ public class HostelCard {
     int price;
     double rating;
     HashMap<String, Integer> listOfBookingDates;
-    int amountOfHostelRooms;
+    int amountOfHostelRooms, currentAmountOfHostelRooms;
+
 
     public HostelCard() {
     }
@@ -26,6 +27,14 @@ public class HostelCard {
         this.price = price;
         this.rating = rating;
         this.listOfBookingDates = listOfBookingDates;
+    }
+
+    public void setCurrentAmountOfHostelRooms(int currentAmountOfHostelRooms) {
+        this.currentAmountOfHostelRooms = currentAmountOfHostelRooms;
+    }
+
+    public int getCurrentAmountOfHostelRooms() {
+        return currentAmountOfHostelRooms;
     }
 
     public String getHostelName() {
