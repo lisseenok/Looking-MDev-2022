@@ -15,6 +15,7 @@ import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.account.auth.create.CreateAccountFragment;
 import com.example.lookingmdev.ui.account.auth.emailAuth.EmailAuthFragment;
+import com.example.lookingmdev.ui.account.auth.phoneAuth.PhoneAuthFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.destination.DestinationFragment;
@@ -114,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
 //        serverConnector.pushHostelsToServer();
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
+
+        // устанавливаем русский язык для смс
+        firebaseAuth.setLanguageCode("ru");
 
         // получаем ответ, авторизован ли пользователь
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -305,12 +309,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             // авторизация через гугл
-            /*
-            case R.id.sign_with_google_button:
+
+            case R.id.sign_with_phone_button:
                 accountState = 2;
-                replaceFragment(new GoogleAuthFragment(), "left");
+                replaceFragment(new PhoneAuthFragment(), "left");
                 break;
-             */
+
 
             // авторизация через email
             case R.id.sign_with_email_button:
