@@ -71,7 +71,7 @@ public class PageWithHostelsFragment extends Fragment {
     private void setAmountOfHostels(View view) {
         sumHostelsText = view.findViewById(R.id.sumHostelsText);
 
-        String text = String.format("%s %d", getResources().getString(R.string.hotelsFound), amountOfHostels);
+        String text = String.format("%s %d", getContext().getResources().getString(R.string.hotelsFound), amountOfHostels);
         sumHostelsText.setText(text);
     }
 

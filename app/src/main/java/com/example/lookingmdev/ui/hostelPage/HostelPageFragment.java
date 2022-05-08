@@ -160,8 +160,8 @@ public class HostelPageFragment extends Fragment {
 
             }
         });
-
         return view;
+
     }
 
     @Override
