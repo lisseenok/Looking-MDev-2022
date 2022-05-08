@@ -78,6 +78,8 @@ public class EmailAuthFragment extends Fragment {
                             Toast.makeText(root.getContext(), "Успешная авторизация", Toast.LENGTH_SHORT).show();
                             // флаг авторизации - true
                             MainActivity.isAuth = true;
+                            MainActivity.firebaseUser = MainActivity.firebaseAuth.getCurrentUser();
+                            MainActivity.getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
                             // делаем переход на домашний фрагмент аккаунта (newInstance() - возвращаем просто новый экземпляр класса)
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

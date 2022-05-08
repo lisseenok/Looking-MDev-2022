@@ -25,15 +25,21 @@ import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,10 +81,19 @@ public class MainActivity extends AppCompatActivity {
     public static DatabaseReference databaseReference;
     public static String HOSTELS_KEY = "Hostels";
 
+    public static DatabaseReference databaseSavedReference;
+    public static String SAVED_KEY = "Saved";
+    // список id, которые лежат в бд
+    public static List<String > listOfUID;
+    // список избранных отелей текущего пользователя
+    public static List<HostelCard> savedHostels;
+
     // переменная, в которой лежат "инструменты авторизации бд"
     public static FirebaseAuth firebaseAuth;
+
     // авторизован ли пользователь (да - true, нет - false)
     public static boolean isAuth;
+    public static FirebaseUser firebaseUser;
 
     SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
@@ -110,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
 
         // инициализируем бд
         databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY);
+        databaseSavedReference = FirebaseDatabase.getInstance().getReference(SAVED_KEY);
+
+        listOfUID = new ArrayList<>();
 
 //        ServerConnector serverConnector = new ServerConnector();
 //        serverConnector.pushHostelsToServer();
@@ -121,13 +139,21 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth.setLanguageCode("ru");
 
         // получаем ответ, авторизован ли пользователь
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         // firebaseUser = null когда пользователь не авторизован
-        if (firebaseUser == null) isAuth = false;
-        else isAuth = true;
+        if (firebaseUser == null){
+            isAuth = false;
+        }
+        else{
+            isAuth = true;
+            MainActivity.getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
+        }
 
+        // получаем список uid
+        getListOfUIDFromServer();
+
+        savedHostels =  new ArrayList<>();
 
         if (!created){
             replaceFragment(searchFragment);
@@ -374,5 +400,71 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment);
         fragmentTransaction.commit();
+    }
+
+    public static void getListOfUIDFromServer(){
+        // метод для получения всех uid в коллеции в список - статическое поле
+
+         //создаем слушатель базы данных
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // приходят данные (в объекте snapshot)
+
+                // проверка пустой ли список отелей
+                if (listOfUID.size() > 0) listOfUID.clear();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    String uid = dataSnapshot.getKey();
+                    // сортировка по городам
+                    if (uid != null) {
+                        listOfUID.add(uid);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        // добавляем в нашу бд слушатель
+        databaseSavedReference.addValueEventListener(valueEventListener);
+    }
+
+
+    public static void getSavedHostelsFromServer(String uid){
+        // создаем слушатель базы данных
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // приходят данные (в объекте snapshot)
+
+                // проверка пустой ли список отелей
+                if (savedHostels.size() > 0) savedHostels.clear();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if (dataSnapshot.getKey().equals(uid)){
+                        GenericTypeIndicator<List<HostelCard>> t = new GenericTypeIndicator<List<HostelCard>>() {};
+                        List<HostelCard> list = dataSnapshot.getValue(t);
+                        for (HostelCard hostelCard : list){
+                            savedHostels.add(hostelCard);
+                        }
+                    }
+
+                }
+
+                // сообщаем адаптеру, что данные поменялись
+                //hostelCardAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        // добавляем в нашу бд слушатель
+        databaseSavedReference.addValueEventListener(valueEventListener);
     }
 }

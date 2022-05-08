@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
     Context context;
     List<HostelCard> hostelCards;
+    List<HostelCard> savedHostels;
 
     public HostelCardAdapter(Context context, List<HostelCard> hostelCards) {
         this.context = context;
@@ -70,6 +72,30 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             @Override
             public void onClick(View view) {
                 System.out.println("Нажали на сердечко");
+            }
+        });
+
+        holder.iconHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(MainActivity.savedHostels);
+                if (MainActivity.firebaseUser != null)
+                // если пользователь авторизован
+                {
+                    if (!MainActivity.listOfUID.isEmpty() && MainActivity.listOfUID.contains(MainActivity.firebaseUser.getUid())){
+                        // есди его uid уже есть в коллекции, то добавляем к уже имеющимуся списку
+
+                        //MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(hostelCards.get(position));
+                    } else {
+                        // если нет - создаем список и добавляем
+//                        savedHostels = new ArrayList<>();
+//                        savedHostels.add(hostelCards.get(position));
+//                        MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(savedHostels);
+                    }
+                } else {
+                    Toast.makeText(context.getApplicationContext(), "Необходимо авторизироваться", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
