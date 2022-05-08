@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println("onCreate");
+
 
 
         // хз че за биндинг, еще не разбирался
@@ -480,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    // метод, удаляющий из объекта savedHostels элемент с именем name
+    // метод, удаляющий из объекта savedHostels элемент с айдишником id
     public static void remove(String id){
         System.out.println(savedHostels.size());
         for (HostelCard item : savedHostels) {

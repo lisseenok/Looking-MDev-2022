@@ -55,8 +55,7 @@ public class PageWithHostelsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-
+        System.out.println("onCreateView");
         View view = inflater.inflate(R.layout.fragment_page_with_hostels, container, false);
 
         getHostelsFromServer(view);
@@ -69,10 +68,13 @@ public class PageWithHostelsFragment extends Fragment {
     }
 
     private void setAmountOfHostels(View view) {
+        // этот метод нужен тк при смене языка все ломается к чертям
+        if(isAdded()){
         sumHostelsText = view.findViewById(R.id.sumHostelsText);
 
-        String text = String.format("%s %d", getContext().getResources().getString(R.string.hotelsFound), amountOfHostels);
+        String text = String.format("%s %d", getResources().getString(R.string.hotelsFound), amountOfHostels);
         sumHostelsText.setText(text);
+        }
     }
 
     // метод проверяет, доступен ли хоть один номер в отеле на эти даты
