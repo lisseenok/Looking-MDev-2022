@@ -55,12 +55,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="10dp"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
                         android:layout_weight="1"
                         android:gravity="center|left"
                         android:text="Boutique Hotel Artrium Munchen"
                         android:textColor="?attr/colorPrimary"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                     <ImageView
                         android:id="@+id/iconHeart"
                         android:layout_marginTop="10dp"
@@ -96,6 +97,7 @@
                         android:id="@+id/hostelCardRattingText"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="sans-serif"
                         android:layout_marginStart="10dp"
                         android:gravity="center|start"
                         android:layout_weight="1"
@@ -108,6 +110,7 @@
                 <TextView
                     android:id="@+id/hostelCardAddressText"
                     android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|left"
@@ -118,6 +121,7 @@
                     android:id="@+id/hostelCardShortDescriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:layout_marginBottom="10dp"
                     android:gravity="center|left"
                     android:text='Двухместный номер "Комфорт" с 1 кроватью и видом на сад'
@@ -128,6 +132,7 @@
                     android:id="@+id/hostelCardAmountOfHostelRoomsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:layout_marginBottom="10dp"
                     android:gravity="center|left"
                     android:text="1 номер в отеле"
@@ -137,7 +142,8 @@
                     android:id="@+id/hostelCardPriceText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
                     android:gravity="center|right"
                     android:text="2655 р"
                     android:textColor="?attr/colorPrimary"

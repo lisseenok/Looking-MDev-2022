@@ -77,7 +77,7 @@ public class DestinationFragment extends Fragment {
                 AppCompatActivity activity = (AppCompatActivity) getContext();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_down, R.anim.slide_out_down);
+                fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.slide_out_down);
                 fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.searchFragment);
                 fragmentTransaction.commit();
             }

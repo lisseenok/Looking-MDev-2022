@@ -336,8 +336,7 @@ public class MainActivity extends AppCompatActivity {
                 accountState = 0;
                 break;
 
-            // авторизация через гугл
-
+            // авторизация через номер телефона
             case R.id.sign_with_phone_button:
                 accountState = 2;
                 replaceFragment(new PhoneAuthFragment(), "left");
@@ -461,7 +460,6 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
-
                 // сообщаем адаптеру, что данные поменялись
                 //hostelCardAdapter.notifyDataSetChanged();
             }
@@ -477,16 +475,16 @@ public class MainActivity extends AppCompatActivity {
     // метод, проверяющий есть ли в каком-то списке List<HostelCard> какой-то объект hostelCard
     public static boolean contains(List<HostelCard> hostelCards, HostelCard hostelCard){
         for (HostelCard item : hostelCards) {
-            if (item.getHostelName().equals(hostelCard.getHostelName())) return true;
+            if (item.getId().equals(hostelCard.getId())) return true;
         }
         return false;
     }
 
     // метод, удаляющий из объекта savedHostels элемент с именем name
-    public static void remove(String name){
+    public static void remove(String id){
         System.out.println(savedHostels.size());
         for (HostelCard item : savedHostels) {
-            if (item.getHostelName().equals(name)){
+            if (item.getId().equals(id)){
                 savedHostels.remove(item);
                 break;
             }
