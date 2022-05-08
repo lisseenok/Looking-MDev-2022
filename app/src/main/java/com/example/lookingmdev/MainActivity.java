@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     // авторизован ли пользователь (да - true, нет - false)
     public static boolean isAuth;
 
-    SearchFragment searchFragment = new SearchFragment();
+    public static SearchFragment searchFragment = new SearchFragment();
     SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
