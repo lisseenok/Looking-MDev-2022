@@ -72,48 +72,48 @@ public class PhoneAuthFragment extends Fragment {
         //signInButton.setEnabled(false);
         //signInButton.setBackgroundColor(Color.parseColor("#808080"));
 
-//        signInButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                PhoneAuthOptions options =
-//                        PhoneAuthOptions.newBuilder(MainActivity.firebaseAuth)
-//                                .setPhoneNumber(phoneEditText.getText().toString())       // Phone number to verify
-//                                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-//                                .setActivity(getActivity())                 // Activity (for callback binding)
-//                                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//                                    @Override
-//                                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-//                                        System.out.println(phoneAuthCredential.getSmsCode());
-//                                        credential = phoneAuthCredential;
-//                                    }
-//
-//                                    @Override
-//                                    public void onVerificationFailed(@NonNull FirebaseException e) {
-//                                        Log.w(TAG, "onVerificationFailed", e);
-//                                    }
-//                                    @Override
-//                                    public void onCodeSent(@NonNull String verificationId,
-//                                                           @NonNull PhoneAuthProvider.ForceResendingToken token) {
-//                                        // The SMS verification code has been sent to the provided phone number, we
-//                                        // now need to ask the user to enter the code and then construct a credential
-//                                        // by combining the code with a verification ID.
-//                                        Log.d(TAG, "onCodeSent:" + verificationId);
-//                                        // Save verification ID and resending token so we can use them later
-//                                        mVerificationId = verificationId;
-//                                        mResendToken = token;
-//
-//                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new SmsCodeFragment(credential));
-//                                        fragmentTransaction.commit();
-//
-//                                    }
-//                                })          // OnVerificationStateChangedCallbacks
-//                                .build();
-//                PhoneAuthProvider.verifyPhoneNumber(options);
-//
-//            }
-//        });
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhoneAuthOptions options =
+                        PhoneAuthOptions.newBuilder(MainActivity.firebaseAuth)
+                                .setPhoneNumber(phoneEditText.getText().toString())       // Phone number to verify
+                                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                                .setActivity(getActivity())                 // Activity (for callback binding)
+                                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                    @Override
+                                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                        System.out.println(phoneAuthCredential.getSmsCode());
+                                        credential = phoneAuthCredential;
+                                    }
+
+                                    @Override
+                                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                                        Log.w(TAG, "onVerificationFailed", e);
+                                    }
+                                    @Override
+                                    public void onCodeSent(@NonNull String verificationId,
+                                                           @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                                        // The SMS verification code has been sent to the provided phone number, we
+                                        // now need to ask the user to enter the code and then construct a credential
+                                        // by combining the code with a verification ID.
+                                        Log.d(TAG, "onCodeSent:" + verificationId);
+                                        // Save verification ID and resending token so we can use them later
+                                        mVerificationId = verificationId;
+                                        mResendToken = token;
+
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new SmsCodeFragment(credential));
+                                        fragmentTransaction.commit();
+
+                                    }
+                                })          // OnVerificationStateChangedCallbacks
+                                .build();
+                PhoneAuthProvider.verifyPhoneNumber(options);
+
+            }
+        });
 
         return root;
     }
