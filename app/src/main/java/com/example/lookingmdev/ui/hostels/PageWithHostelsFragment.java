@@ -90,6 +90,7 @@ public class PageWithHostelsFragment extends Fragment {
                     if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city)) {
                     // добавляем только если объект есть (вдруг ошибки в бд)
 //                    assert hostelCard != null;
+                        hostelCard.setId(dataSnapshot.getKey());
                         hostelList.add(hostelCard);
                         amountOfHostels += 1;
                     }

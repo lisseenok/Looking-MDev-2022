@@ -1,5 +1,7 @@
 package com.example.lookingmdev.ui.hostelPage;
 
+import static com.example.lookingmdev.MainActivity.databaseReference;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
@@ -85,22 +87,24 @@ public class HostelPageFragment extends Fragment {
         hostelQuests.setText(MainActivity.visitors);
         hostelAddress.setText((hostelCard.getCity() + ", " + hostelCard.getAddress()));
 
+
         // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
         // TODO integrate this code to filter block in pageWithHostels
-        for (Date selectedDate : MainActivity.selectedDates) {
-            @SuppressLint("DefaultLocale")
-            String key = String.format("%d %d %d",
-                    (selectedDate.getYear() + 1900),
-                    (selectedDate.getMonth() + 1),
-                    (selectedDate.getDate()));
-//            System.out.println((MainActivity.hostelCard.getListOfBookingDates().containsKey(key) + " " + key));
-            if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key) && MainActivity.hostelCard.getListOfBookingDates().get(key) == 0) {
+//        for (Date selectedDate : MainActivity.selectedDates) {
+//            @SuppressLint("DefaultLocale")
+//            String key = String.format("%d %d %d",
+//                    (selectedDate.getYear() + 1900),
+//                    (selectedDate.getMonth() + 1),
+//                    (selectedDate.getDate()));
+////            System.out.println((MainActivity.hostelCard.getListOfBookingDates().containsKey(key) + " " + key));
+//            if (MainActivity.hostelCard.getListOfBookingDates().containsKey(key) && MainActivity.hostelCard.getListOfBookingDates().get(key) == 0) {
+//
+//                Toast.makeText(view.getContext(), "Данный отель не может предоставить жилье на данный период", Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//        }
 
-                Toast.makeText(view.getContext(), "Данный отель не может предоставить жилье на данный период", Toast.LENGTH_SHORT).show();
-                break;
-            }
-        }
-
+        //databaseReference.child("-N1FTh65-DwsrqJk8ETb").child("address").setValue("23");
 
         return view;
     }

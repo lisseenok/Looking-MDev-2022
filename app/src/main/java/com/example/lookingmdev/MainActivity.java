@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        ServerConnector serverConnector = new ServerConnector();
 //        serverConnector.pushHostelsToServer();
+
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
 
