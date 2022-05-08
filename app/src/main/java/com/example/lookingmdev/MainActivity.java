@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
@@ -289,12 +290,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
             // нажали кнопку найти
             case R.id.search_button:
-//                if (visitors != null && date != null) {
+                if (visitors != null && date != null) {
+                    replaceFragment(pageWithHostelsFragment, "left");
+                    searchState = 1;
+                } else
+                    Toast.makeText(view.getContext(), "Сначала введите все данные", Toast.LENGTH_LONG).show();
+
 //                replaceFragment(pageWithHostelsFragment, "left");
 //                searchState = 1;
-//                }
-                replaceFragment(pageWithHostelsFragment, "left");
-                searchState = 1;
                 break;
 
             // нажали кнопку войти

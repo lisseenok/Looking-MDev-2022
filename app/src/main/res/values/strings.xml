@@ -1183,5 +1183,6 @@
     <string name="checkOut">Check-out</string>
     <string name="roomsAndQuests">Rooms and quests</string>
     <string name="description">Description</string>
+    <string name="reserve">Reserve</string>
 
 </resources>

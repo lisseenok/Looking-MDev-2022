@@ -5,6 +5,7 @@ import static com.example.lookingmdev.MainActivity.databaseReference;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
@@ -40,6 +42,7 @@ public class PageWithHostelsFragment extends Fragment {
 
     private List<HostelCard> hostelList = new ArrayList<>();
     private int amountOfHostels = 0;
+    private int maxRooms;
 
 
     TextView sumHostelsText;
@@ -72,12 +75,35 @@ public class PageWithHostelsFragment extends Fragment {
         sumHostelsText.setText(text);
     }
 
+    // метод проверяет, доступен ли хоть один номер в отеле на эти даты
+    // а так же считает, сколько доступно комнат
+    private boolean dateCheck(HostelCard hostelCard) {
+        maxRooms = hostelCard.getAmountOfHostelRooms();
+        for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+            @SuppressLint("DefaultLocale")
+            String key = String.format("%d %d %d - %d %d %d",
+                    (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                    (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                    MainActivity.selectedDates.get(i - 1).getDate(),
+                    (MainActivity.selectedDates.get(i).getYear() + 1900),
+                    (MainActivity.selectedDates.get(i).getMonth() + 1),
+                    MainActivity.selectedDates.get(i).getDate());
+            if (hostelCard.getListOfBookingDates().containsKey(key) && hostelCard.getListOfBookingDates().get(key) == 0) {
+                return false;
+            } else if (hostelCard.getListOfBookingDates().containsKey(key) && hostelCard.getListOfBookingDates().get(key) < maxRooms)
+                maxRooms = hostelCard.getListOfBookingDates().get(key);
+        }
+
+        return true;
+    }
+
     private void getHostelsFromServer(View view){
 
         // создаем слушатель базы данных
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("Data changed");
                 amountOfHostels = 0;
                 // приходят данные (в объекте snapshot)
 
@@ -86,14 +112,22 @@ public class PageWithHostelsFragment extends Fragment {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
-                    // сортировка по городам
-                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city)) {
+
+                    // сортировка по городам и датам
                     // добавляем только если объект есть (вдруг ошибки в бд)
-//                    assert hostelCard != null;
+
                         hostelCard.setId(dataSnapshot.getKey());
+
+                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city) && dateCheck(hostelCard)) {
+                        hostelCard.setId(dataSnapshot.getKey());
+                        hostelCard.setCurrentAmountOfHostelRooms(maxRooms);
+
                         hostelList.add(hostelCard);
                         amountOfHostels += 1;
                     }
+                    // обновляем данные выбранного отеля
+                    if (MainActivity.hostelCard != null && hostelCard != null && MainActivity.hostelCard.getId().equals(hostelCard.getId()))
+                        MainActivity.hostelCard = hostelCard;
                 }
                 // нужна проверка, если вдруг данные поменяются на сервере, то у нас не должно крашиться приложение, если мы на другой странице
                 if (MainActivity.searchState == 1)
