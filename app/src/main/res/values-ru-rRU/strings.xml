@@ -56,6 +56,8 @@
     <string name="repeatPassword">Повторите пароль</string>
     <string name="createAccountAndSign">Создать аккаунт и войти</string>
     <string name="receiveSms">Получить смс</string>
+    <string name="editAccount">Редактировать аккаунт</string>
+    <string name="editAccountTitle">Редактирование аккаунта</string>
 
     <string name="hotelsFound">Найдено отелей:</string>
     <string name="checkIn">Регистрация въезда</string>

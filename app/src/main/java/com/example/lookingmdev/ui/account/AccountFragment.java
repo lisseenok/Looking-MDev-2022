@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
+import com.example.lookingmdev.ui.account.auth.editAccount.EditAccountFragment;
 
 public class AccountFragment extends Fragment {
 
@@ -31,13 +32,13 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        // если при запуске приложения уже мы авторизованы
+        // если мы авторизованы
         if (MainActivity.isAuth) {
             // отрисовываем интерфейс fragment_auth_account - это xml самого аккаунта авторизованного пользователя
             view = inflater.inflate(R.layout.fragment_auth_account, container, false);
-            // находим кнопочку выхода из аккаунта
+            // находим кнопочку выхода из аккаунта и кнопку редактирования аккаунта
             Button signOutButton = view.findViewById(R.id.sign_out_button);
-
+            Button editAccountButton = view.findViewById(R.id.edit_account_button);
             // находим textview для почты
             TextView emailTextView = view.findViewById(R.id.email_textview);
             // ставим в него почту текущего пользователя
@@ -61,7 +62,7 @@ public class AccountFragment extends Fragment {
             });
 
         } else {
-            // а если при запуске приложения мы не авторизованы то просто отрисовываем фрагмент авторизации
+            // а если мы не авторизованы то просто отрисовываем фрагмент авторизации
             view = inflater.inflate(R.layout.fragment_account, container, false);
         }
 
