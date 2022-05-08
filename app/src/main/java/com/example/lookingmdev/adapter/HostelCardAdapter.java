@@ -65,7 +65,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         }
         holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + ", " + hostelCards.get(position).getAddress()));
         holder.hostelCardShortDescriptionText.setText(hostelCards.get(position).getShortDescription());
-        holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getAmountOfHostelRooms()));
+        holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getCurrentAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
 
