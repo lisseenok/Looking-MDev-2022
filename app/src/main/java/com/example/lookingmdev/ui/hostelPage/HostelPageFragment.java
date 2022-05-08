@@ -156,7 +156,6 @@ public class HostelPageFragment extends Fragment {
                     Toast.makeText(view.getContext(), "Сначала необходимо войти в свой аккаунт", Toast.LENGTH_SHORT).show();
 
 
-
                 MainActivity.databaseReference.child(MainActivity.hostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.hostelCard.getListOfBookingDates());
 
             }

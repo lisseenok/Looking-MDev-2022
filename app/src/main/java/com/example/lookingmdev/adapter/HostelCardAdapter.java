@@ -87,7 +87,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
                     } else {
                         // если же отель есть в savedHostels - при нажатии нам надо его удалить
                         // удаляем
-                        MainActivity.remove(hostelCards.get(position).getHostelName());
+                        MainActivity.remove(hostelCards.get(position).getId());
 
                         // меняем иконку
                         int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
