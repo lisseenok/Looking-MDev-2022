@@ -56,13 +56,13 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/editTextSmsCode"
         style="@style/SingOutEditTexts"
         android:layout_marginStart="10dp"
         android:layout_marginTop="190dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
-        android:hint="@string/enterPhone"
+        android:hint="@string/enterSmsCode"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
 
 
     <Button
-        android:id="@+id/receive_sms_code_button"
+        android:id="@+id/sign_in_with_phone_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
@@ -78,7 +78,7 @@
         android:layout_marginEnd="10dp"
         android:backgroundTint="@color/buttonBlue"
         android:fontFamily="sans-serif"
-        android:text="@string/receiveSms"
+        android:text="@string/sign_in"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

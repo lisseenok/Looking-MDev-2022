@@ -51,9 +51,11 @@
     <string name="singingIn">Signing in</string>
     <string name="enterEmail">Enter email</string>
     <string name="enterPhone">Enter phone number</string>
+    <string name="enterSmsCode">Enter sms code</string>
     <string name="enterPassword">Enter password</string>
     <string name="repeatPassword">Repeat password</string>
     <string name="createAccountAndSign">Create account and sign in</string>
+    <string name="receiveSms">Receive sms</string>
 
     <string name="hotelsFound">Hotels found:</string>
 

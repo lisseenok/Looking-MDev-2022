@@ -1,14 +1,18 @@
 package com.example.lookingmdev.ui.account.auth.phoneAuth;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +22,7 @@ import android.widget.Toast;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
-import com.example.lookingmdev.databinding.FragmentEmailAuthBinding;
+import com.example.lookingmdev.ui.account.auth.phoneAuth.sms.SmsCodeFragment;
 import com.example.lookingmdev.databinding.FragmentPhoneAuthBinding;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,6 +49,12 @@ public class PhoneAuthFragment extends Fragment {
     Button signInButton;
     EditText phoneEditText;
 
+    String mVerificationId;
+    PhoneAuthProvider.ForceResendingToken mResendToken;
+
+    PhoneAuthCredential credential;
+
+
     public static PhoneAuthFragment newInstance() {
         return new PhoneAuthFragment();
     }
@@ -55,7 +65,7 @@ public class PhoneAuthFragment extends Fragment {
         binding = FragmentPhoneAuthBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        signInButton = root.findViewById(R.id.sign_in_with_phone_button);
+        signInButton = root.findViewById(R.id.receive_sms_code_button);
         phoneEditText = root.findViewById(R.id.editTextPhone);
 
         // блокируем кнопку
@@ -73,14 +83,13 @@ public class PhoneAuthFragment extends Fragment {
                                 .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                                     @Override
                                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                        Toast.makeText(root.getContext(), "Успешная верификация", Toast.LENGTH_SHORT).show();
-
-                                        signInWithPhoneAuthCredential(phoneAuthCredential, root);
+                                        Log.d(TAG, "onVerificationCompleted:" + credential);
+                                        credential = phoneAuthCredential;
                                     }
 
                                     @Override
                                     public void onVerificationFailed(@NonNull FirebaseException e) {
-
+                                        Log.w(TAG, "onVerificationFailed", e);
                                     }
                                     @Override
                                     public void onCodeSent(@NonNull String verificationId,
@@ -88,50 +97,27 @@ public class PhoneAuthFragment extends Fragment {
                                         // The SMS verification code has been sent to the provided phone number, we
                                         // now need to ask the user to enter the code and then construct a credential
                                         // by combining the code with a verification ID.
-
+                                        Log.d(TAG, "onCodeSent:" + verificationId);
                                         // Save verification ID and resending token so we can use them later
-                                        //mVerificationId = verificationId;
-                                        //mResendToken = token;
+                                        mVerificationId = verificationId;
+                                        mResendToken = token;
+
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new SmsCodeFragment(credential));
+                                        fragmentTransaction.commit();
+
                                     }
                                 })          // OnVerificationStateChangedCallbacks
                                 .build();
                 PhoneAuthProvider.verifyPhoneNumber(options);
 
-                //PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
             }
         });
 
         return root;
     }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential, View root) {
-        MainActivity.firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(root.getContext(), "signInWithCredential:success", Toast.LENGTH_SHORT).show();
 
-                            FirebaseUser user = task.getResult().getUser();
-                            // Update UI
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Toast.makeText(root.getContext(), "signInWithCredential:failure", Toast.LENGTH_SHORT).show();
-
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                ;
-                            }
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(PhoneAuthViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }

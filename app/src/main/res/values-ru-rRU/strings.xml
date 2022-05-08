@@ -51,9 +51,12 @@
     <string name="singingIn">Авторизация</string>
     <string name="enterEmail">Введите email</string>
     <string name="enterPhone">Введите номер телефона</string>
+    <string name="enterSmsCode">Введите смс код</string>
     <string name="enterPassword">Введите пароль</string>
     <string name="repeatPassword">Повторите пароль</string>
     <string name="createAccountAndSign">Создать аккаунт и войти</string>
+    <string name="receiveSms">Получить смс</string>
+
     <string name="hotelsFound">Найдено отелей:</string>
     <string name="checkIn">Регистрация въезда</string>
     <string name="checkOut">Регистрация выезда</string>
