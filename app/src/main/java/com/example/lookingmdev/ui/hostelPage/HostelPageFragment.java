@@ -155,15 +155,14 @@ public class HostelPageFragment extends Fragment {
                 } else
                     Toast.makeText(view.getContext(), "Сначала необходимо войти в свой аккаунт", Toast.LENGTH_SHORT).show();
 
-<<<<<<< Updated upstream
-=======
-                }
+
+
                 MainActivity.databaseReference.child(MainActivity.hostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.hostelCard.getListOfBookingDates());
->>>>>>> Stashed changes
+
             }
         });
-
         return view;
+
     }
 
     @Override
