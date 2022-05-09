@@ -65,7 +65,6 @@ public class CreateAccountFragment extends Fragment {
         errorTextView = root.findViewById(R.id.flagTextView);
 
         registerButton.setEnabled(false);
-        //registerButton.setBackgroundColor((int)R.attr.blockedButtonColor);
         registerButton.setBackgroundColor(Color.parseColor("#808080"));
 
 

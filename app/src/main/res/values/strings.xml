@@ -58,6 +58,7 @@
     <string name="receiveSms">Receive sms</string>
     <string name="editAccount">Edit account</string>
     <string name="editAccountTitle">Account editing</string>
+    <string name="Confirm">Confirm</string>
 
     <string name="hotelsFound">Hotels found:</string>
 
