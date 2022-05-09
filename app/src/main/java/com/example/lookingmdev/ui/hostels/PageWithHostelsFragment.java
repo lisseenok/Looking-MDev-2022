@@ -5,7 +5,6 @@ import static com.example.lookingmdev.MainActivity.databaseReference;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
@@ -26,8 +24,6 @@ import com.example.lookingmdev.adapter.HostelCardAdapter;
 import com.example.lookingmdev.model.HostelCard;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -133,8 +129,8 @@ public class PageWithHostelsFragment extends Fragment {
                         amountOfHostels += 1;
                     }
                     // обновляем данные выбранного отеля
-                    if (MainActivity.hostelCard != null && hostelCard != null && MainActivity.hostelCard.getId().equals(hostelCard.getId()))
-                        MainActivity.hostelCard = hostelCard;
+                    if (MainActivity.searchHostelCard != null && hostelCard != null && MainActivity.searchHostelCard.getId().equals(hostelCard.getId()))
+                        MainActivity.searchHostelCard = hostelCard;
                 }
                 // нужна проверка, если вдруг данные поменяются на сервере, то у нас не должно крашиться приложение, если мы на другой странице
                 if (MainActivity.searchState == 1) {
