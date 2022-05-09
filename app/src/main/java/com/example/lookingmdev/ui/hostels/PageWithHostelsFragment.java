@@ -43,6 +43,7 @@ public class PageWithHostelsFragment extends Fragment {
     private List<HostelCard> hostelList = new ArrayList<>();
     private int amountOfHostels = 0;
     private int maxRooms;
+    private boolean isCreated = false;
 
 
     TextView sumHostelsText;
@@ -55,10 +56,13 @@ public class PageWithHostelsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        System.out.println("onCreateView");
+//        System.out.println("onCreateView");
         View view = inflater.inflate(R.layout.fragment_page_with_hostels, container, false);
 
-        getHostelsFromServer(view);
+        if (!isCreated) {
+            getHostelsFromServer(view);
+            isCreated = true;
+        }
 
         // устанавливаем в самом начале
         setAmountOfHostels(view);
@@ -69,7 +73,8 @@ public class PageWithHostelsFragment extends Fragment {
 
     private void setAmountOfHostels(View view) {
         // этот метод нужен тк при смене языка все ломается к чертям
-        if(isAdded()){
+        if(isAdded()) {
+
         sumHostelsText = view.findViewById(R.id.sumHostelsText);
 
         String text = String.format("%s %d", getResources().getString(R.string.hotelsFound), amountOfHostels);
@@ -79,8 +84,10 @@ public class PageWithHostelsFragment extends Fragment {
 
     // метод проверяет, доступен ли хоть один номер в отеле на эти даты
     // а так же считает, сколько доступно комнат
+
     private boolean dateCheck(HostelCard hostelCard) {
         maxRooms = hostelCard.getAmountOfHostelRooms();
+
         for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
             @SuppressLint("DefaultLocale")
             String key = String.format("%d %d %d - %d %d %d",
@@ -110,6 +117,7 @@ public class PageWithHostelsFragment extends Fragment {
                 // приходят данные (в объекте snapshot)
 
                 // проверка пустой ли список отелей
+
                 if (hostelList.size() > 0) hostelList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -117,9 +125,6 @@ public class PageWithHostelsFragment extends Fragment {
 
                     // сортировка по городам и датам
                     // добавляем только если объект есть (вдруг ошибки в бд)
-
-                        hostelCard.setId(dataSnapshot.getKey());
-
                     if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city) && dateCheck(hostelCard)) {
                         hostelCard.setId(dataSnapshot.getKey());
                         hostelCard.setCurrentAmountOfHostelRooms(maxRooms);
@@ -132,8 +137,9 @@ public class PageWithHostelsFragment extends Fragment {
                         MainActivity.hostelCard = hostelCard;
                 }
                 // нужна проверка, если вдруг данные поменяются на сервере, то у нас не должно крашиться приложение, если мы на другой странице
-                if (MainActivity.searchState == 1)
+                if (MainActivity.searchState == 1) {
                     setAmountOfHostels(view);
+                }
 
                 // сообщаем адаптеру, что данные поменялись
                 hostelCardAdapter.notifyDataSetChanged();

@@ -1,5 +1,8 @@
 package com.example.lookingmdev.ui.calendar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Typeface;
@@ -34,6 +37,7 @@ public class FragmentCalendar extends Fragment {
     String endWeekDay;
     String startMonth;
     String endMonth;
+    Button calendarButton;
 
 
     // объявляем методы
@@ -96,6 +100,26 @@ public class FragmentCalendar extends Fragment {
             }
             @Override
             public void onDateUnselected(Date date) {
+            }
+        });
+
+        calendarButton = view.findViewById(R.id.calendarButton);
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) getContext();
+
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.slide_out_down);
+
+                if (MainActivity.selectedPage == 0) {
+                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.searchFragment);
+                    fragmentTransaction.commit();
+                } else if (MainActivity.selectedPage == 1) {
+                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.hostelPageFragment);
+                    fragmentTransaction.commit();
+                }
             }
         });
 

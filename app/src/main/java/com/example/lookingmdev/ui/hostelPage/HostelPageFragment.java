@@ -3,6 +3,9 @@ package com.example.lookingmdev.ui.hostelPage;
 import static com.example.lookingmdev.MainActivity.databaseReference;
 import static com.example.lookingmdev.MainActivity.isAuth;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
@@ -76,8 +79,41 @@ public class HostelPageFragment extends Fragment {
         hostelTitle.setText(hostelCard.getHostelName());
         hostelFullDescription.setText(hostelCard.getFullDescription());
         hostelRatting.setText((String.valueOf(hostelCard.getRating())));
+
+        // если выбраны какие-то даты, то устанавливаем их
+        if (startWeekDay != null) {
         hostelStartDate.setText(String.format("%s, %s %s", startWeekDay, MainActivity.startDay, startMonth));
         hostelEndDate.setText(String.format("%s, %s %s", endWeekDay, MainActivity.endDay, endMonth));
+        }
+        // иначе навешиваем листенеры на текстовые поля и открываем календарь
+        else {
+            hostelStartDate.setText("Выберите дату въезда");
+            hostelEndDate.setText("Выберите дату выезда");
+            hostelStartDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) getContext();
+
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
+                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.fragmentCalendar);
+                    fragmentTransaction.commit();
+                }
+            });
+            hostelEndDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) getContext();
+
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
+                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.fragmentCalendar);
+                    fragmentTransaction.commit();
+                }
+            });
+        }
 
         if (MainActivity.children == 0) {
             MainActivity.visitors = getResources().getString(R.string.room) + ": " +
@@ -104,7 +140,7 @@ public class HostelPageFragment extends Fragment {
         hostelApplyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainActivity.isAuth) {
+                if (MainActivity.isAuth && MainActivity.selectedDates != null) {
                     // для каждой выбранной даты проверяем, нет ли ее как ключа в словаре или если есть, то больше ли нуля в нем значение
                     // проверяем подходит ли все еще отель для бронирования (проверка на случай, если данные уже обновились)
 
@@ -151,6 +187,9 @@ public class HostelPageFragment extends Fragment {
                     }
                     Toast.makeText(view.getContext(), "Успешно забранировано, в ближайшее время с вами свяжется представитель отеля", Toast.LENGTH_LONG).show();
                     databaseReference.child(MainActivity.hostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.hostelCard.getListOfBookingDates());
+
+                } else if (MainActivity.selectedDates == null) {
+                    Toast.makeText(view.getContext(), "Сначала надо указать количество посетителей и даты", Toast.LENGTH_SHORT).show();
 
                 } else
                     Toast.makeText(view.getContext(), "Сначала необходимо войти в свой аккаунт", Toast.LENGTH_SHORT).show();

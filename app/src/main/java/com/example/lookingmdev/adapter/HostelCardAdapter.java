@@ -88,13 +88,14 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
                         // если же отель есть в savedHostels - при нажатии нам надо его удалить
                         // удаляем
                         MainActivity.remove(hostelCards.get(position).getId());
-
                         // меняем иконку
                         int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
                         holder.iconHeart.setImageResource(newIconId);
                     }
                     // изменили наш список избранных (savedHostels) и теперь пушим его на бд
+
                     MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.savedHostels);
+
                 } else {
                     // если пользователь не авторизован, то выводим тост, чтобы авторизовался
                     Toast.makeText(context.getApplicationContext(), "Необходимо авторизироваться", Toast.LENGTH_SHORT).show();
@@ -109,7 +110,10 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             public void onClick(View v) {
                 // обновляем глобальное значение (на всякий случай)
                 MainActivity.hostelCard = hostelCards.get(position);
-                MainActivity.searchState = 2;
+                if (MainActivity.selectedPage == 0)
+                    MainActivity.searchState = 2;
+                else if (MainActivity.selectedPage == 1)
+                    MainActivity.savedState = 1;
 //                Bundle bundle = new Bundle();
                 // создаем фрагмент с отелем
                 MainActivity.hostelPageFragment = new HostelPageFragment();
@@ -146,6 +150,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
             holder.iconHeart.setImageResource(newIconId);
         }
+
 
     }
 
