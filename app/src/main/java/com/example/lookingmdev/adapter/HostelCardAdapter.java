@@ -109,7 +109,17 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             @Override
             public void onClick(View v) {
                 // обновляем глобальное значение (на всякий случай)
-                MainActivity.hostelCard = hostelCards.get(position);
+                if (MainActivity.selectedPage == 0) {
+                    MainActivity.searchHostelCard = hostelCards.get(position);
+                } else if (MainActivity.selectedPage == 1) {
+                    System.out.println(hostelCards.get(position));
+
+                    MainActivity.savedHostelCard = hostelCards.get(position);
+
+                    System.out.println(MainActivity.savedHostelCard);
+
+                }
+
                 if (MainActivity.selectedPage == 0)
                     MainActivity.searchState = 2;
                 else if (MainActivity.selectedPage == 1)

@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static int rooms = 1, adults = 1, children;
     public static List<Date> selectedDates;
-    public static HostelCard hostelCard;
+    public static HostelCard searchHostelCard;
+    public static HostelCard savedHostelCard;
 
     // бд и ключ для коллекции отелей
     public static DatabaseReference databaseReference;
@@ -175,11 +176,20 @@ public class MainActivity extends AppCompatActivity {
                         HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
                         hostelCard.setId(dataSnapshot.getKey());
                         allHostelsList.add(hostelCard);
+
                         // обновляем сохраненные данные
                         for (int i = 0; i < savedHostels.size(); ++i) {
                             if (hostelCard.getId().equals(savedHostels.get(i).getId())) {
                                 savedHostels.set(i, hostelCard);
                             }
+                        }
+
+                        // обновляем текущую выбранную карточку отеля в зависимости от выбранной страницы
+                        if (MainActivity.searchHostelCard != null && MainActivity.searchHostelCard.getId().equals(hostelCard.getId())) {
+                            MainActivity.searchHostelCard = hostelCard;
+                        }
+                        if (MainActivity.savedHostelCard != null && MainActivity.savedHostelCard.getId().equals(hostelCard.getId())) {
+                            MainActivity.savedHostelCard = hostelCard;
                         }
                     }
                     // отправляем обновленные данные в сохраненное
@@ -206,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_search:
+                    selectedPage = 0;
                     // если мы на странице поиска, то возвращаемся на начальную
                     if (selectedPage == 0) {
                         replaceFragment(searchFragment);
@@ -225,10 +236,11 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-                    selectedPage = 0;
+
                     break;
                 // если мы нажали на вкладку с избранным
                 case R.id.navigation_saved:
+                    selectedPage = 1;
                     // если мы и так были на этой странице
                     if (selectedPage == 1) {
                         replaceFragment(savedFragment);
@@ -245,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                    selectedPage = 1;
+
                     break;
 
                 case R.id.navigation_booking:
