@@ -216,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_search:
-                    selectedPage = 0;
                     // если мы на странице поиска, то возвращаемся на начальную
                     if (selectedPage == 0) {
                         replaceFragment(searchFragment);
@@ -232,15 +231,16 @@ public class MainActivity extends AppCompatActivity {
                                 replaceFragment(pageWithHostelsFragment);
                                 break;
                             case 2:
-                                replaceFragment(hostelPageFragment);
+                                replaceFragment(new HostelPageFragment());
                                 break;
                         }
                     }
+                    selectedPage = 0;
 
                     break;
                 // если мы нажали на вкладку с избранным
                 case R.id.navigation_saved:
-                    selectedPage = 1;
+
                     // если мы и так были на этой странице
                     if (selectedPage == 1) {
                         replaceFragment(savedFragment);
@@ -252,12 +252,12 @@ public class MainActivity extends AppCompatActivity {
                                 replaceFragment(savedFragment);
                                 break;
                             case 1:
-                                replaceFragment(hostelPageFragment);
+                                replaceFragment(new HostelPageFragment());
                                 break;
                         }
                     }
 
-
+                    selectedPage = 1;
                     break;
 
                 case R.id.navigation_booking:

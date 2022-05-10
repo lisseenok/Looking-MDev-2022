@@ -46,7 +46,7 @@ public class HostelPageFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hostel_page, container, false);
 
-        // короче если открыта страница поиска, то вот так, а если нет, то подругому
+        // короче если открыта страница поиска, то используем карточку MainActivity.searchHostelCard
         if (MainActivity.selectedPage == 0) {
             Methods methods = new Methods();
 
