@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
      **/
     public static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
     public static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
-
     public static int savedState = 0;
 
     //TODO create getters/setters
@@ -101,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
     // авторизован ли пользователь (да - true, нет - false)
     public static boolean isAuth;
+
+    // переменная с объектом пользователя
     public static FirebaseUser firebaseUser;
-    public static boolean isValueListenerInFB = false;
 
     public static SearchFragment searchFragment = new SearchFragment();
     public static SavedFragment savedFragment = new SavedFragment();
@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         // коллекция избранного
         databaseSavedReference = FirebaseDatabase.getInstance().getReference(SAVED_KEY);
 
+        // блок кода для загрузки отелей в бд
 //        ServerConnector serverConnector = new ServerConnector();
 //        serverConnector.pushHostelsToServer();
 
