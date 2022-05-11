@@ -60,7 +60,7 @@ public class AuthenticationFragment extends Fragment {
         View root = binding.getRoot();
 
         createAccountButton = root.findViewById(R.id.create_account_button);
-        signWithPhone = root.findViewById(R.id.sign_with_phone_button);
+        //signWithPhone = root.findViewById(R.id.sign_with_phone_button);
         signWithEmailButton = root.findViewById(R.id.sign_with_email_button);
 
 
