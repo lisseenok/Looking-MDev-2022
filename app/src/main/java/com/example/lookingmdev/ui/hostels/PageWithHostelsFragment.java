@@ -55,10 +55,10 @@ public class PageWithHostelsFragment extends Fragment {
 //        System.out.println("onCreateView");
         View view = inflater.inflate(R.layout.fragment_page_with_hostels, container, false);
 
-        if (!isCreated) {
+//        if (!isCreated) {
             getHostelsFromServer(view);
-            isCreated = true;
-        }
+//            isCreated = true;
+//        }
 
         // устанавливаем в самом начале
         setAmountOfHostels(view);
