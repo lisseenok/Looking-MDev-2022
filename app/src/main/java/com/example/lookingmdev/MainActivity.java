@@ -154,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
         // устанавливаем русский язык для смс
         firebaseAuth.setLanguageCode("ru");
 
+
+
         // получаем ответ, авторизован ли пользователь
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -166,47 +168,52 @@ public class MainActivity extends AppCompatActivity {
             // вызываем метод получения избранных отелей с бд (записываются в статическое поле savedHostels)
             getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
 
-            // получаем все отели в глобальную переменную allHostelsList
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    System.out.println("================Getting all hostels================");
 
-                    // проверка пустой ли список отелей, если нет - очищаем
-                    if (allHostelsList.size() > 0) allHostelsList.clear();
+        }
 
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                        HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
-                        hostelCard.setId(dataSnapshot.getKey());
-                        allHostelsList.add(hostelCard);
+        // получаем все отели в глобальную переменную allHostelsList
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("================Getting all hostels================");
 
-                        // обновляем сохраненные данные
+                // проверка пустой ли список отелей, если нет - очищаем
+                if (allHostelsList.size() > 0) allHostelsList.clear();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
+                    hostelCard.setId(dataSnapshot.getKey());
+                    allHostelsList.add(hostelCard);
+
+                    // обновляем сохраненные данные
+                    if (isAuth) {
                         for (int i = 0; i < savedHostels.size(); ++i) {
                             if (hostelCard.getId().equals(savedHostels.get(i).getId())) {
                                 savedHostels.set(i, hostelCard);
                             }
                         }
-
-                        // обновляем текущую выбранную карточку отеля в зависимости от выбранной страницы
-                        if (MainActivity.searchHostelCard != null && MainActivity.searchHostelCard.getId().equals(hostelCard.getId())) {
-                            MainActivity.searchHostelCard = hostelCard;
-                        }
-                        if (MainActivity.savedHostelCard != null && MainActivity.savedHostelCard.getId().equals(hostelCard.getId())) {
-                            MainActivity.savedHostelCard = hostelCard;
-                        }
                     }
+
+                    // обновляем текущую выбранную карточку отеля в зависимости от выбранной страницы
+                    if (MainActivity.searchHostelCard != null && MainActivity.searchHostelCard.getId().equals(hostelCard.getId())) {
+                        MainActivity.searchHostelCard = hostelCard;
+                    }
+                    if (MainActivity.savedHostelCard != null && MainActivity.savedHostelCard.getId().equals(hostelCard.getId())) {
+                        MainActivity.savedHostelCard = hostelCard;
+                    }
+                }
+                if (isAuth) {
                     // отправляем обновленные данные в сохраненное
                     MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.savedHostels);
-
-
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            }
 
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         if (!created){
@@ -308,15 +315,15 @@ public class MainActivity extends AppCompatActivity {
         try {
             inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
         } catch (NullPointerException nullPointerException) {
-            System.out.println("NullPointerException" + nullPointerException);
+//            System.out.println("NullPointerException " + nullPointerException);
         }
     }
 
     // обработка нажатия системной кнопки назад
     @Override
     public void onBackPressed() {
-        System.out.println(selectedPage);
-        System.out.println(savedState);
+//        System.out.println(selectedPage);
+//        System.out.println(savedState);
         // смотря какая страница открыта на навигационном баре
         switch (selectedPage) {
             // если страница поиска

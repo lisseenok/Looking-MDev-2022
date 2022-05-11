@@ -286,7 +286,7 @@ public class SearchFragment extends Fragment {
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.enteredTextColorLight));
                     break;
                 case Configuration.UI_MODE_NIGHT_YES:
-                    System.out.println("работает");
+//                    System.out.println("работает");
                     // ночная тема активна, и она используется
                     cardView.setCardBackgroundColor(getResources().getColor(R.color.white));
                     break;
