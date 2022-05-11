@@ -149,8 +149,9 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 //        int imageId = context.getResources().getIdentifier(hostelCards.get(position).getImage(), "drawable", context.getPackageName());
 //        holder.hostelCardImage.setImageResource(imageId);
 
+        // получаем фотьки с бд
+        Glide.with(context).load(hostelCards.get(position).getImage()).into(holder.hostelCardImage);
 
-        Glide.with(context.getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/looking-2f220.appspot.com/o/hotel3.jpg?alt=media&token=0486338a-46dc-4077-932e-8328b4aa39eb").into(holder.hostelCardImage);
 
         if (MainActivity.isAuth)
         // если пользователь авторизован
