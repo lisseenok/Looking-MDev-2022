@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
@@ -68,8 +69,11 @@ public class HostelPageFragment extends Fragment {
             TextView hostelFullDescription = view.findViewById(R.id.hostelFullDescription);
             Button hostelApplyButton = view.findViewById(R.id.hostelApplyButton);
             System.out.println(MainActivity.searchHostelCard);
-            int image = getContext().getResources().getIdentifier(MainActivity.searchHostelCard.getImage(), "drawable", getContext().getPackageName());
-            hostelImage.setImageResource(image);
+
+//            int image = getContext().getResources().getIdentifier(MainActivity.searchHostelCard.getImage(), "drawable", getContext().getPackageName());
+//            hostelImage.setImageResource(image);
+
+            Glide.with(view.getContext().getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/looking-2f220.appspot.com/o/hotel2.jpg?alt=media&token=3314165a-a95c-4199-ac04-ac5970c5d459").into(hostelImage);
 
             // устанавливаем текстовые значения поля
             hostelName.setText(MainActivity.searchHostelCard.getHostelName());
@@ -219,8 +223,10 @@ public class HostelPageFragment extends Fragment {
             TextView hostelFullDescription = view.findViewById(R.id.hostelFullDescription);
             Button hostelApplyButton = view.findViewById(R.id.hostelApplyButton);
             System.out.println(MainActivity.savedHostelCard);
-            int image = getContext().getResources().getIdentifier(MainActivity.savedHostelCard.getImage(), "drawable", getContext().getPackageName());
-            hostelImage.setImageResource(image);
+//            int image = getContext().getResources().getIdentifier(MainActivity.savedHostelCard.getImage(), "drawable", getContext().getPackageName());
+//            hostelImage.setImageResource(image);
+            Glide.with(view.getContext().getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/looking-2f220.appspot.com/o/hotel2.jpg?alt=media&token=3314165a-a95c-4199-ac04-ac5970c5d459").into(hostelImage);
+
 
             // устанавливаем текстовые значения поля
             hostelName.setText(MainActivity.savedHostelCard.getHostelName());
