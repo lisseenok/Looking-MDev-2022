@@ -1,5 +1,7 @@
 package com.example.lookingmdev.ui.account.auth.create;
 
+import static com.example.lookingmdev.MainActivity.firebaseAuth;
+
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -63,7 +65,6 @@ public class CreateAccountFragment extends Fragment {
         errorTextView = root.findViewById(R.id.flagTextView);
 
         registerButton.setEnabled(false);
-        //registerButton.setBackgroundColor((int)R.attr.blockedButtonColor);
         registerButton.setBackgroundColor(Color.parseColor("#808080"));
 
 
@@ -84,7 +85,8 @@ public class CreateAccountFragment extends Fragment {
                             Toast.makeText(root.getContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show();
                             // флаг авторизации - true
                             MainActivity.isAuth = true;
-
+                            MainActivity.firebaseUser = firebaseAuth.getCurrentUser();
+                            MainActivity.getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
                             // делаем переход на домашний фрагмент аккаунта (newInstance() - возвращаем просто новый экземпляр класса)
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

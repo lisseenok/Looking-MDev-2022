@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 
 import com.example.lookingmdev.databinding.ActivityMainBinding;
@@ -14,7 +15,9 @@ import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.account.AccountFragment;
 import com.example.lookingmdev.ui.account.auth.AuthenticationFragment;
 import com.example.lookingmdev.ui.account.auth.create.CreateAccountFragment;
+import com.example.lookingmdev.ui.account.auth.editAccount.EditAccountFragment;
 import com.example.lookingmdev.ui.account.auth.emailAuth.EmailAuthFragment;
+import com.example.lookingmdev.ui.account.auth.phoneAuth.PhoneAuthFragment;
 import com.example.lookingmdev.ui.booking.BookingFragment;
 import com.example.lookingmdev.ui.calendar.FragmentCalendar;
 import com.example.lookingmdev.ui.destination.DestinationFragment;
@@ -24,17 +27,25 @@ import com.example.lookingmdev.ui.saved.SavedFragment;
 import com.example.lookingmdev.ui.search.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,30 +73,44 @@ public class MainActivity extends AppCompatActivity {
      **/
     public static int accountState = 0; // отвечает за состояние вкладки аккаунта (их будет около трех)
     public static int selectedPage = 0; // отвечает за то, какой фрагмент сейчас выведен на экран
+    public static int savedState = 0;
 
     //TODO create getters/setters
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, city, date, visitors;
 
     public static int rooms = 1, adults = 1, children;
     public static List<Date> selectedDates;
-    public static HostelCard hostelCard;
+    public static HostelCard searchHostelCard;
+    public static HostelCard savedHostelCard;
 
-    // бд и ключ
+    // бд и ключ для коллекции отелей
     public static DatabaseReference databaseReference;
+    public static List<HostelCard> allHostelsList = new ArrayList<>();
     public static String HOSTELS_KEY = "Hostels";
+
+    // бд и ключ коллекции избранных
+    public static DatabaseReference databaseSavedReference;
+    public static String SAVED_KEY = "Saved";
+
+    // список избранных отелей текущего пользователя
+    public static List<HostelCard> savedHostels = new ArrayList<>();
 
     // переменная, в которой лежат "инструменты авторизации бд"
     public static FirebaseAuth firebaseAuth;
+
     // авторизован ли пользователь (да - true, нет - false)
     public static boolean isAuth;
 
-    SearchFragment searchFragment = new SearchFragment();
-    SavedFragment savedFragment = new SavedFragment();
+    // переменная с объектом пользователя
+    public static FirebaseUser firebaseUser;
+
+    public static SearchFragment searchFragment = new SearchFragment();
+    public static SavedFragment savedFragment = new SavedFragment();
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
     public static HostelPageFragment hostelPageFragment;
 
-    FragmentCalendar fragmentCalendar = new FragmentCalendar();
+    public static FragmentCalendar fragmentCalendar = new FragmentCalendar();
     PageWithHostelsFragment pageWithHostelsFragment = new PageWithHostelsFragment();
 
     AuthenticationFragment authenticationFragment = new AuthenticationFragment();
@@ -101,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println("onCreate");
+
 
 
         // хз че за биндинг, еще не разбирался
@@ -108,20 +135,76 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // инициализируем бд
+
+        // колллекция отелей
         databaseReference = FirebaseDatabase.getInstance().getReference(HOSTELS_KEY);
 
+        // коллекция избранного
+        databaseSavedReference = FirebaseDatabase.getInstance().getReference(SAVED_KEY);
+
+        // блок кода для загрузки отелей в бд
 //        ServerConnector serverConnector = new ServerConnector();
 //        serverConnector.pushHostelsToServer();
+
         // инициализируем бд
         firebaseAuth = FirebaseAuth.getInstance();
 
-        // получаем ответ, авторизован ли пользователь
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        // устанавливаем русский язык для смс
+        firebaseAuth.setLanguageCode("ru");
 
+        // получаем ответ, авторизован ли пользователь
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         // firebaseUser = null когда пользователь не авторизован
-        if (firebaseUser == null) isAuth = false;
-        else isAuth = true;
+        if (firebaseUser == null){
+            isAuth = false;
+        }
+        else {
+            isAuth = true;
+            // вызываем метод получения избранных отелей с бд (записываются в статическое поле savedHostels)
+            getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
+
+            // получаем все отели в глобальную переменную allHostelsList
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    System.out.println("================Getting all hostels================");
+
+                    // проверка пустой ли список отелей, если нет - очищаем
+                    if (allHostelsList.size() > 0) allHostelsList.clear();
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
+                        hostelCard.setId(dataSnapshot.getKey());
+                        allHostelsList.add(hostelCard);
+
+                        // обновляем сохраненные данные
+                        for (int i = 0; i < savedHostels.size(); ++i) {
+                            if (hostelCard.getId().equals(savedHostels.get(i).getId())) {
+                                savedHostels.set(i, hostelCard);
+                            }
+                        }
+
+                        // обновляем текущую выбранную карточку отеля в зависимости от выбранной страницы
+                        if (MainActivity.searchHostelCard != null && MainActivity.searchHostelCard.getId().equals(hostelCard.getId())) {
+                            MainActivity.searchHostelCard = hostelCard;
+                        }
+                        if (MainActivity.savedHostelCard != null && MainActivity.savedHostelCard.getId().equals(hostelCard.getId())) {
+                            MainActivity.savedHostelCard = hostelCard;
+                        }
+                    }
+                    // отправляем обновленные данные в сохраненное
+                    MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.savedHostels);
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
 
         if (!created){
@@ -149,16 +232,33 @@ public class MainActivity extends AppCompatActivity {
                                 replaceFragment(pageWithHostelsFragment);
                                 break;
                             case 2:
-                                replaceFragment(hostelPageFragment);
+                                replaceFragment(new HostelPageFragment());
                                 break;
                         }
                     }
                     selectedPage = 0;
-                    break;
 
+                    break;
+                // если мы нажали на вкладку с избранным
                 case R.id.navigation_saved:
+
+                    // если мы и так были на этой странице
+                    if (selectedPage == 1) {
+                        replaceFragment(savedFragment);
+                        savedState = 0;
+                    } else {
+                        // если мы были на другой странице
+                        switch (savedState) {
+                            case 0:
+                                replaceFragment(savedFragment);
+                                break;
+                            case 1:
+                                replaceFragment(new HostelPageFragment());
+                                break;
+                        }
+                    }
+
                     selectedPage = 1;
-                    replaceFragment(savedFragment);
                     break;
 
                 case R.id.navigation_booking:
@@ -213,6 +313,8 @@ public class MainActivity extends AppCompatActivity {
     // обработка нажатия системной кнопки назад
     @Override
     public void onBackPressed() {
+        System.out.println(selectedPage);
+        System.out.println(savedState);
         // смотря какая страница открыта на навигационном баре
         switch (selectedPage) {
             // если страница поиска
@@ -229,6 +331,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         replaceFragment(pageWithHostelsFragment, "right");
+                        break;
+                }
+                break;
+            case 1:
+                if (savedState > 0)
+                    --savedState;
+                switch (savedState) {
+                    case 0:
+                        replaceFragment(savedFragment, "right");
                         break;
                 }
                 break;
@@ -256,8 +367,17 @@ public class MainActivity extends AppCompatActivity {
 
             // нажали на кнопку назад на странице отеля
             case R.id.backFromHostelPage:
+                // если мы были на странице отеля через вкладку поиска, то
+                if (selectedPage == 0) {
                 replaceFragment(pageWithHostelsFragment, "right");
                 searchState = 1;
+
+                }
+                // если мы были на странцие отеля через вкладку сохраненного, то
+                else if (selectedPage == 1) {
+                    replaceFragment(savedFragment, "right");
+                    savedState = 0;
+                }
                 break;
 
             // нажали на выбор дат
@@ -272,7 +392,6 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.applyButtonDestination:
             case R.id.back_destination_image_button:
-            case R.id.calendarButton:
                 replaceFragment(searchFragment, "down");
                 searchState = 0;
                 break;
@@ -282,14 +401,14 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new DestinationFragment(), "up");
                 searchState = -1;
                 break;
-            // нажали кнопку найти
+
+            // нажали кнопку найти на странице поиска
             case R.id.search_button:
-//                if (visitors != null && date != null) {
-//                replaceFragment(pageWithHostelsFragment, "left");
-//                searchState = 1;
-//                }
-                replaceFragment(pageWithHostelsFragment, "left");
-                searchState = 1;
+                if (visitors != null && date != null) {
+                    replaceFragment(pageWithHostelsFragment, "left");
+                    searchState = 1;
+                } else
+                    Toast.makeText(view.getContext(), "Сначала введите все данные", Toast.LENGTH_LONG).show();
                 break;
 
             // нажали кнопку войти
@@ -304,13 +423,12 @@ public class MainActivity extends AppCompatActivity {
                 accountState = 0;
                 break;
 
-            // авторизация через гугл
-            /*
-            case R.id.sign_with_google_button:
+            // авторизация через номер телефона
+            case R.id.sign_with_phone_button:
                 accountState = 2;
-                replaceFragment(new GoogleAuthFragment(), "left");
+                replaceFragment(new PhoneAuthFragment(), "left");
                 break;
-             */
+
 
             // авторизация через email
             case R.id.sign_with_email_button:
@@ -329,6 +447,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.back_create_imageButtonReg:
                 accountState = 1;
                 replaceFragment(authenticationFragment, "right");
+                break;
+
+            case R.id.edit_account_button:
+                //accountState = ?
+                replaceFragment(new EditAccountFragment(), "up");
+                break;
+
+            // нажали назад на странице редактирования аккаунта
+            case R.id.back_editing_imageButton:
+                accountState = 0;
+                replaceFragment(accountFragment, "down");
                 break;
 
             // нажали назад на странице отелей
@@ -370,4 +499,79 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment);
         fragmentTransaction.commit();
     }
+
+
+
+    // метод получения избранных отелей для пользователя по id (отели кладутся в статическое поле savedHostels)
+    public static void getSavedHostelsFromServer(String uid){
+
+        // создаем слушатель базы данных
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("================Saved data changed================");
+                // приходят данные (в объекте snapshot)
+
+                // проверка пустой ли список отелей, если нет - очищаем
+                if (savedHostels.size() > 0) savedHostels.clear();
+
+                // для каждой пары ключ (uid) - значение (список: arrayList<HostelCard>)
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    // проверяем равен ли ключ нужному uid
+                    if (dataSnapshot.getKey().equals(uid)){
+                        // с помощью дженерика получаем наше значение - arrayList<HostelCard> в переменную list
+                        GenericTypeIndicator<List<HostelCard>> t = new GenericTypeIndicator<List<HostelCard>>() {};
+                        List<HostelCard> list = dataSnapshot.getValue(t);
+                        // добавляем объекты из list в наше статическое поле savedHostels
+                        assert list != null;
+                        savedHostels.addAll(list);
+
+                        // завершаем цикл тк нужный ключ (uid) уже найден и его значение сохранено
+                        break;
+                    }
+
+                }
+                // сообщаем адаптеру, что данные поменялись
+                savedFragment.updateAdapter();
+//                hostelCardAdapter.notifyDataSetChanged();
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        // добавляем слушатель в бд
+        databaseSavedReference.addValueEventListener(valueEventListener);
+
+    }
+
+    // метод, проверяющий есть ли в каком-то списке List<HostelCard> какой-то объект hostelCard
+    public static boolean contains(List<HostelCard> hostelCards, HostelCard hostelCard){
+        for (HostelCard item : hostelCards) {
+            if (item.getId().equals(hostelCard.getId())) return true;
+        }
+        return false;
+    }
+
+    // метод, удаляющий из объекта savedHostels элемент с айдишником id
+    public static void remove(String id){
+//        System.out.println(savedHostels.size());
+        for (HostelCard item : savedHostels) {
+            if (item.getId().equals(id)){
+                savedHostels.remove(item);
+                break;
+            }
+        }
+    }
+
+    public static boolean checkEmail(String email){
+        String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+
 }

@@ -45,18 +45,26 @@
     <string name="sign_in">Войти</string>
     <string name="sign_out">Выйти</string>
     <string name="createAccount">Создать аккаунт</string>
-    <string name="signWithGoogle">Войти с помощью Google</string>
+    <string name="signWithPhone">Войти с помощью номера телефона</string>
     <string name="signWithEmail">Войти с помощью email</string>
     <string name="singingUp">Регистрация</string>
     <string name="singingIn">Авторизация</string>
     <string name="enterEmail">Введите email</string>
+    <string name="enterPhone">Введите номер телефона</string>
+    <string name="enterSmsCode">Введите смс код</string>
     <string name="enterPassword">Введите пароль</string>
     <string name="repeatPassword">Повторите пароль</string>
     <string name="createAccountAndSign">Создать аккаунт и войти</string>
+    <string name="receiveSms">Получить смс</string>
+    <string name="editAccount">Редактировать аккаунт</string>
+    <string name="editAccountTitle">Редактирование аккаунта</string>
+    <string name="Confirm">Подтвердить</string>
+
     <string name="hotelsFound">Найдено отелей:</string>
     <string name="checkIn">Регистрация въезда</string>
     <string name="checkOut">Регистрация выезда</string>
     <string name="roomsAndQuests">Число номеров и гостей</string>
     <string name="description">Описание</string>
+    <string name="reserve">Забронировать</string>
 
 </resources>

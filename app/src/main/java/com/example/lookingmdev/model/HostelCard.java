@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class HostelCard {
-    String hostelName, city, address, image, shortDescription, fullDescription;
+    String hostelName, city, address, image, shortDescription, fullDescription, id;
     int price;
     double rating;
     HashMap<String, Integer> listOfBookingDates;
-    int amountOfHostelRooms;
+    int amountOfHostelRooms, currentAmountOfHostelRooms;
+
 
     public HostelCard() {
     }
@@ -26,6 +27,14 @@ public class HostelCard {
         this.price = price;
         this.rating = rating;
         this.listOfBookingDates = listOfBookingDates;
+    }
+
+    public void setCurrentAmountOfHostelRooms(int currentAmountOfHostelRooms) {
+        this.currentAmountOfHostelRooms = currentAmountOfHostelRooms;
+    }
+
+    public int getCurrentAmountOfHostelRooms() {
+        return currentAmountOfHostelRooms;
     }
 
     public String getHostelName() {
@@ -106,6 +115,14 @@ public class HostelCard {
 
     public void setAmountOfHostelRooms(int amountOfHostelRooms) {
         this.amountOfHostelRooms = amountOfHostelRooms;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 

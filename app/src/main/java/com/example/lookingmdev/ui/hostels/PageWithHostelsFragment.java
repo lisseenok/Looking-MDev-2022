@@ -24,8 +24,6 @@ import com.example.lookingmdev.adapter.HostelCardAdapter;
 import com.example.lookingmdev.model.HostelCard;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -40,6 +38,8 @@ public class PageWithHostelsFragment extends Fragment {
 
     private List<HostelCard> hostelList = new ArrayList<>();
     private int amountOfHostels = 0;
+    private int maxRooms;
+    private boolean isCreated = false;
 
 
     TextView sumHostelsText;
@@ -52,11 +52,13 @@ public class PageWithHostelsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-
+//        System.out.println("onCreateView");
         View view = inflater.inflate(R.layout.fragment_page_with_hostels, container, false);
 
-        getHostelsFromServer(view);
+        if (!isCreated) {
+            getHostelsFromServer(view);
+            isCreated = true;
+        }
 
         // устанавливаем в самом начале
         setAmountOfHostels(view);
@@ -66,10 +68,38 @@ public class PageWithHostelsFragment extends Fragment {
     }
 
     private void setAmountOfHostels(View view) {
+        // этот метод нужен тк при смене языка все ломается к чертям
+        if(isAdded()) {
+
         sumHostelsText = view.findViewById(R.id.sumHostelsText);
 
         String text = String.format("%s %d", getResources().getString(R.string.hotelsFound), amountOfHostels);
         sumHostelsText.setText(text);
+        }
+    }
+
+    // метод проверяет, доступен ли хоть один номер в отеле на эти даты
+    // а так же считает, сколько доступно комнат
+
+    private boolean dateCheck(HostelCard hostelCard) {
+        maxRooms = hostelCard.getAmountOfHostelRooms();
+
+        for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+            @SuppressLint("DefaultLocale")
+            String key = String.format("%d %d %d - %d %d %d",
+                    (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                    (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                    MainActivity.selectedDates.get(i - 1).getDate(),
+                    (MainActivity.selectedDates.get(i).getYear() + 1900),
+                    (MainActivity.selectedDates.get(i).getMonth() + 1),
+                    MainActivity.selectedDates.get(i).getDate());
+            if (hostelCard.getListOfBookingDates().containsKey(key) && hostelCard.getListOfBookingDates().get(key) == 0) {
+                return false;
+            } else if (hostelCard.getListOfBookingDates().containsKey(key) && hostelCard.getListOfBookingDates().get(key) < maxRooms)
+                maxRooms = hostelCard.getListOfBookingDates().get(key);
+        }
+
+        return true;
     }
 
     private void getHostelsFromServer(View view){
@@ -78,25 +108,34 @@ public class PageWithHostelsFragment extends Fragment {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("Data changed");
                 amountOfHostels = 0;
                 // приходят данные (в объекте snapshot)
 
                 // проверка пустой ли список отелей
+
                 if (hostelList.size() > 0) hostelList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HostelCard hostelCard = dataSnapshot.getValue(HostelCard.class);
-                    // сортировка по городам
-                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city)) {
+
+                    // сортировка по городам и датам
                     // добавляем только если объект есть (вдруг ошибки в бд)
-//                    assert hostelCard != null;
+                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city) && dateCheck(hostelCard)) {
+                        hostelCard.setId(dataSnapshot.getKey());
+                        hostelCard.setCurrentAmountOfHostelRooms(maxRooms);
+
                         hostelList.add(hostelCard);
                         amountOfHostels += 1;
                     }
+                    // обновляем данные выбранного отеля
+                    if (MainActivity.searchHostelCard != null && hostelCard != null && MainActivity.searchHostelCard.getId().equals(hostelCard.getId()))
+                        MainActivity.searchHostelCard = hostelCard;
                 }
                 // нужна проверка, если вдруг данные поменяются на сервере, то у нас не должно крашиться приложение, если мы на другой странице
-                if (MainActivity.searchState == 1)
+                if (MainActivity.searchState == 1) {
                     setAmountOfHostels(view);
+                }
 
                 // сообщаем адаптеру, что данные поменялись
                 hostelCardAdapter.notifyDataSetChanged();

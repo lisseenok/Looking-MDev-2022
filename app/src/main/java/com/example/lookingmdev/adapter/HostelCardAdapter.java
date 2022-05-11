@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
     Context context;
     List<HostelCard> hostelCards;
+
 
     public HostelCardAdapter(Context context, List<HostelCard> hostelCards) {
         this.context = context;
@@ -63,13 +65,42 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         }
         holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + ", " + hostelCards.get(position).getAddress()));
         holder.hostelCardShortDescriptionText.setText(hostelCards.get(position).getShortDescription());
-        holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getAmountOfHostelRooms()));
+        holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getCurrentAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
+
+        // слушатель на клик по сердечку
         holder.iconHeart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                System.out.println("Нажали на сердечко");
+            public void onClick(View v) {
+                // если пользователь авторизован
+                if (MainActivity.isAuth)
+                {
+                    // проверяем есть ли нажатый отель в списке избранных текущего пользователя (в savedHostels)
+                    if (!MainActivity.contains(MainActivity.savedHostels, hostelCards.get(position))){
+                        // если отеля нет в списке избранных - добавляем его в статическое поле savedHostels
+                        MainActivity.savedHostels.add(hostelCards.get(position));
+
+                        // и меняем иконку сердечка
+                        int newIconId = context.getResources().getIdentifier("ic_red_heart", "drawable", context.getPackageName());
+                        holder.iconHeart.setImageResource(newIconId);
+                    } else {
+                        // если же отель есть в savedHostels - при нажатии нам надо его удалить
+                        // удаляем
+                        MainActivity.remove(hostelCards.get(position).getId());
+                        // меняем иконку
+                        int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
+                        holder.iconHeart.setImageResource(newIconId);
+                    }
+                    // изменили наш список избранных (savedHostels) и теперь пушим его на бд
+
+                    MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.savedHostels);
+
+                } else {
+                    // если пользователь не авторизован, то выводим тост, чтобы авторизовался
+                    Toast.makeText(context.getApplicationContext(), "Необходимо авторизироваться", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -78,8 +109,21 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             @Override
             public void onClick(View v) {
                 // обновляем глобальное значение (на всякий случай)
-                MainActivity.hostelCard = hostelCards.get(position);
-                MainActivity.searchState = 2;
+                if (MainActivity.selectedPage == 0) {
+                    MainActivity.searchHostelCard = hostelCards.get(position);
+                } else if (MainActivity.selectedPage == 1) {
+                    System.out.println(hostelCards.get(position));
+
+                    MainActivity.savedHostelCard = hostelCards.get(position);
+
+                    System.out.println(MainActivity.savedHostelCard);
+
+                }
+
+                if (MainActivity.selectedPage == 0)
+                    MainActivity.searchState = 2;
+                else if (MainActivity.selectedPage == 1)
+                    MainActivity.savedState = 1;
 //                Bundle bundle = new Bundle();
                 // создаем фрагмент с отелем
                 MainActivity.hostelPageFragment = new HostelPageFragment();
@@ -101,6 +145,22 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         // превращаем название картинки в идентификатор
         int imageId = context.getResources().getIdentifier(hostelCards.get(position).getImage(), "drawable", context.getPackageName());
         holder.hostelCardImage.setImageResource(imageId);
+
+        if (MainActivity.isAuth)
+        // если пользователь авторизован
+        {
+            if (MainActivity.contains(MainActivity.savedHostels, hostelCards.get(position))){
+                int newIconId = context.getResources().getIdentifier("ic_red_heart", "drawable", context.getPackageName());
+                holder.iconHeart.setImageResource(newIconId);
+            } else {
+                int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
+                holder.iconHeart.setImageResource(newIconId);
+            }
+        } else {
+            int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
+            holder.iconHeart.setImageResource(newIconId);
+        }
+
 
     }
 
