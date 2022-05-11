@@ -54,16 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
-    <Button
-        android:id="@+id/sign_with_phone_button"
-
-        style="@style/AuthButtons"
-        android:layout_marginTop="120dp"
-
-        android:text="@string/signWithPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_account_button" />
 
     <Button
         android:id="@+id/sign_with_email_button"
@@ -75,7 +65,7 @@
         android:text="@string/signWithEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_with_phone_button"
+        app:layout_constraintTop_toBottomOf="@+id/create_account_button"
         tools:ignore="MissingConstraints" />
 
     <View

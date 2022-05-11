@@ -432,11 +432,11 @@ public class MainActivity extends AppCompatActivity {
                 accountState = 0;
                 break;
 
-            // авторизация через номер телефона
-            case R.id.sign_with_phone_button:
-                accountState = 2;
-                replaceFragment(new PhoneAuthFragment(), "left");
-                break;
+//            // авторизация через номер телефона
+//            case R.id.sign_with_phone_button:
+//                accountState = 2;
+//                replaceFragment(new PhoneAuthFragment(), "left");
+//                break;
 
 
             // авторизация через email
@@ -581,6 +581,7 @@ public class MainActivity extends AppCompatActivity {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
 
 
 
