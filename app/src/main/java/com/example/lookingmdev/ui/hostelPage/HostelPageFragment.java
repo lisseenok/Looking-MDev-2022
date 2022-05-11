@@ -73,7 +73,7 @@ public class HostelPageFragment extends Fragment {
 //            int image = getContext().getResources().getIdentifier(MainActivity.searchHostelCard.getImage(), "drawable", getContext().getPackageName());
 //            hostelImage.setImageResource(image);
 
-            Glide.with(view.getContext().getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/looking-2f220.appspot.com/o/hotel2.jpg?alt=media&token=3314165a-a95c-4199-ac04-ac5970c5d459").into(hostelImage);
+            Glide.with(view.getContext().getApplicationContext()).load(MainActivity.searchHostelCard.getImage()).into(hostelImage);
 
             // устанавливаем текстовые значения поля
             hostelName.setText(MainActivity.searchHostelCard.getHostelName());
@@ -225,7 +225,8 @@ public class HostelPageFragment extends Fragment {
             System.out.println(MainActivity.savedHostelCard);
 //            int image = getContext().getResources().getIdentifier(MainActivity.savedHostelCard.getImage(), "drawable", getContext().getPackageName());
 //            hostelImage.setImageResource(image);
-            Glide.with(view.getContext().getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/looking-2f220.appspot.com/o/hotel2.jpg?alt=media&token=3314165a-a95c-4199-ac04-ac5970c5d459").into(hostelImage);
+
+            Glide.with(view.getContext().getApplicationContext()).load(MainActivity.savedHostelCard.getImage()).into(hostelImage);
 
 
             // устанавливаем текстовые значения поля

@@ -164,7 +164,7 @@ public class PageWithHostelsFragment extends Fragment {
         hostelsRecycler.setLayoutManager(layoutManager);
 
         // создаем адаптер
-        hostelCardAdapter = new HostelCardAdapter(view.getContext(), hostelList);
+        hostelCardAdapter = new HostelCardAdapter(getContext(), hostelList);
 
         // передаем адаптер в компонент
         hostelsRecycler.setAdapter(hostelCardAdapter);
