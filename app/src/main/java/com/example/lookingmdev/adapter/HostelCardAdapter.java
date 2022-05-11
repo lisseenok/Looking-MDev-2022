@@ -15,10 +15,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.lookingmdev.ui.hostelPage.HostelPageFragment;
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 
 import java.util.List;
 
@@ -142,9 +144,13 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         // создаем идентификатор  фотографии:
         // getResources(): создаем окно ко всем ресурсам проекта
         // getIdentifier(): возвращает ресурс из заданной папки
+
         // превращаем название картинки в идентификатор
-        int imageId = context.getResources().getIdentifier(hostelCards.get(position).getImage(), "drawable", context.getPackageName());
-        holder.hostelCardImage.setImageResource(imageId);
+//        int imageId = context.getResources().getIdentifier(hostelCards.get(position).getImage(), "drawable", context.getPackageName());
+//        holder.hostelCardImage.setImageResource(imageId);
+
+
+        Glide.with(context.getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/looking-2f220.appspot.com/o/hotel3.jpg?alt=media&token=0486338a-46dc-4077-932e-8328b4aa39eb").into(holder.hostelCardImage);
 
         if (MainActivity.isAuth)
         // если пользователь авторизован
