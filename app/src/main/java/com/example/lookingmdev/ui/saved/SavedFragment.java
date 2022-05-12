@@ -38,9 +38,6 @@ public class SavedFragment extends Fragment {
         return new SavedFragment();
     }
 
-
-
-
     public static void updateAdapter() {
         if (hostelSavedCardAdapter != null) {
             hostelSavedCardAdapter.notifyDataSetChanged();
@@ -50,7 +47,7 @@ public class SavedFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        System.out.println("onCreateView");
+//        System.out.println("onCreateView");
 
 
         View view;
@@ -58,6 +55,8 @@ public class SavedFragment extends Fragment {
         // если авторизованы и в списке сохранненного есть что-то, то
         if (MainActivity.isAuth && MainActivity.savedHostels.size() != 0) {
             view = inflater.inflate(R.layout.fragment_page_with_saved_hostels, container, false);
+
+
 
             setHostelsRecycler(MainActivity.savedHostels, view);
 
