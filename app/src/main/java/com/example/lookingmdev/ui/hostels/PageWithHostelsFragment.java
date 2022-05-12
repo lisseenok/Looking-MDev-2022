@@ -55,10 +55,8 @@ public class PageWithHostelsFragment extends Fragment {
 //        System.out.println("onCreateView");
         View view = inflater.inflate(R.layout.fragment_page_with_hostels, container, false);
 
-//        if (!isCreated) {
-            getHostelsFromServer(view);
-//            isCreated = true;
-//        }
+        getHostelsFromServer(view);
+
 
         // устанавливаем в самом начале
         setAmountOfHostels(view);
@@ -121,7 +119,7 @@ public class PageWithHostelsFragment extends Fragment {
 
                     // сортировка по городам и датам
                     // добавляем только если объект есть (вдруг ошибки в бд)
-                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city) && dateCheck(hostelCard)) {
+                    if (hostelCard != null && hostelCard.getCity().equals(MainActivity.city) && dateCheck(hostelCard) && maxRooms >= MainActivity.rooms) {
                         hostelCard.setId(dataSnapshot.getKey());
                         hostelCard.setCurrentAmountOfHostelRooms(maxRooms);
 

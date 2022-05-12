@@ -69,10 +69,10 @@ public class SearchFragment extends Fragment {
 
         // инициализируем текстовое поле ввода города
         townText = root.findViewById(R.id.townText);
-        townLayout = root.findViewById(R.id.townLayout);
 
         cardView = root.findViewById(R.id.filter_border);
 
+        // проверка, не нужно ли подсвечивать рамку
         checkFilterBorder();
 
         // устанавливаем новое значение в поле города
@@ -176,26 +176,43 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // устанавливаем цвета кнопкам
+        if (MainActivity.rooms >= 2)
+            minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+        else
+            minusRoomButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+        if (MainActivity.adults >= 2)
+            minusHumanButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+        else
+            minusHumanButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+        if (MainActivity.children >= 1)
+            minusKidsButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+        else
+            minusKidsButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+
 
         // объявляем листенеры для кнопок менюшки снизу
         plusRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfRoomText.getText().toString());
-                ++number;
-                numberOfRoomText.setText("" + number);
-                if (number >= 2)
+                ++MainActivity.rooms;
+                numberOfRoomText.setText("" + MainActivity.rooms);
+                if (MainActivity.rooms >= 2)
                     minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+
+
             }
         });
         minusRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfRoomText.getText().toString());
-                if (number > 1) {
-                --number;
-                numberOfRoomText.setText("" + number);
-                if (number == 1)
+                if (MainActivity.rooms > 1) {
+                --MainActivity.rooms;
+                numberOfRoomText.setText("" + MainActivity.rooms);
+                if (MainActivity.rooms == 1)
                     minusRoomButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
 
                 }
@@ -205,21 +222,19 @@ public class SearchFragment extends Fragment {
         plusHumanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfHumanText.getText().toString());
-                ++number;
-                numberOfHumanText.setText("" + number);
-                if (number >= 2)
+                ++MainActivity.adults;
+                numberOfHumanText.setText("" + MainActivity.adults);
+                if (MainActivity.adults >= 2)
                     minusHumanButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
             }
         });
         minusHumanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfHumanText.getText().toString());
-                if (number > 1) {
-                    --number;
-                    numberOfHumanText.setText("" + number);
-                    if (number == 1)
+                if (MainActivity.adults > 1) {
+                    --MainActivity.adults;
+                    numberOfHumanText.setText("" + MainActivity.adults);
+                    if (MainActivity.adults == 1)
                         minusHumanButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
 
                 }
@@ -229,21 +244,19 @@ public class SearchFragment extends Fragment {
         plusKidsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfKidsText.getText().toString());
-                ++number;
-                numberOfKidsText.setText("" + number);
-                if (number >= 1)
+                ++MainActivity.children;
+                numberOfKidsText.setText("" + MainActivity.children);
+                if (MainActivity.children >= 1)
                     minusKidsButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
             }
         });
         minusKidsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = Integer.parseInt(numberOfKidsText.getText().toString());
-                if (number > 0) {
-                    --number;
-                    numberOfKidsText.setText("" + number);
-                    if (number == 0)
+                if (MainActivity.children > 0) {
+                    --MainActivity.children;
+                    numberOfKidsText.setText("" + MainActivity.children);
+                    if (MainActivity.children == 0)
                         minusKidsButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
 
                 }
@@ -296,42 +309,41 @@ public class SearchFragment extends Fragment {
 
     // установка текста в поле посетителей в фильтрах
     public void setVisitorsText(){
-        // если открываем меню снизу не первый раз
-        if (MainActivity.rooms != 0) {
-
-            // в эту переменную мы кладем значение текущей темы для отрисовки текста в фильтрах соответствующего цвета
-            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-
-            //  проверка на темную/светулю тему (выставляем соответствующий цвет вписанному тексту в поле
-            // TODO make new method
-            switch (currentNightMode) {
-                case Configuration.UI_MODE_NIGHT_NO:
-                    // ночная тема не активна, используется светлая тема
-                    numberOfVisitorsText.setTextColor(getResources().getColor(R.color.enteredTextColorLight));
-                    break;
-                case Configuration.UI_MODE_NIGHT_YES:
-                    // ночная тема активна, и она используется
-                    numberOfVisitorsText.setTextColor(getResources().getColor(R.color.enteredTextColorDark));
-                    break;
-            }
-
-            // случаи когда есть дети/нет детей
-            if (MainActivity.children == 0) {
-                MainActivity.visitors = getResources().getString(R.string.room) + ": " +
-
-                        numberOfRoomText.getText().toString() + " • "
-                        + getResources().getString(R.string.adult) +
-                        ": " + numberOfHumanText.getText().toString() + " • " + getResources().getString(R.string.noChildren);
 
 
-            } else {
-                MainActivity.visitors = getResources().getString(R.string.room) + ": " +
-                        numberOfRoomText.getText().toString() + " • " + getResources().getString(R.string.adult) +
-                        ": " + numberOfHumanText.getText().toString() + " • " + getResources().getString(R.string.child) +
-                        ": " + numberOfKidsText.getText().toString();
-            }
-            numberOfVisitorsText.setText(MainActivity.visitors);
+        // в эту переменную мы кладем значение текущей темы для отрисовки текста в фильтрах соответствующего цвета
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+        //  проверка на темную/светулю тему (выставляем соответствующий цвет вписанному тексту в поле
+        // TODO make new method
+        switch (currentNightMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+                // ночная тема не активна, используется светлая тема
+                numberOfVisitorsText.setTextColor(getResources().getColor(R.color.enteredTextColorLight));
+                break;
+            case Configuration.UI_MODE_NIGHT_YES:
+                // ночная тема активна, и она используется
+                numberOfVisitorsText.setTextColor(getResources().getColor(R.color.enteredTextColorDark));
+                break;
         }
+
+        // случаи когда есть дети/нет детей
+        if (MainActivity.children == 0) {
+            MainActivity.visitors = getResources().getString(R.string.room) + ": " +
+
+                    MainActivity.rooms + " • "
+                    + getResources().getString(R.string.adult) +
+                    ": " + MainActivity.adults + " • " + getResources().getString(R.string.noChildren);
+
+
+        } else {
+            MainActivity.visitors = getResources().getString(R.string.room) + ": " +
+                    MainActivity.rooms + " • " + getResources().getString(R.string.adult) +
+                    ": " + MainActivity.adults + " • " + getResources().getString(R.string.child) +
+                    ": " + MainActivity.children;
+        }
+        numberOfVisitorsText.setText(MainActivity.visitors);
+
     }
 
 

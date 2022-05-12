@@ -152,7 +152,7 @@ public class HostelPageFragment extends Fragment {
                                     (MainActivity.selectedDates.get(i).getMonth() + 1),
                                     MainActivity.selectedDates.get(i).getDate());
 
-                            if (MainActivity.searchHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.searchHostelCard.getListOfBookingDates().get(key) == 0) {
+                            if (MainActivity.searchHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.searchHostelCard.getListOfBookingDates().get(key) < MainActivity.rooms) {
                                 Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
                                 hostelApplyButton.setEnabled(false);
                                 hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
@@ -174,11 +174,11 @@ public class HostelPageFragment extends Fragment {
 
                             // если такая дата уже есть, то (она точно больше нуля - проверка выше)
                             if (MainActivity.searchHostelCard.getListOfBookingDates().containsKey(key)) {
-                                MainActivity.searchHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getListOfBookingDates().get(key) - 1);
+                                MainActivity.searchHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getListOfBookingDates().get(key) - MainActivity.rooms);
                             }
                             // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
                             else {
-                                MainActivity.searchHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getAmountOfHostelRooms() - 1);
+                                MainActivity.searchHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getAmountOfHostelRooms() - MainActivity.rooms);
                             }
                             System.out.println(MainActivity.searchHostelCard.getListOfBookingDates());
 
@@ -306,7 +306,7 @@ public class HostelPageFragment extends Fragment {
                                     (MainActivity.selectedDates.get(i).getMonth() + 1),
                                     MainActivity.selectedDates.get(i).getDate());
 
-                            if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.savedHostelCard.getListOfBookingDates().get(key) == 0) {
+                            if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.savedHostelCard.getListOfBookingDates().get(key) < MainActivity.rooms) {
                                 Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
                                 hostelApplyButton.setEnabled(false);
                                 hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
@@ -328,11 +328,11 @@ public class HostelPageFragment extends Fragment {
 
                             // если такая дата уже есть, то (она точно больше нуля - проверка выше)
                             if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key)) {
-                                MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getListOfBookingDates().get(key) - 1);
+                                MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getListOfBookingDates().get(key) - MainActivity.rooms);
                             }
                             // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
                             else {
-                                MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getAmountOfHostelRooms() - 1);
+                                MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getAmountOfHostelRooms() - MainActivity.rooms);
                             }
                             System.out.println(MainActivity.savedHostelCard.getListOfBookingDates());
 

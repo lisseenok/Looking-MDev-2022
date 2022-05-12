@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO create getters/setters
     public static String startWeekDay, endWeekDay, startMonth, endMonth, startDay, endDay, city, date, visitors;
 
-    public static int rooms = 1, adults = 1, children;
+    public static int rooms = 1, adults = 1, children = 0;
     public static List<Date> selectedDates;
     public static HostelCard searchHostelCard;
     public static HostelCard savedHostelCard;
