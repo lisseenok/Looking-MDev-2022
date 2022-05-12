@@ -176,6 +176,23 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // устанавливаем цвета кнопкам
+        if (MainActivity.rooms >= 2)
+            minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+        else
+            minusRoomButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+        if (MainActivity.adults >= 2)
+            minusHumanButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+        else
+            minusHumanButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+        if (MainActivity.children >= 1)
+            minusKidsButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+        else
+            minusKidsButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+
 
         // объявляем листенеры для кнопок менюшки снизу
         plusRoomButton.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +202,8 @@ public class SearchFragment extends Fragment {
                 numberOfRoomText.setText("" + MainActivity.rooms);
                 if (MainActivity.rooms >= 2)
                     minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+
+
             }
         });
         minusRoomButton.setOnClickListener(new View.OnClickListener() {
