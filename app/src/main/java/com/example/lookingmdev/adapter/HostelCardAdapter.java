@@ -47,10 +47,33 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         return new HostelCardViewHolder(hostelCardItems);
     }
 
+    // метод, который возвращает максимальное число комнат, которые можно забронировать на эти даты
+    public int getMaxRoomsInHostel(int position) {
+        int maxRooms = hostelCards.get(position).getAmountOfHostelRooms();
+        for (int i = 1; i < MainActivity.selectedDates.size(); ++i) {
+            @SuppressLint("DefaultLocale")
+            String key = String.format("%d %d %d - %d %d %d",
+                    (MainActivity.selectedDates.get(i - 1).getYear() + 1900),
+                    (MainActivity.selectedDates.get(i - 1).getMonth() + 1),
+                    MainActivity.selectedDates.get(i - 1).getDate(),
+                    (MainActivity.selectedDates.get(i).getYear() + 1900),
+                    (MainActivity.selectedDates.get(i).getMonth() + 1),
+                    MainActivity.selectedDates.get(i).getDate());
+
+            if (hostelCards.get(position).getListOfBookingDates().containsKey(key) && hostelCards.get(position).getListOfBookingDates().get(key) < maxRooms)
+                maxRooms = hostelCards.get(position).getListOfBookingDates().get(key);
+        }
+
+        return maxRooms;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull HostelCardViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // position - итератор по элементам списка
         // holder - дизайн каждого отдельного элемента - это объект класса CourseViewHolder, где лежат все элементы, помещенные в поля
+
+        // получаем фотьки с бд
+        Glide.with(context).load(hostelCards.get(position).getImage()).into(holder.hostelCardImage);
 
         // устанавливаем текст карточке в соответствии с данными текущего объекта из массива объектов
         holder.hostelCardNameText.setText(hostelCards.get(position).getHostelName());
@@ -69,6 +92,14 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         holder.hostelCardShortDescriptionText.setText(hostelCards.get(position).getShortDescription());
         holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getCurrentAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
+
+        // если мы на странице сохраненных отелей, то используем функцию, для подсчета кол-ва комнат, возможных для брони
+        if (MainActivity.startDay == null && MainActivity.selectedPage == 1) {
+            holder.hostelCardAmountOfHostelRoomsText.setText("");
+        } else if (MainActivity.startDay != null && MainActivity.selectedPage == 1) {
+            holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + getMaxRoomsInHostel(position)));
+        }
+
 
 
         // слушатель на клик по сердечку
@@ -149,8 +180,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 //        int imageId = context.getResources().getIdentifier(hostelCards.get(position).getImage(), "drawable", context.getPackageName());
 //        holder.hostelCardImage.setImageResource(imageId);
 
-        // получаем фотьки с бд
-        Glide.with(context).load(hostelCards.get(position).getImage()).into(holder.hostelCardImage);
 
 
         if (MainActivity.isAuth)
