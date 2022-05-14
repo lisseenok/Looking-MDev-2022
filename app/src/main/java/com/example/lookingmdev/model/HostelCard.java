@@ -1,5 +1,7 @@
 package com.example.lookingmdev.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,13 +12,12 @@ public class HostelCard {
     int price;
     double rating;
     HashMap<String, Integer> listOfBookingDates;
+    // лист для бронирования
+    HashMap<String, Integer> listOfBookingDates2;
     int amountOfHostelRooms, currentAmountOfHostelRooms;
+    int rooms, adults, children;
 
-
-    public HostelCard() {
-    }
-
-    public HostelCard(String hostelName, String city, String address, String image, String shortDescription, String fullDescription, int amountOfHostelRooms, int price, double rating, HashMap<String, Integer> listOfBookingDates) {
+    public HostelCard(String hostelName, String city, String address, String image, String shortDescription, String fullDescription, int amountOfHostelRooms, int price, double rating, HashMap<String, Integer> listOfBookingDates, HashMap<String, Integer> listOfBookingDates2) {
         this.hostelName = hostelName;
         this.city = city;
         this.address = address;
@@ -27,7 +28,44 @@ public class HostelCard {
         this.price = price;
         this.rating = rating;
         this.listOfBookingDates = listOfBookingDates;
+        this.listOfBookingDates2 = listOfBookingDates2;
     }
+
+    public HashMap<String, Integer> getListOfBookingDates2() {
+        return listOfBookingDates2;
+    }
+
+    public void setListOfBookingDates2(HashMap<String, Integer> listOfBookingDates2) {
+        this.listOfBookingDates2 = listOfBookingDates2;
+    }
+
+    public int getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
+    }
+
+    public int getAdults() {
+        return adults;
+    }
+
+    public void setAdults(int adults) {
+        this.adults = adults;
+    }
+
+    public int getChildren() {
+        return children;
+    }
+
+    public void setChildren(int children) {
+        this.children = children;
+    }
+
+    public HostelCard() {
+    }
+
 
     public void setCurrentAmountOfHostelRooms(int currentAmountOfHostelRooms) {
         this.currentAmountOfHostelRooms = currentAmountOfHostelRooms;
@@ -124,5 +162,30 @@ public class HostelCard {
     public void setId(String id) {
         this.id = id;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "HostelCard{" +
+                "hostelName='" + hostelName + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", fullDescription='" + fullDescription + '\'' +
+                ", id='" + id + '\'' +
+                ", price=" + price +
+                ", rating=" + rating +
+                ", listOfBookingDates=" + listOfBookingDates +
+                ", listOfBookingDates2=" + listOfBookingDates2 +
+                ", amountOfHostelRooms=" + amountOfHostelRooms +
+                ", currentAmountOfHostelRooms=" + currentAmountOfHostelRooms +
+                ", rooms=" + rooms +
+                ", adults=" + adults +
+                ", children=" + children +
+                '}';
+    }
 }
+
+
 

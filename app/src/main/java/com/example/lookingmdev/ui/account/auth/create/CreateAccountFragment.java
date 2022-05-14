@@ -87,6 +87,7 @@ public class CreateAccountFragment extends Fragment {
                             MainActivity.isAuth = true;
                             MainActivity.firebaseUser = firebaseAuth.getCurrentUser();
                             MainActivity.getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
+                            MainActivity.getBookingsHostelsFromServer(MainActivity.firebaseUser.getUid());
                             // делаем переход на домашний фрагмент аккаунта (newInstance() - возвращаем просто новый экземпляр класса)
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

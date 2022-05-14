@@ -5,16 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundHostelsColor"
-    tools:context=".ui.hostels.PageWithSearchHostelsFragment" >
+    tools:context=".ui.booking.BookingFragment" >
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/greyLine"
-        app:layout_constraintBottom_toTopOf="@+id/sumHostelsText"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -37,37 +29,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <FrameLayout
-            android:id="@+id/backFromPageWithHostels"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="15dp"
-            android:onClick="changeFragment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_angle_left" />
-        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
-        android:id="@+id/sumHostelsText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/hotelsFound"
-        android:gravity="center|start"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="5dp"
-        android:textColor="#6B6B6B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/greyLine"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hostelsRecycler"
@@ -77,6 +50,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sumHostelsText" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

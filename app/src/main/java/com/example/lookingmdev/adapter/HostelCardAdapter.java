@@ -90,6 +90,8 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         }
         holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + ", " + hostelCards.get(position).getAddress()));
         holder.hostelCardShortDescriptionText.setText(hostelCards.get(position).getShortDescription());
+
+        // currentAmountOfHostelRooms - значение этого поля устанавливается непосредственно на странице отелей на странице поиска
         holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getCurrentAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
@@ -100,7 +102,9 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + getMaxRoomsInHostel(position)));
         }
 
-
+        if (MainActivity.selectedPage == 2) {
+            holder.hostelCardAmountOfHostelRoomsText.setText("");
+        }
 
         // слушатель на клик по сердечку
         holder.iconHeart.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +133,10 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
 
                     MainActivity.databaseSavedReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.savedHostels);
 
+                    // для страницы с бронированиями: обновляем ресайклер тк карточек отеля, на сердчко
+                    // которого мы нажали может быть несколько и у всех надо поменять сердечко
+                    MainActivity.bookingFragment.updateBookingsAdapter();
+
                 } else {
                     // если пользователь не авторизован, то выводим тост, чтобы авторизовался
                     Toast.makeText(context.getApplicationContext(), "Необходимо авторизироваться", Toast.LENGTH_SHORT).show();
@@ -145,18 +153,17 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
                 if (MainActivity.selectedPage == 0) {
                     MainActivity.searchHostelCard = hostelCards.get(position);
                 } else if (MainActivity.selectedPage == 1) {
-                    System.out.println(hostelCards.get(position));
-
                     MainActivity.savedHostelCard = hostelCards.get(position);
-
-                    System.out.println(MainActivity.savedHostelCard);
-
+                } else if (MainActivity.selectedPage == 2) {
+                    MainActivity.bookingHostelCard = hostelCards.get(position);
                 }
 
                 if (MainActivity.selectedPage == 0)
                     MainActivity.searchState = 2;
                 else if (MainActivity.selectedPage == 1)
                     MainActivity.savedState = 1;
+                else if (MainActivity.selectedPage == 2)
+                    MainActivity.bookingState = 1;
 //                Bundle bundle = new Bundle();
                 // создаем фрагмент с отелем
                 MainActivity.hostelPageFragment = new HostelPageFragment();
@@ -171,20 +178,10 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
             }
         });
 
-
-        // создаем идентификатор  фотографии:
-        // getResources(): создаем окно ко всем ресурсам проекта
-        // getIdentifier(): возвращает ресурс из заданной папки
-
-        // превращаем название картинки в идентификатор
-//        int imageId = context.getResources().getIdentifier(hostelCards.get(position).getImage(), "drawable", context.getPackageName());
-//        holder.hostelCardImage.setImageResource(imageId);
-
-
-
         if (MainActivity.isAuth)
         // если пользователь авторизован
         {
+            System.out.println("зашли в проверку");
             if (MainActivity.contains(MainActivity.savedHostels, hostelCards.get(position))){
                 int newIconId = context.getResources().getIdentifier("ic_red_heart", "drawable", context.getPackageName());
                 holder.iconHeart.setImageResource(newIconId);

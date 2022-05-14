@@ -26,16 +26,16 @@ public class ServerConnector {
 
         HashMap<String, Integer> hashMap = new HashMap<>();
         hashMap.put("date", 5);
-        hostelList.add(new HostelCard("Boutique Hotel Artrium Munchen",
-                "Москва",
-                "Проспект Вернадского 78",
-                "hotel1",
-                "Двухместный номер \"Комфорт\" с 1 кроватью и видом на сад",
-                "",
-                5,
-                2655,
-                8.1,
-                hashMap));
+//        hostelList.add(new HostelCard("Boutique Hotel Artrium Munchen",
+//                "Москва",
+//                "Проспект Вернадского 78",
+//                "hotel1",
+//                "Двухместный номер \"Комфорт\" с 1 кроватью и видом на сад",
+//                "",
+//                5,
+//                2655,
+//                8.1,
+//                hashMap));
 //        hostelList.add(new HostelCard("Boutique Hotel Artrium Munchen", "Москва", "Проспект Вернадского 78", "hotel1", "Двухместный номер \"Комфорт\" с 1 кроватью и видом на сад", "", 5, 2655, 8.1, new HashMap<Date, Integer>()));
 //        hostelList.add(new HostelCard("Hotel Concorde",
 //                "Пенза",

@@ -176,7 +176,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        // устанавливаем цвета кнопкам
+        // устанавливаем цвета кнопкам меню
         if (MainActivity.rooms >= 2)
             minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
         else
