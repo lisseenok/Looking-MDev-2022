@@ -129,6 +129,8 @@ public class HostelPageFragment extends Fragment {
 
         }
 
+        HashMap<String, Integer> hashMap = new HashMap<>();
+
 
         if (MainActivity.selectedPage == 0) {
 
@@ -184,10 +186,12 @@ public class HostelPageFragment extends Fragment {
                             // если такая дата уже есть, то (она точно больше нуля - проверка выше)
                             if (MainActivity.searchHostelCard.getListOfBookingDates().containsKey(key)) {
                                 MainActivity.searchHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getListOfBookingDates().get(key) - MainActivity.rooms);
+                                hashMap.put(key, MainActivity.searchHostelCard.getListOfBookingDates().get(key) - MainActivity.rooms);
                             }
                             // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - число забронированных номеров
                             else {
                                 MainActivity.searchHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getAmountOfHostelRooms() - MainActivity.rooms);
+                                hashMap.put(key, MainActivity.searchHostelCard.getAmountOfHostelRooms() - MainActivity.rooms);
                             }
 
                         }
@@ -205,7 +209,6 @@ public class HostelPageFragment extends Fragment {
                         bookingHostelCard.setPrice(MainActivity.searchHostelCard.getPrice());
                         bookingHostelCard.setRating(MainActivity.searchHostelCard.getRating());
 
-                        HashMap<String, Integer> hashMap = new HashMap<>();
 
                         hashMap.put("startDay", Integer.parseInt(MainActivity.startDay));
                         hashMap.put("startWeekDay", Integer.parseInt(MainActivity.startWeekDay));
@@ -294,10 +297,12 @@ public class HostelPageFragment extends Fragment {
                             // если такая дата уже есть, то (она точно больше нуля - проверка выше)
                             if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key)) {
                                 MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getListOfBookingDates().get(key) - MainActivity.rooms);
+                                hashMap.put(key, 0);
                             }
                             // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
                             else {
                                 MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getAmountOfHostelRooms() - MainActivity.rooms);
+                                hashMap.put(key, 0);
                             }
 
                         }
@@ -316,7 +321,7 @@ public class HostelPageFragment extends Fragment {
                         bookingHostelCard.setPrice(MainActivity.savedHostelCard.getPrice());
                         bookingHostelCard.setRating(MainActivity.savedHostelCard.getRating());
 
-                        HashMap<String, Integer> hashMap = new HashMap<>();
+
 
                         hashMap.put("startDay", Integer.parseInt(MainActivity.startDay));
                         hashMap.put("startWeekDay", Integer.parseInt(MainActivity.startWeekDay));
@@ -396,11 +401,13 @@ public class HostelPageFragment extends Fragment {
                 public void onClick(View v) {
                     if (MainActivity.isAuth) {
                         // тут уже обновляем значение локального словаря и пушаем его в конце в бд
-                        HashMap<String, Integer> hashMap = new HashMap<>();
-                        for ( String key : MainActivity.bookingHostelCard.getListOfBookingDates().keySet() ) {
-                            hashMap.put(key, MainActivity.bookingHostelCard.getListOfBookingDates().get(key) + MainActivity.bookingHostelCard.getRooms());
+//                        HashMap<String, Integer> hashMap = new HashMap<>();
+                        for ( String key : MainActivity.bookingHostelCard.getListOfBookingDates2().keySet() ) {
+//                            hashMap.put(key, MainActivity.bookingHostelCard.getListOfBookingDates().get(key) + MainActivity.bookingHostelCard.getRooms());
+                            if (MainActivity.bookingHostelCard.getListOfBookingDates().containsKey(key))
+                                MainActivity.bookingHostelCard.getListOfBookingDates().put(key, MainActivity.bookingHostelCard.getListOfBookingDates().get(key) + MainActivity.bookingHostelCard.getRooms());
                         }
-                        MainActivity.bookingHostelCard.setListOfBookingDates(hashMap);
+//                        MainActivity.bookingHostelCard.setListOfBookingDates(hashMap);
 //                        System.out.println(hashMap.toString());
 //                        for (int i = 1; i < MainActivity.bookingHostelCard.getListOfBookingDates().size(); ++i) {
 //                            MainActivity.bookingHostelCard
