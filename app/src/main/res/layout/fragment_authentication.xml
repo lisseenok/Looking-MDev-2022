@@ -45,7 +45,7 @@
         android:id="@+id/create_account_button"
 
         style="@style/AuthButtons"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="250dp"
 
         android:onClick="changeFragment"
         android:text="@string/createAccount"

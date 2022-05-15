@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundHostelsColor"
     tools:context=".ui.saved.SavedFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -21,6 +22,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="bold"
             android:text="@string/title_saved"
+            style="@style/ToolbarText"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
