@@ -24,6 +24,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="bold"
             android:text="@string/title_saved"
+            style="@style/ToolbarText"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
