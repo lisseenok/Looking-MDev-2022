@@ -55,12 +55,12 @@ public class SavedFragment extends Fragment {
         else if (MainActivity.isAuth && MainActivity.savedHostels.size() == 0) {
             view = inflater.inflate(R.layout.fragment_saved, container, false);
             TextView textView = view.findViewById(R.id.text_saved);
-            textView.setText("Здесь будут ваши любимые отели");
+            textView.setText(getResources().getString(R.string.savedEmptyPageText));
         }
         else {
             view = inflater.inflate(R.layout.fragment_saved, container, false);
             TextView textView = view.findViewById(R.id.text_saved);
-            textView.setText("Вам необходимо войти в аккаунт <3");
+            textView.setText((getResources().getString(R.string.haveToLogInSearchSavedBooking) + "<З"));
         }
 
         return view;

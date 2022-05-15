@@ -51,12 +51,12 @@ public class BookingFragment extends Fragment {
         } else if (MainActivity.isAuth && MainActivity.bookingsHostels.size() == 0) {
             view = inflater.inflate(R.layout.fragment_booking, container, false);
             TextView textView = view.findViewById(R.id.text_bookings);
-            textView.setText("Здесь будут ваши бронирования");
+            textView.setText(getResources().getString(R.string.bookingEmptyPageText));
         }
         else {
             view = inflater.inflate(R.layout.fragment_booking, container, false);
             TextView textView = view.findViewById(R.id.text_bookings);
-            textView.setText("Вам необходимо войти в аккаунт <3");
+            textView.setText((getResources().getString(R.string.haveToLogInSearchSavedBooking) + "<З"));
         }
 
         return view;

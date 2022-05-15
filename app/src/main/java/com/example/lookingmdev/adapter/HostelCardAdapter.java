@@ -79,26 +79,26 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         holder.hostelCardRatting.setText("" + hostelCards.get(position).getRating());
         double rating = hostelCards.get(position).getRating();
         if (rating > 9) {
-            holder.hostelCardRattingText.setText("Превосходно");
+            holder.hostelCardRattingText.setText(context.getResources().getString(R.string.excellent));
         } else if (rating > 8.5) {
-            holder.hostelCardRattingText.setText("Потрясающе");
+            holder.hostelCardRattingText.setText(context.getResources().getString(R.string.stunningly));
         } else if (rating > 8) {
-            holder.hostelCardRattingText.setText("Очень хорошо");
+            holder.hostelCardRattingText.setText(context.getResources().getString(R.string.well));
         } else if (rating > 7.5) {
-            holder.hostelCardRattingText.setText("Хорошо");
+            holder.hostelCardRattingText.setText(context.getResources().getString(R.string.good));
         }
         holder.hostelCardAddressText.setText((hostelCards.get(position).getCity() + ", " + hostelCards.get(position).getAddress()));
         holder.hostelCardShortDescriptionText.setText(hostelCards.get(position).getShortDescription());
 
         // currentAmountOfHostelRooms - значение этого поля устанавливается непосредственно на странице отелей на странице поиска
-        holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + hostelCards.get(position).getCurrentAmountOfHostelRooms()));
+        holder.hostelCardAmountOfHostelRoomsText.setText((context.getResources().getString(R.string.numberOfRoomsText) + " " + hostelCards.get(position).getCurrentAmountOfHostelRooms()));
         holder.hostelCardPriceText.setText((hostelCards.get(position).getPrice() + " ₽"));
 
         // если мы на странице сохраненных отелей, то используем функцию, для подсчета кол-ва комнат, возможных для брони
         if (MainActivity.startDay == null && MainActivity.selectedPage == 1) {
             holder.hostelCardAmountOfHostelRoomsText.setText("");
         } else if (MainActivity.startDay != null && MainActivity.selectedPage == 1) {
-            holder.hostelCardAmountOfHostelRoomsText.setText(("Свободных номеров в отеле: " + getMaxRoomsInHostel(position)));
+            holder.hostelCardAmountOfHostelRoomsText.setText((context.getResources().getString(R.string.numberOfRoomsText) + " " + getMaxRoomsInHostel(position)));
         }
 
         if (MainActivity.selectedPage == 2) {

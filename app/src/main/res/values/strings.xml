@@ -1,5 +1,5 @@
 <resources>
-    <string name="title_app_name">lookingMDev</string>
+    <string name="title_app_name" translatable="false">Looking</string>
     <string name="title_search">Search</string>
     <string name="title_saved">Saved</string>
     <string name="title_booking">Bookings</string>
@@ -61,7 +61,23 @@
     <string name="Confirm">Confirm</string>
 
     <string name="hotelsFound">Hotels found:</string>
-
+    <string name="checkIn">Check-in</string>
+    <string name="checkOut">Check-out</string>
+    <string name="roomsAndQuests">Rooms and quests</string>
+    <string name="description">Description</string>
+    <string name="reserve">Reserve</string>
+    <string name="cancelBooking">Cancel booking</string>
+    <string name="sorryText">Probably for the current dates - (%s) another user has just booked a room, we apologize</string>
+    <string name="successText">Successfully booked, a representative of the hotel will contact you in the near future</string>
+    <string name="visDatText">First you need to specify the number of visitors and dates</string>
+    <string name="haveToLogIn">First you need to log in to your account</string>
+    <string name="entryText">Select the date of entry</string>
+    <string name="departureText">Select the departure date</string>
+    <string name="excellent">Excellent</string>
+    <string name="stunningly">Stunningly</string>
+    <string name="well">Very well</string>
+    <string name="good">Good</string>
+    <string name="numberOfRoomsText">Available rooms at the hotel:</string>
 
     <string-array name="countries_array">
         <item>Абаза</item>
@@ -1182,11 +1198,14 @@
         <item>Ясный</item>
         <item>Яхрома</item>
     </string-array>
-    <string name="checkIn">Check-in</string>
-    <string name="checkOut">Check-out</string>
-    <string name="roomsAndQuests">Rooms and quests</string>
-    <string name="description">Description</string>
-    <string name="reserve">Reserve</string>
-    <string name="cancelBooking">Cancel booking</string>
+    <string name="bookingEmptyPageText">Your reservations will be here</string>
+    <string name="savedEmptyPageText">Your favorites will be here</string>
+    <string name="haveToLogInSearchSavedBooking">"You need to log in to your account "</string>
+    <string name="wrongText">Something went wrong</string>
+    <string name="successLogIn">Successful registration</string>
+    <string name="successUpdate">Successfully updated</string>
+    <string name="haveToLogInAgain">You need to log in again</string>
+    <string name="successAuthorization">Successful authorization</string>
+    <string name="haveToEnterFilters">First you need to enter all the filters</string>
 
 </resources>

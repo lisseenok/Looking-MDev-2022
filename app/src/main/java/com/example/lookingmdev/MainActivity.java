@@ -411,11 +411,11 @@ public class MainActivity extends AppCompatActivity {
 
             // нажали кнопку найти на странице поиска
             case R.id.search_button:
-                if (visitors != null && date != null) {
+                if (visitors != null && date != null && city != null) {
                     replaceFragment(pageWithSearchHostelsFragment, "left");
                     searchState = 1;
                 } else
-                    Toast.makeText(view.getContext(), "Сначала введите все данные", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), getResources().getString(R.string.haveToEnterFilters), Toast.LENGTH_LONG).show();
                 break;
 
             // нажали кнопку войти

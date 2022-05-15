@@ -96,9 +96,9 @@ public class EditAccountFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(root.getContext(), "Успешно обновлено", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), getResources().getString(R.string.successUpdate), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(root.getContext(), "Вам необходимо заново авторизоваться", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), getResources().getString(R.string.haveToLogInAgain), Toast.LENGTH_SHORT).show();
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, emailAuthFragment.newInstance());
