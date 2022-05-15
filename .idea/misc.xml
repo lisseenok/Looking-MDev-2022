@@ -29,10 +29,12 @@
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_auth_account.xml" value="0.18819655521783182" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_auth_saved.xml" value="0.15" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_authentication.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_booking.xml" value="0.2989583333333333" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_create_account.xml" value="0.5" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_destination.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_hostel_page.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_page_with_bookings_hostels.xml" value="0.38333333333333336" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_page_with_hostels.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_page_with_saved_hostels.xml" value="0.2828125" />
         <entry key="..\:/AndroidStudioProjects/LookingMDev-2022/app/src/main/res/layout/fragment_saved.xml" value="0.33" />

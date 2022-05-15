@@ -5,27 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.adapter.HostelCardAdapter;
-import com.example.lookingmdev.databinding.FragmentBookingBinding;
-import com.example.lookingmdev.databinding.FragmentSavedBinding;
-import com.example.lookingmdev.databinding.FragmentSavedBinding;
 import com.example.lookingmdev.model.HostelCard;
-import com.example.lookingmdev.ui.account.AccountFragment;
-import com.example.lookingmdev.ui.hostels.PageWithHostelsFragment;
 
 import java.util.List;
 
@@ -38,7 +28,8 @@ public class SavedFragment extends Fragment {
         return new SavedFragment();
     }
 
-    public static void updateAdapter() {
+    @SuppressLint("NotifyDataSetChanged")
+    public static void updateSavedAdapter() {
         if (hostelSavedCardAdapter != null) {
             hostelSavedCardAdapter.notifyDataSetChanged();
 

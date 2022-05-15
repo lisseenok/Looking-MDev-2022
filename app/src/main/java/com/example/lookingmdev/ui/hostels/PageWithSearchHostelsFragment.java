@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageWithHostelsFragment extends Fragment {
+public class PageWithSearchHostelsFragment extends Fragment {
 
     private PageWithHostelsViewModel mViewModel;
 
@@ -44,8 +44,8 @@ public class PageWithHostelsFragment extends Fragment {
 
     TextView sumHostelsText;
 
-    public static PageWithHostelsFragment newInstance() {
-        return new PageWithHostelsFragment();
+    public static PageWithSearchHostelsFragment newInstance() {
+        return new PageWithSearchHostelsFragment();
     }
 
     @SuppressLint("DefaultLocale")

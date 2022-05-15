@@ -66,5 +66,6 @@
     <string name="roomsAndQuests">Число номеров и гостей</string>
     <string name="description">Описание</string>
     <string name="reserve">Забронировать</string>
+    <string name="cancelBooking">Отменить бронь</string>
 
 </resources>

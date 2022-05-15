@@ -1187,5 +1187,6 @@
     <string name="roomsAndQuests">Rooms and quests</string>
     <string name="description">Description</string>
     <string name="reserve">Reserve</string>
+    <string name="cancelBooking">Cancel booking</string>
 
 </resources>
