@@ -20,7 +20,6 @@ import com.example.lookingmdev.ui.hostelPage.HostelPageFragment;
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 
 import java.util.List;
 
@@ -124,7 +123,7 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
                     } else {
                         // если же отель есть в savedHostels - при нажатии нам надо его удалить
                         // удаляем
-                        MainActivity.remove(hostelCards.get(position).getId());
+                        MainActivity.removeSaved(hostelCards.get(position).getId());
                         // меняем иконку
                         int newIconId = context.getResources().getIdentifier("ic_heart_border", "drawable", context.getPackageName());
                         holder.iconHeart.setImageResource(newIconId);
@@ -181,7 +180,6 @@ public class HostelCardAdapter extends RecyclerView.Adapter<HostelCardAdapter.Ho
         if (MainActivity.isAuth)
         // если пользователь авторизован
         {
-            System.out.println("зашли в проверку");
             if (MainActivity.contains(MainActivity.savedHostels, hostelCards.get(position))){
                 int newIconId = context.getResources().getIdentifier("ic_red_heart", "drawable", context.getPackageName());
                 holder.iconHeart.setImageResource(newIconId);

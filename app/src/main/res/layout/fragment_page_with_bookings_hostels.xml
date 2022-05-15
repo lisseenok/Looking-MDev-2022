@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
-            android:text="@string/App_name"
+            android:text="@string/title_booking"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

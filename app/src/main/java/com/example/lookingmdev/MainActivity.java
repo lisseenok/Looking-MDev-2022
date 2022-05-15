@@ -686,11 +686,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // метод, удаляющий из объекта savedHostels элемент с айдишником id
-    public static void remove(String id){
+    public static void removeSaved(String id){
 //        System.out.println(savedHostels.size());
         for (HostelCard item : savedHostels) {
             if (item.getId().equals(id)){
                 savedHostels.remove(item);
+                break;
+            }
+        }
+    }
+
+    // метод, удаляющий из объекта savedHostels элемент с айдишником id
+    public static void removeBookings(String id){
+        for (HostelCard item : bookingsHostels) {
+            if (item.getId().equals(id)){
+                bookingsHostels.remove(item);
                 break;
             }
         }
