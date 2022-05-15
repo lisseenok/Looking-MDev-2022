@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
+import com.example.lookingmdev.ui.hostelPage.HostelPageFragment;
 import com.example.lookingmdev.ui.methods.Methods;
 import com.savvi.rangedatepicker.CalendarPickerView;
 
@@ -114,7 +115,10 @@ public class FragmentCalendar extends Fragment {
                 fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.slide_out_down);
 
                 if (MainActivity.selectedPage == 0) {
-                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.searchFragment);
+                    if (MainActivity.searchState == -1)
+                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.searchFragment);
+                    else if (MainActivity.searchState == 2)
+                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.hostelPageFragment);
                     fragmentTransaction.commit();
                 } else if (MainActivity.selectedPage == 1) {
                     fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.hostelPageFragment);
