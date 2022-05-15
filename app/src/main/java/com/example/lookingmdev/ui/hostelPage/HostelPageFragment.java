@@ -1,33 +1,33 @@
 package com.example.lookingmdev.ui.hostelPage;
 
+import static com.example.lookingmdev.MainActivity.databaseBookingsReference;
 import static com.example.lookingmdev.MainActivity.databaseReference;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
 import com.example.lookingmdev.model.HostelCard;
 import com.example.lookingmdev.ui.methods.Methods;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.HashMap;
 
@@ -42,7 +42,7 @@ public class HostelPageFragment extends Fragment {
 
 
     HostelCard hostelCard;
-
+    TextView hostelQuests;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -59,6 +59,17 @@ public class HostelPageFragment extends Fragment {
         String startDay;
         String endDay;
 
+        // переменные для менюшки снизу
+        Button plusRoomButton;
+        TextView numberOfRoomText;
+        Button minusRoomButton;
+        Button plusHumanButton;
+        TextView numberOfHumanText;
+        Button minusHumanButton;
+        Button plusKidsButton;
+        TextView numberOfKidsText;
+        Button minusKidsButton;
+
         // Инициализируем переменные, в которые кладем текстовые поля со страницы отеля
         ImageView hostelImage = view.findViewById(R.id.hostelImage);
         TextView hostelName = view.findViewById(R.id.hostelName);
@@ -66,7 +77,7 @@ public class HostelPageFragment extends Fragment {
         TextView hostelRatting = view.findViewById(R.id.hostelRatting);
         TextView hostelStartDate = view.findViewById(R.id.hostelStartDate);
         TextView hostelEndDate = view.findViewById(R.id.hostelEndDate);
-        TextView hostelQuests = view.findViewById(R.id.hostelQuests);
+        hostelQuests = view.findViewById(R.id.hostelQuests);
         TextView hostelAddress = view.findViewById(R.id.hostelAddress);
         TextView hostelFullDescription = view.findViewById(R.id.hostelFullDescription);
         Button hostelApplyButton = view.findViewById(R.id.hostelApplyButton);
@@ -87,45 +98,177 @@ public class HostelPageFragment extends Fragment {
             else {
                 hostelStartDate.setText("Выберите дату въезда");
                 hostelEndDate.setText("Выберите дату выезда");
-                hostelStartDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AppCompatActivity activity = (AppCompatActivity) getContext();
-
-                        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
-                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.fragmentCalendar);
-                        fragmentTransaction.commit();
-                    }
-                });
-                hostelEndDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AppCompatActivity activity = (AppCompatActivity) getContext();
-
-                        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
-                        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.fragmentCalendar);
-                        fragmentTransaction.commit();
-                    }
-                });
             }
 
-            if (MainActivity.children == 0) {
-                MainActivity.visitors = getResources().getString(R.string.room) + ": " +
-                        MainActivity.rooms + " • "
-                        + getResources().getString(R.string.adult) +
-                        ": " + MainActivity.adults + " • " + getResources().getString(R.string.noChildren);
-            } else {
-                MainActivity.visitors = getResources().getString(R.string.room) + ": " +
-                        MainActivity.rooms + " • " + getResources().getString(R.string.adult) +
-                        ": " + MainActivity.adults + " • " + getResources().getString(R.string.child) +
-                        ": " + MainActivity.children;
-            }
+            hostelStartDate.setTextColor(getResources().getColor(R.color.white_blue));
+            hostelEndDate.setTextColor(getResources().getColor(R.color.white_blue));
+            hostelQuests.setTextColor(getResources().getColor(R.color.white_blue));
 
-            hostelQuests.setText(MainActivity.visitors);
+            // устанавливаем листенеры на текстовые блоки въезда и выезда
+            hostelStartDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) getContext();
+
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
+                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.fragmentCalendar);
+                    fragmentTransaction.commit();
+                }
+            });
+            hostelEndDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) getContext();
+
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.fade_out);
+                    fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, MainActivity.fragmentCalendar);
+                    fragmentTransaction.commit();
+                }
+            });
+
+            // инициализируем поле, в котором будет лежать XML вылезающего снизу меню
+            LinearLayout llBottomSheet = view.findViewById(R.id.bottom_sheet);
+            BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+
+            // инициализируем кнопки и создаем листенеры для них
+            plusRoomButton = view.findViewById(R.id.plusRoomButton);
+            numberOfRoomText = view.findViewById(R.id.numberOfRoomText);
+            minusRoomButton = view.findViewById(R.id.minusRoomButton);
+
+            plusHumanButton = view.findViewById(R.id.plusHumanButton);
+            numberOfHumanText = view.findViewById(R.id.numberOfHumanText);
+            minusHumanButton = view.findViewById(R.id.minusHumanButton);
+
+            plusKidsButton = view.findViewById(R.id.plusKidsButton);
+            numberOfKidsText = view.findViewById(R.id.numberOfKids);
+            minusKidsButton = view.findViewById(R.id.minusKidsButton);
+
+            // скрываем изначально это меню
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+            // при нажатии на текст с посетителями и комнатами открываем менюшку
+            hostelQuests.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(MainActivity.rooms != 0) {
+                        numberOfRoomText.setText(MainActivity.rooms + "");
+                        numberOfHumanText.setText(MainActivity.adults + "");
+                        numberOfKidsText.setText(MainActivity.children + "");
+                    }
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            });
+
+            // устанавливаем цвета кнопкам меню
+            if (MainActivity.rooms >= 2)
+                minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+            else
+                minusRoomButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+            if (MainActivity.adults >= 2)
+                minusHumanButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+            else
+                minusHumanButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+            if (MainActivity.children >= 1)
+                minusKidsButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+            else
+                minusKidsButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+            // объявляем листенеры для кнопок менюшки снизу
+            plusRoomButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ++MainActivity.rooms;
+                    numberOfRoomText.setText("" + MainActivity.rooms);
+                    if (MainActivity.rooms >= 2)
+                        minusRoomButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+
+
+                }
+            });
+            minusRoomButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (MainActivity.rooms > 1) {
+                        --MainActivity.rooms;
+                        numberOfRoomText.setText("" + MainActivity.rooms);
+                        if (MainActivity.rooms == 1)
+                            minusRoomButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+                    }
+                }
+            });
+
+            plusHumanButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ++MainActivity.adults;
+                    numberOfHumanText.setText("" + MainActivity.adults);
+                    if (MainActivity.adults >= 2)
+                        minusHumanButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+                }
+            });
+            minusHumanButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (MainActivity.adults > 1) {
+                        --MainActivity.adults;
+                        numberOfHumanText.setText("" + MainActivity.adults);
+                        if (MainActivity.adults == 1)
+                            minusHumanButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+                    }
+                }
+            });
+
+            plusKidsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ++MainActivity.children;
+                    numberOfKidsText.setText("" + MainActivity.children);
+                    if (MainActivity.children >= 1)
+                        minusKidsButton.setBackgroundColor(getResources().getColor(R.color.buttonBlue));
+                }
+            });
+            minusKidsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (MainActivity.children > 0) {
+                        --MainActivity.children;
+                        numberOfKidsText.setText("" + MainActivity.children);
+                        if (MainActivity.children == 0)
+                            minusKidsButton.setBackgroundColor(getResources().getColor(R.color.greyLine));
+
+                    }
+                }
+            });
+
+            // инициализируем кнопку на меню фильтров людей и комнат
+            Button questsApplyButton = view.findViewById(R.id.questsApplyButton);
+
+            // навешиваем листенер на кнопку меню снизу
+            questsApplyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+                    // обновляем данные о посетителях
+                    MainActivity.rooms = Integer.parseInt(numberOfRoomText.getText().toString());
+                    MainActivity.adults = Integer.parseInt(numberOfHumanText.getText().toString());
+                    MainActivity.children = Integer.parseInt(numberOfKidsText.getText().toString());
+
+                    setQuestsText();
+
+                }
+            });
+
+
+            setQuestsText();
 
         }
 
@@ -226,12 +369,12 @@ public class HostelPageFragment extends Fragment {
                         MainActivity.bookingsHostels.add(bookingHostelCard);
 
                         // обновляем данные в базе данных
-                        MainActivity.databaseBookingsReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.bookingsHostels);
+                        databaseBookingsReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.bookingsHostels);
 
 
 
                         Toast.makeText(view.getContext(), "Успешно забранировано, в ближайшее время с вами свяжется представитель отеля", Toast.LENGTH_LONG).show();
-                        MainActivity.databaseReference.child(MainActivity.searchHostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.searchHostelCard.getListOfBookingDates());
+                        databaseReference.child(MainActivity.searchHostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.searchHostelCard.getListOfBookingDates());
 
                     } else if (MainActivity.selectedDates == null) {
                         Toast.makeText(view.getContext(), "Сначала надо указать количество посетителей и даты", Toast.LENGTH_SHORT).show();
@@ -297,11 +440,13 @@ public class HostelPageFragment extends Fragment {
                             // если такая дата уже есть, то (она точно больше нуля - проверка выше)
                             if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key)) {
                                 MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getListOfBookingDates().get(key) - MainActivity.rooms);
+                                // кладем в карточку отеля в бронированиях текущие даты бронирования
                                 hashMap.put(key, 0);
                             }
                             // если такой даты еще нет, то добавляем новый ключ и макс кол-во номеров - 1
                             else {
                                 MainActivity.savedHostelCard.getListOfBookingDates().put(key, MainActivity.savedHostelCard.getAmountOfHostelRooms() - MainActivity.rooms);
+                                // кладем в карточку отеля в бронированиях текущие даты бронирования
                                 hashMap.put(key, 0);
                             }
 
@@ -331,6 +476,7 @@ public class HostelPageFragment extends Fragment {
                         hashMap.put("endMonth", Integer.parseInt(MainActivity.endMonth));
 
                         bookingHostelCard.setListOfBookingDates2(hashMap);
+                        bookingHostelCard.setListOfBookingDates(MainActivity.savedHostelCard.getListOfBookingDates());
 
                         bookingHostelCard.setRooms(MainActivity.rooms);
                         bookingHostelCard.setAdults(MainActivity.adults);
@@ -339,7 +485,7 @@ public class HostelPageFragment extends Fragment {
                         MainActivity.bookingsHostels.add(bookingHostelCard);
 
                         // обновляем данные в базе данных
-                        MainActivity.databaseBookingsReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.bookingsHostels);
+                        databaseBookingsReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.bookingsHostels);
 
 
                         Toast.makeText(view.getContext(), "Успешно забранировано, в ближайшее время с вами свяжется представитель отеля", Toast.LENGTH_LONG).show();
@@ -377,6 +523,14 @@ public class HostelPageFragment extends Fragment {
             hostelStartDate.setText(String.format("%s, %s %s", startWeekDay, startDay, startMonth));
             hostelEndDate.setText(String.format("%s, %s %s", endWeekDay, endDay, endMonth));
 
+            // инициализируем поле, в котором будет лежать XML вылезающего снизу меню
+            LinearLayout llBottomSheet = view.findViewById(R.id.bottom_sheet);
+            BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+
+            // скрываем изначально это меню
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+
             // устанавливаем адрес
             hostelAddress.setText((MainActivity.bookingHostelCard.getCity() + ", " + MainActivity.bookingHostelCard.getAddress()));
 
@@ -400,32 +554,25 @@ public class HostelPageFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (MainActivity.isAuth) {
+
                         // тут уже обновляем значение локального словаря и пушаем его в конце в бд
-//                        HashMap<String, Integer> hashMap = new HashMap<>();
                         for ( String key : MainActivity.bookingHostelCard.getListOfBookingDates2().keySet() ) {
-//                            hashMap.put(key, MainActivity.bookingHostelCard.getListOfBookingDates().get(key) + MainActivity.bookingHostelCard.getRooms());
                             if (MainActivity.bookingHostelCard.getListOfBookingDates().containsKey(key))
                                 MainActivity.bookingHostelCard.getListOfBookingDates().put(key, MainActivity.bookingHostelCard.getListOfBookingDates().get(key) + MainActivity.bookingHostelCard.getRooms());
                         }
-//                        MainActivity.bookingHostelCard.setListOfBookingDates(hashMap);
-//                        System.out.println(hashMap.toString());
-//                        for (int i = 1; i < MainActivity.bookingHostelCard.getListOfBookingDates().size(); ++i) {
-//                            MainActivity.bookingHostelCard
-//                            @SuppressLint("DefaultLocale")
-//                            String key = String.format("%d %d %d - %d %d %d",
-//                                    (MainActivity.bookingHostelCard.getListOfBookingDates().get(i - 1).getYear() + 1900),
-//                                    (MainActivity.bookingHostelCard.getListOfBookingDates().get(i - 1).getMonth() + 1),
-//                                    MainActivity.bookingHostelCard.getListOfBookingDates().get(i - 1).getDate(),
-//                                    (MainActivity.bookingHostelCard.getListOfBookingDates().get(i).getYear() + 1900),
-//                                    (MainActivity.bookingHostelCard.getListOfBookingDates().get(i).getMonth() + 1),
-//                                    MainActivity.bookingHostelCard.getListOfBookingDates().get(i).getDate());
 
-//                            MainActivity.bookingHostelCard.getListOfBookingDates().put(key, MainActivity.searchHostelCard.getListOfBookingDates().get(key) + MainActivity.bookingHostelCard.getRooms());
+                        MainActivity.removeBookings(MainActivity.bookingHostelCard.getId());
 
-//                        }
+                        // обновляем коллецию забронированного текущего пользователя
+                        databaseBookingsReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.bookingsHostels);
+
+                        // обновляем глобальное значение карточки (добавляем комнаты на забронированные даты)
                         databaseReference.child(MainActivity.bookingHostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.bookingHostelCard.getListOfBookingDates());
                         Toast.makeText(view.getContext(), "Успешно отменена бронь", Toast.LENGTH_LONG).show();
-
+                        hostelApplyButton.setEnabled(false);
+                        hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
+                        // давай
+                        MainActivity.bookingState = 0;
                     }
                 }
             });
@@ -436,6 +583,22 @@ public class HostelPageFragment extends Fragment {
 
     }
 
-   
+    public void setQuestsText() {
+        if (MainActivity.children == 0) {
+            MainActivity.visitors = getResources().getString(R.string.room) + ": " +
+                    MainActivity.rooms + " • "
+                    + getResources().getString(R.string.adult) +
+                    ": " + MainActivity.adults + " • " + getResources().getString(R.string.noChildren);
+        } else {
+            MainActivity.visitors = getResources().getString(R.string.room) + ": " +
+                    MainActivity.rooms + " • " + getResources().getString(R.string.adult) +
+                    ": " + MainActivity.adults + " • " + getResources().getString(R.string.child) +
+                    ": " + MainActivity.children;
+        }
+
+        hostelQuests.setText(MainActivity.visitors);
+    }
+
+
 
 }

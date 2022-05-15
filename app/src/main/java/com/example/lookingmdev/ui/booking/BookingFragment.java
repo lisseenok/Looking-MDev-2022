@@ -55,7 +55,7 @@ public class BookingFragment extends Fragment {
         }
         else {
             view = inflater.inflate(R.layout.fragment_booking, container, false);
-            TextView textView = view.findViewById(R.id.text_saved);
+            TextView textView = view.findViewById(R.id.text_bookings);
             textView.setText("Вам необходимо войти в аккаунт <3");
         }
 
