@@ -82,7 +82,7 @@ public class CreateAccountFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(root.getContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), getResources().getString(R.string.successLogIn), Toast.LENGTH_SHORT).show();
                             // флаг авторизации - true
                             MainActivity.isAuth = true;
                             MainActivity.firebaseUser = firebaseAuth.getCurrentUser();
@@ -95,7 +95,7 @@ public class CreateAccountFragment extends Fragment {
                             MainActivity.accountState = 0;
                             fragmentTransaction.commit();
                         } else {
-                            Toast.makeText(root.getContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), getResources().getString(R.string.wrongText), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

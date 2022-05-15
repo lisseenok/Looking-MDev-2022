@@ -96,8 +96,8 @@ public class HostelPageFragment extends Fragment {
             }
             // иначе навешиваем листенеры на текстовые поля и открываем календарь
             else {
-                hostelStartDate.setText("Выберите дату въезда");
-                hostelEndDate.setText("Выберите дату выезда");
+                hostelStartDate.setText(getResources().getString(R.string.entryText));
+                hostelEndDate.setText(getResources().getString(R.string.departureText));
             }
 
             hostelStartDate.setTextColor(getResources().getColor(R.color.white_blue));
@@ -306,8 +306,8 @@ public class HostelPageFragment extends Fragment {
                                     (MainActivity.selectedDates.get(i).getMonth() + 1),
                                     MainActivity.selectedDates.get(i).getDate());
 
-                            if (MainActivity.searchHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.searchHostelCard.getListOfBookingDates().get(key) < MainActivity.rooms) {
-                                Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
+                            if (MainActivity.searchHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.searchHostelCard.getListOfBookingDates().get(key) < MainActivity.rooms || MainActivity.searchHostelCard.getAmountOfHostelRooms() < MainActivity.rooms) {
+                                Toast.makeText(view.getContext(), String.format(getResources().getString(R.string.sorryText), key), Toast.LENGTH_LONG).show();
                                 hostelApplyButton.setEnabled(false);
                                 hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
                                 return;
@@ -373,14 +373,14 @@ public class HostelPageFragment extends Fragment {
 
 
 
-                        Toast.makeText(view.getContext(), "Успешно забранировано, в ближайшее время с вами свяжется представитель отеля", Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), getResources().getString(R.string.successText), Toast.LENGTH_SHORT).show();
                         databaseReference.child(MainActivity.searchHostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.searchHostelCard.getListOfBookingDates());
 
                     } else if (MainActivity.selectedDates == null) {
-                        Toast.makeText(view.getContext(), "Сначала надо указать количество посетителей и даты", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), getResources().getString(R.string.visDatText), Toast.LENGTH_SHORT).show();
 
                     } else
-                        Toast.makeText(view.getContext(), "Сначала необходимо войти в свой аккаунт", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), getResources().getString(R.string.haveToLogIn), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -417,8 +417,8 @@ public class HostelPageFragment extends Fragment {
                                     (MainActivity.selectedDates.get(i).getMonth() + 1),
                                     MainActivity.selectedDates.get(i).getDate());
 
-                            if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.savedHostelCard.getListOfBookingDates().get(key) < MainActivity.rooms) {
-                                Toast.makeText(view.getContext(), String.format("Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения", key), Toast.LENGTH_LONG).show();
+                            if (MainActivity.savedHostelCard.getListOfBookingDates().containsKey(key) && MainActivity.savedHostelCard.getListOfBookingDates().get(key) < MainActivity.rooms || MainActivity.savedHostelCard.getAmountOfHostelRooms() < MainActivity.rooms) {
+                                Toast.makeText(view.getContext(), String.format(getResources().getString(R.string.sorryText), key), Toast.LENGTH_LONG).show();
                                 hostelApplyButton.setEnabled(false);
                                 hostelApplyButton.setBackgroundColor(Color.parseColor("#808080"));
                                 return;
@@ -488,14 +488,14 @@ public class HostelPageFragment extends Fragment {
                         databaseBookingsReference.child(MainActivity.firebaseUser.getUid()).setValue(MainActivity.bookingsHostels);
 
 
-                        Toast.makeText(view.getContext(), "Успешно забранировано, в ближайшее время с вами свяжется представитель отеля", Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), getResources().getString(R.string.successText), Toast.LENGTH_SHORT).show();
                         databaseReference.child(MainActivity.savedHostelCard.getId()).child("listOfBookingDates").setValue(MainActivity.savedHostelCard.getListOfBookingDates());
 
                     } else if (MainActivity.selectedDates == null) {
-                        Toast.makeText(view.getContext(), "Сначала надо указать количество посетителей и даты", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), getResources().getString(R.string.visDatText), Toast.LENGTH_SHORT).show();
 
                     } else
-                        Toast.makeText(view.getContext(), "Сначала необходимо войти в свой аккаунт", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), getResources().getString(R.string.haveToLogIn), Toast.LENGTH_SHORT).show();
 
 
 

@@ -23,11 +23,13 @@ import com.example.lookingmdev.R;
 import com.example.lookingmdev.ui.hostelPage.HostelPageFragment;
 import com.example.lookingmdev.ui.methods.Methods;
 import com.savvi.rangedatepicker.CalendarPickerView;
+import com.savvi.rangedatepicker.DefaultDayViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class FragmentCalendar extends Fragment {
 
@@ -64,12 +66,16 @@ public class FragmentCalendar extends Fragment {
         // нашли календарь в фрагменте
         CalendarPickerView calendar = view.findViewById(R.id.calendarView);
 
+//        Collection<Date> listArray = new ArrayList<>();
+//        listArray.add(new Date());
+
         // проинициализировали календарь
         // если в глобальной статическом массиве есть уже выбранные даты, то создаем коллекцию
         // и добавляем в нее первый и последний элементы массива дат
         if (MainActivity.endDay == null) {
         calendar.init(pastYear.getTime(), nextYear.getTime()) //
                 .inMode(CalendarPickerView.SelectionMode.RANGE);
+//                .withHighlightedDates(listArray);
         calendar.setTypeface(Typeface.SANS_SERIF);
         } else {
             Collection<Date> collection = new ArrayList<>();
@@ -78,10 +84,12 @@ public class FragmentCalendar extends Fragment {
             calendar.init(pastYear.getTime(), nextYear.getTime()) //
                     .inMode(CalendarPickerView.SelectionMode.RANGE)
                     .withSelectedDates(collection);
+//                    .withHighlightedDates(listArray);
             calendar.setTypeface(Typeface.SANS_SERIF);
         }
 
         calendarText = view.findViewById(R.id.calendarText);
+        calendar.setCustomDayView(new DefaultDayViewAdapter());
 
         // обновляем текст под календарем
         updateCalendarText();

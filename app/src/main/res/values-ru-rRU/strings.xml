@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_app_name">lookingMDev</string>
     <string name="title_search">Найти</string>
     <string name="title_saved">Сохраненное</string>
     <string name="title_booking">Бронирования</string>
@@ -67,5 +66,25 @@
     <string name="description">Описание</string>
     <string name="reserve">Забронировать</string>
     <string name="cancelBooking">Отменить бронь</string>
+    <string name="sorryText">Вероятно, на текущие даты - (%s) только что забронировал номер другой пользователь, приносим свои извинения</string>
+    <string name="successText">Успешно забранировано, в ближайшее время с вами свяжется представитель отеля</string>
+    <string name="visDatText">Сначала надо указать количество посетителей и даты</string>
+    <string name="haveToLogIn">Сначала необходимо войти в свой аккаунт</string>
+    <string name="entryText">Выберите дату въезда</string>
+    <string name="departureText">Выберите дату выезда</string>
+    <string name="excellent">Превосходно</string>
+    <string name="stunningly">Потрясающе</string>
+    <string name="well">Очень хорошо</string>
+    <string name="good">Хорошо</string>
+    <string name="numberOfRoomsText">Свободных номеров в отеле:</string>
+    <string name="bookingEmptyPageText">Здесь будут ваши бронирования</string>
+    <string name="haveToLogInSearchSavedBooking">"Вам необходимо войти в аккаунт "</string>
+    <string name="savedEmptyPageText">Здесь будут ваши любимые отели</string>
+    <string name="wrongText">Что-то пошло не так</string>
+    <string name="successLogIn">Успешная регистрация</string>
+    <string name="successUpdate">Успешно обновлено</string>
+    <string name="haveToLogInAgain">Вам необходимо заново авторизоваться</string>
+    <string name="successAuthorization">Успешная авторизация</string>
+    <string name="haveToEnterFilters">Сначала необходимо ввести все фильтры</string>
 
 </resources>

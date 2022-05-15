@@ -75,7 +75,7 @@ public class EmailAuthFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // если авторизация успешная
                         if (task.isSuccessful()){
-                            Toast.makeText(root.getContext(), "Успешная авторизация", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), getResources().getString(R.string.successAuthorization), Toast.LENGTH_SHORT).show();
                             // флаг авторизации - true
                             MainActivity.isAuth = true;
                             MainActivity.firebaseUser = MainActivity.firebaseAuth.getCurrentUser();
@@ -89,7 +89,7 @@ public class EmailAuthFragment extends Fragment {
                             fragmentTransaction.commit();
                         }
                         else{
-                            Toast.makeText(root.getContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), getResources().getString(R.string.wrongText), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
