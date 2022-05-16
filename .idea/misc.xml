@@ -72,7 +72,9 @@
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.1175925925925926" />
+        <entry key="app/src/main/res/drawable/ic_minus.xml" value="0.2759259259259259" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2916666666666667" />
+        <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.22962962962962963" />
         <entry key="app/src/main/res/drawable/ic_red_heart.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_search_2.xml" value="0.1" />
