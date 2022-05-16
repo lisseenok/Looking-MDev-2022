@@ -81,6 +81,7 @@ public class EmailAuthFragment extends Fragment {
                             MainActivity.firebaseUser = MainActivity.firebaseAuth.getCurrentUser();
                             MainActivity.getSavedHostelsFromServer(MainActivity.firebaseUser.getUid());
                             MainActivity.getBookingsHostelsFromServer(MainActivity.firebaseUser.getUid());
+                            MainActivity.getAllHostelsFromServer(MainActivity.firebaseUser.getUid());
                             // делаем переход на домашний фрагмент аккаунта (newInstance() - возвращаем просто новый экземпляр класса)
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
