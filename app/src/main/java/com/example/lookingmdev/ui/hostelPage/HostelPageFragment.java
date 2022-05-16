@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -60,15 +61,15 @@ public class HostelPageFragment extends Fragment {
         String endDay;
 
         // переменные для менюшки снизу
-        Button plusRoomButton;
+        ImageButton plusRoomButton;
         TextView numberOfRoomText;
-        Button minusRoomButton;
-        Button plusHumanButton;
+        ImageButton minusRoomButton;
+        ImageButton plusHumanButton;
         TextView numberOfHumanText;
-        Button minusHumanButton;
-        Button plusKidsButton;
+        ImageButton minusHumanButton;
+        ImageButton plusKidsButton;
         TextView numberOfKidsText;
-        Button minusKidsButton;
+        ImageButton minusKidsButton;
 
         // Инициализируем переменные, в которые кладем текстовые поля со страницы отеля
         ImageView hostelImage = view.findViewById(R.id.hostelImage);
