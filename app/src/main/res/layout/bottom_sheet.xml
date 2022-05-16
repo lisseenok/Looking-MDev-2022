@@ -47,31 +47,35 @@
                 android:orientation="horizontal"
                 android:paddingVertical="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/minusRoomButton"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:backgroundTint="@color/greyLine"
+                    android:background="@color/greyLine"
                     android:textColor="@color/white"
-                    android:text="—" />
+                    app:srcCompat="@drawable/ic_minus"/>
 
                 <TextView
                     android:id="@+id/numberOfRoomText"
-                    android:layout_width="55dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="1"
                     android:textSize="16sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/plusRoomButton"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:backgroundTint="@color/buttonBlue"
+                    android:background="@color/buttonBlue"
                     android:textColor="@color/white"
-                    android:text="+" />
+                    app:srcCompat="@drawable/ic_plus" />
             </LinearLayout>
         </LinearLayout>
 
@@ -99,31 +103,34 @@
                 android:orientation="horizontal"
                 android:paddingVertical="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/minusHumanButton"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:backgroundTint="@color/greyLine"
+                    android:background="@color/greyLine"
                     android:textColor="@color/white"
-                    android:text="—" />
+                    app:srcCompat="@drawable/ic_minus" />
 
                 <TextView
                     android:id="@+id/numberOfHumanText"
-                    android:layout_width="55dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="1"
-                    android:textSize="16sp" />
-
-                <Button
+                    android:textSize="16sp"  />
+                <ImageButton
                     android:id="@+id/plusHumanButton"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:backgroundTint="@color/buttonBlue"
+                    android:background="@color/buttonBlue"
                     android:textColor="@color/white"
-                    android:text="+" />
+                    app:srcCompat="@drawable/ic_plus" />
             </LinearLayout>
         </LinearLayout>
 
@@ -151,31 +158,35 @@
                 android:orientation="horizontal"
                 android:paddingVertical="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/minusKidsButton"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:backgroundTint="@color/greyLine"
+                    android:background="@color/greyLine"
                     android:textColor="@color/white"
-                    android:text="—" />
+                    app:srcCompat="@drawable/ic_minus" />
 
                 <TextView
                     android:id="@+id/numberOfKids"
-                    android:layout_width="55dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
                     android:textSize="16sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/plusKidsButton"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:backgroundTint="@color/buttonBlue"
+                    android:background="@color/buttonBlue"
                     android:textColor="@color/white"
-                    android:text="+" />
+                    app:srcCompat="@drawable/ic_plus" />
             </LinearLayout>
         </LinearLayout>
 

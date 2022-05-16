@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,15 +29,15 @@ public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;
     private FragmentSearchBinding binding;
 
-    Button plusRoomButton;
+    ImageButton plusRoomButton;
     TextView numberOfRoomText;
-    Button minusRoomButton;
-    Button plusHumanButton;
+    ImageButton minusRoomButton;
+    ImageButton plusHumanButton;
     TextView numberOfHumanText;
-    Button minusHumanButton;
-    Button plusKidsButton;
+    ImageButton minusHumanButton;
+    ImageButton plusKidsButton;
     TextView numberOfKidsText;
-    Button minusKidsButton;
+    ImageButton minusKidsButton;
 
     LinearLayout townLayout;
     TextView townText;

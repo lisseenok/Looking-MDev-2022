@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("onCreate");
 
+//        hideSoftKeyboard(this);
+
 
 
         // хз че за биндинг, еще не разбирался
@@ -287,21 +289,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // если проиходит какое-либо прикосновение к экрану, ты мы скрываем клавиатуру
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        hideSoftKeyboard(this);
-        return false;
-    }
-
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        try {
-            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-        } catch (NullPointerException nullPointerException) {
-//            System.out.println("NullPointerException " + nullPointerException);
-        }
-    }
+//    // если проиходит какое-либо прикосновение к экрану, ты мы скрываем клавиатуру
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        hideSoftKeyboard(this);
+//        return false;
+//    }
+//
+//    public static void hideSoftKeyboard(Activity activity) {
+//        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+//        try {
+//            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+//        } catch (NullPointerException nullPointerException) {
+////            System.out.println("NullPointerException " + nullPointerException);
+//        }
+//    }
 
     // обработка нажатия системной кнопки назад
     @Override
@@ -399,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.applyButtonDestination:
             case R.id.back_destination_image_button:
+//                hideSoftKeyboard(this);
                 replaceFragment(searchFragment, "down");
                 searchState = 0;
                 break;

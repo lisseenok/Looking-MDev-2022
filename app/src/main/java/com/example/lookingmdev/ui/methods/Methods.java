@@ -104,5 +104,16 @@ public class Methods {
         return text;
     }
 
+    //For open keyboard
+    public void OpenKeyBoard(Context mContext){
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+    }
+    //For close keyboard
+    public void CloseKeyBoard(Context mContext){
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY,0);
+    }
+
 
 }

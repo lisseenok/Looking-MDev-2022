@@ -1,6 +1,6 @@
 package com.example.lookingmdev.ui.destination;
 
-import static com.example.lookingmdev.MainActivity.hideSoftKeyboard;
+//import static com.example.lookingmdev.MainActivity.hideSoftKeyboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ import android.widget.AutoCompleteTextView;
 
 import com.example.lookingmdev.MainActivity;
 import com.example.lookingmdev.R;
+import com.example.lookingmdev.ui.methods.Methods;
 
 public class DestinationFragment extends Fragment {
 
@@ -40,13 +42,13 @@ public class DestinationFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
-
+        Methods methods = new Methods();
         // в эту переменную мы кладем значение текущей темы для отрисовки текста в фильтрах соответствующего цвета
         int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
 
         // Get a reference to the AutoCompleteTextView in the layout
-        AutoCompleteTextView textView = view.findViewById(R.id.autocomplete_city);
+        AutoCompleteTextView editText = view.findViewById(R.id.autocomplete_city);
 
         // Get the string array
         String[] cities = getResources().getStringArray(R.array.countries_array);
@@ -55,23 +57,32 @@ public class DestinationFragment extends Fragment {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getActivity(), R.layout.simple_list_item, cities);
 
-        textView.setAdapter(adapter);
+        editText.setAdapter(adapter);
+        editText.requestFocus();
 
+//        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        System.out.println("pizda");
+//        imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+
+        methods.OpenKeyBoard(getContext());
         // при нажатии на подсказку
-        textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-                MainActivity.city = textView.getText().toString();
-                hideSoftKeyboard(getActivity());
-
+                MainActivity.city = editText.getText().toString();
+                methods.CloseKeyBoard(getContext());
+//                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_IMPLICIT_ONLY);
+//                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY,0);
+                editText.clearFocus();
                 switch (currentNightMode) {
                     case Configuration.UI_MODE_NIGHT_NO:
                         // ночная тема не активна, используется светлая тема
-                        textView.setTextColor(getResources().getColor(R.color.enteredTextColorLight));
+                        editText.setTextColor(getResources().getColor(R.color.enteredTextColorLight));
                         break;
                     case Configuration.UI_MODE_NIGHT_YES:
                         // ночная тема активна, и она используется
-                        textView.setTextColor(getResources().getColor(R.color.enteredTextColorDark));
+                        editText.setTextColor(getResources().getColor(R.color.enteredTextColorDark));
                         break;
                 }
                 AppCompatActivity activity = (AppCompatActivity) getContext();
