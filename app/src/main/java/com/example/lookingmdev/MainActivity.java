@@ -136,11 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("onCreate");
 
-//        hideSoftKeyboard(this);
 
-
-
-        // хз че за биндинг, еще не разбирался
         com.example.lookingmdev.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -166,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth.setLanguageCode("ru");
 
 
-
         // получаем ответ, авторизован ли пользователь
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -183,9 +178,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-
-        // получаем все отели в глобальную переменную allHostelsList
-
 
         if (!created){
             replaceFragment(searchFragment);
@@ -308,8 +300,7 @@ public class MainActivity extends AppCompatActivity {
     // обработка нажатия системной кнопки назад
     @Override
     public void onBackPressed() {
-//        System.out.println(selectedPage);
-//        System.out.println(savedState);
+
         // смотря какая страница открыта на навигационном баре
         switch (selectedPage) {
             // если страница поиска
@@ -679,10 +670,7 @@ public class MainActivity extends AppCompatActivity {
 
     // метод, проверяющий есть ли в каком-то списке List<HostelCard> какой-то объект hostelCard
     public static boolean contains(List<HostelCard> hostelCards, HostelCard hostelCard){
-//        System.out.println("id текущей карточки - " + hostelCard.getId());
-
         for (HostelCard item : hostelCards) {
-//            System.out.println("id одной из сохранненых карточек - " + item.getId());
             if (item.getId().equals(hostelCard.getId())) return true;
         }
         return false;

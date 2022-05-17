@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ServerConnector {
-
+    // класс был использован для создания коллекций на БД в самом начале разработки
     public static void pushHostelToServer(HostelCard hostelCard){
         // пушим объект в бд
         databaseReference.push().setValue(hostelCard);
